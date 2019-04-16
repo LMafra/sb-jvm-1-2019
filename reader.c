@@ -1,131 +1,117 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-
-typedef struct cp_info {
-    uint8_t tag;
-    union{
-		struct {
-			uint16_t name_index;
-		} Class;
-		struct {
-			uint16_t class_index;
-			uint16_t name_and_type_index;
-		} Fieldref;
-		struct {
-			uint16_t class_index;
-			uint16_t name_and_type_index;
-		} Methodref;
-		struct {
-			uint16_t class_index;
-			uint16_t name_and_type_index;
-		} InterfaceMethodref;
-		struct {
-			uint16_t string_index;
-		} String;
-		struct {
-			uint32_t bytes;
-		} Integer;
-		struct {
-			uint32_t bytes;
-		} Float;
-		struct {
-			uint32_t high_bytes;
-			uint32_t low_bytes;
-		} Long;
-		struct {
-			uint32_t high_bytes;
-			uint32_t low_bytes;
-		} Double;
-		struct {
-			uint16_t name_index;
-			uint16_t descriptor_index;
-		} NameAndType;
-		struct {
-			uint16_t length;
-			uint8_t* bytes;
-		} Utf8;
-	} info;
-} cp_info;
-
-typedef struct attribute_info {    
-    uint16_t attribute_name_index;
-    uint32_t attribute_length;
-    uint8_t* info;
-} attribute_info;
-
-typedef struct field_info {
-	uint16_t access_flags;
-	uint16_t name_index;
-	uint16_t descriptor_index;
-	uint16_t attributes_count;
-	attribute_info* attributes;
-} field_info;
-
-typedef struct exceptions_attribute {
-    uint16_t attribute_name_index;
-    uint32_t attribute_length; 
-    uint16_t number_of_exceptions;
-    uint16_t* exception_index_table; 
-} exceptions_attribute; 
-
-typedef struct method_info{
-	uint16_t access_flags;
-	uint16_t name_index;
-	uint16_t descriptor_index;
-	uint16_t attributes_count;
-    attribute_info* attributes;
-    exceptions_attribute* exceptions; // não fica muito claro na doc como isso funciona
-} method_info;
-
-typedef struct classFile {
-	uint32_t magic;
-	uint16_t minor_version;
-	uint16_t major_version;
-	uint16_t constant_pool_count;
-	cp_info* constant_pool;
-	uint16_t access_flags;
-	uint16_t this_class;
-	uint16_t super_class;
-	uint16_t interfaces_count;
-	uint16_t* interfaces;
-	uint16_t fields_count;
-	field_info* fields;
-	uint16_t methods_count;
-	method_info* methods;
-	uint16_t attributes_count;
-	attribute_info* attributes;
-} classFile;
+#include "reader.h"
 
 classFile* classReader(char * className) {
-    
     FILE* file;
     file = fopen(className, "rb");
 
     if (file == NULL) {
         printf("Error opening file.\n");
-        return -1;
+        return NULL;
     }
 
-    
+	classFile* cf = NULL;
+	cf = (classFile *)malloc (sizeof(classFile));
+
+	cf->magic = read4bytes(file);
+
+	if (cf->magic != 0xCAFEBABE) {
+		printf("Invalid .class!");
+		printf("Finalizando");
+		exit(0);
+	}
+
+	/* first info */
+	cf->minor_version = read2bytes(file);
+	cf->major_version = read2bytes(file);
+	cf->constant_pool_count = read2bytes(file);
+
+	/* constant pool read */
+	cf->constant_pool = (cp_info* ) malloc((cf->constant_pool_count-1) * sizeof(cp_info));
+	cp_info* cp = cf->constant_pool;
+
+	for(int i = 0; i < cf->constant_pool_count-1; i++) {
+		cp->tag = read1byte(file);
+		switch (cp->tag) { /* adicionar checagem se constantes sao validas */
+			case CONSTANT_Class:
+				cp->info.Class.name_index = read2bytes(file);
+				break;
+			case CONSTANT_Fieldref:
+				cp->info.Fieldref.class_index = read2bytes(file);
+				cp->info.Fieldref.name_and_type_index = read2bytes(file);
+				break;
+			case CONSTANT_Methodref:
+				cp->info.Methodref.class_index = read2bytes(file);
+				cp->info.Methodref.name_and_type_index = read2bytes(file);
+				break;
+			case CONSTANT_InterfaceMethodref:
+				cp->info.InterfaceMethodref.class_index = read2bytes(file);
+				cp->info.InterfaceMethodref.name_and_type_index = read2bytes(file);
+				break;
+			case CONSTANT_String:
+				cp->info.String.string_index = read2bytes(file);
+				break;	
+			case CONSTANT_Integer:
+				cp->info.Integer.bytes = read4bytes(file);
+				break;
+			case CONSTANT_Float:
+				cp->info.Float.bytes = read4bytes(file);
+				break;
+			case CONSTANT_Long:
+				cp->info.Long.high_bytes = read4bytes(file);
+				cp->info.Long.low_bytes = read4bytes(file);
+				/* como tem o dobro do tamanho normal, aponta duas vezes o tamanho normal para pegar a proxima constant */
+				cp++; i++;
+			case CONSTANT_Double:
+				cp->info.Double.high_bytes = read4bytes(file);
+				cp->info.Double.low_bytes = read4bytes(file);
+				cp++; i++;
+				break;
+			case CONSTANT_NameAndType:
+				cp->info.NameAndType.name_index = read2bytes(file);
+				cp->info.NameAndType.descriptor_index = read2bytes(file);
+				break;
+			case CONSTANT_Utf8:
+				cp->info.Utf8.length = read2bytes(file);
+				/* +1 para adicionar o \0 na string do C */
+				cp->info.Utf8.bytes = (uint8_t* )malloc((cp->info.Utf8.length+1) * sizeof(uint8_t));
+				uint8_t* bt = cp->info.Utf8.bytes;
+				for(int j = 0; j < cp->info.Utf8.length; j++) {
+					*bt = getc(file);
+					bt++;
+				}
+				bt = '\0';
+				break;
+			default:
+				break;
+		}
+		/* aponta para o proximo constant */
+		cp++;
+	}
+
+	return cf;
 }
 
-uint8_t read1byte(FILE * file) {
+
+static inline uint8_t read1byte(FILE * file) {
     uint8_t data = getc(file);
     return data;
 }
 
-uint16_t read2bytes(FILE * file) {
+static inline uint16_t read2bytes(FILE * file) {
     uint16_t data = getc(file);
     data = (data << 8) | (getc(file));
     return data;
 }
 
-uint8_t read4bytes(FILE * file) {
-    uint8_t data = getc(file);
+static inline uint32_t read4bytes(FILE * file) {
+    uint32_t data = getc(file);
     data = (data << 8) | (getc(file));
     data = (data << 8) | (getc(file));
     data = (data << 8) | (getc(file));
     return data;
 }
 
+int main(int argc, char* argv[]) {
+	classReader("tests/Array.class");
+	return 0;
+}
