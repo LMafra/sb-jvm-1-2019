@@ -1,5 +1,10 @@
 #include "reader.h"
 
+int main(int argc, char* argv[]) {
+	classReader("tests/Array.class");
+	return 0;
+}
+
 classFile* classReader(char * className) {
     FILE* file;
     file = fopen(className, "rb");
@@ -15,21 +20,21 @@ classFile* classReader(char * className) {
 	cf->magic = read4bytes(file);
 
 	if (cf->magic != 0xCAFEBABE) {
-		printf("Invalid .class!");
-		printf("Finalizando");
+		printf("Invalid .class! Terminated.");
 		exit(0);
 	}
 
-	/* first info */
+	/* info */
 	cf->minor_version = read2bytes(file);
 	cf->major_version = read2bytes(file);
 	cf->constant_pool_count = read2bytes(file);
 
-	/* constant pool read */
+	/* constant pool */
 	cf->constant_pool = (cp_info* ) malloc((cf->constant_pool_count-1) * sizeof(cp_info));
 	cp_info* cp = cf->constant_pool;
 
-	for(int i = 0; i < cf->constant_pool_count-1; i++) {
+	/* fiz diferente pode dar merda */
+	for(int i = 0; i < cf->constant_pool_count-1; i++) { 
 		cp->tag = read1byte(file);
 		switch (cp->tag) { /* adicionar checagem se constantes sao validas */
 			case CONSTANT_Class:
@@ -74,6 +79,7 @@ classFile* classReader(char * className) {
 				cp->info.Utf8.length = read2bytes(file);
 				/* +1 para adicionar o \0 na string do C */
 				cp->info.Utf8.bytes = (uint8_t* )malloc((cp->info.Utf8.length+1) * sizeof(uint8_t));
+				/* fiz diferente pode dar merda */
 				uint8_t* bt = cp->info.Utf8.bytes;
 				for(int j = 0; j < cp->info.Utf8.length; j++) {
 					*bt = getc(file);
@@ -87,7 +93,6 @@ classFile* classReader(char * className) {
 		/* aponta para o proximo constant */
 		cp++;
 	}
-
 	return cf;
 }
 
@@ -109,9 +114,4 @@ static inline uint32_t read4bytes(FILE * file) {
     data = (data << 8) | (getc(file));
     data = (data << 8) | (getc(file));
     return data;
-}
-
-int main(int argc, char* argv[]) {
-	classReader("tests/Array.class");
-	return 0;
 }
