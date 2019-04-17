@@ -18,6 +18,9 @@
 #define CONSTANT_Double 6
 #define CONSTANT_NameAndType 12
 #define CONSTANT_Utf8 1
+#define CONSTANT_MethodHandle 15
+#define CONSTANT_MethodType 16
+#define CONSTANT_InvokeDynamic 18
 
 /* .class Structure */
 typedef struct cp_info {
@@ -63,6 +66,18 @@ typedef struct cp_info {
 			uint16_t length;
 			uint8_t* bytes;
 		} Utf8;
+        struct {
+            uint8_t reference_kind;
+            uint16_t reference_index;
+        } MethodHandle;
+        struct {
+            uint16_t descriptor_index;
+        } MethodType;
+        struct {
+            uint16_t bootstrap_method_attr_index;
+            uint16_t name_and_type_index;
+        } InvokeDynamic;
+        
 	} info;
 } cp_info;
 
@@ -120,5 +135,6 @@ typedef struct classFile {
 static inline uint8_t read1byte(FILE* fp);
 static inline uint16_t read2bytes(FILE* fp);
 static inline uint32_t read4bytes(FILE* fp);
+classFile* classReader(char * className);
 
 #endif 
