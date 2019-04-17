@@ -1,10 +1,5 @@
 #include "reader.h"
 
-int main(int argc, char* argv[]) {
-	classReader("tests/Array.class");
-	return 0;
-}
-
 classFile* classReader(char * className) {
     FILE* file;
     file = fopen(className, "rb");
