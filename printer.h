@@ -7,5 +7,6 @@
 #include "reader.h"
 
 /* Functions */
+void classPrinter( classFile* cf);
 
 #endif
