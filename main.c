@@ -6,6 +6,6 @@
 int main() {
     classFile* cf;
 	cf = classReader("tests/Array.class");
-    // classPrinter(cf);
+    classPrinter(cf);
     return 0; 
 }
