@@ -4,8 +4,10 @@
 #include "reader.h"
 
 int main() {
-    classFile* cf;
+  classFile* cf;
+
 	cf = classReader("tests/Array.class");
-    classPrinter(cf);
-    return 0; 
+  classPrinter(cf);
+
+  return 0;
 }

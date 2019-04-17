@@ -1,13 +1,13 @@
 #include "reader.h"
 
 classFile* classReader(char * className) {
-    FILE* file;
-    file = fopen(className, "rb");
+  FILE* file;
+  file = fopen(className, "rb");
 
-    if (file == NULL) {
-        printf("Error opening file.\n");
-        return NULL;
-    }
+  if (file == NULL) {
+    printf("Error opening file.\n");
+    return NULL;
+  }
 
 	classFile* cf = NULL;
 	cf = (classFile *)malloc (sizeof(classFile));
@@ -141,22 +141,22 @@ classFile* classReader(char * className) {
 
 
 static inline uint8_t read1byte(FILE * file) {
-    uint8_t data = getc(file);
-    return data;
+  uint8_t data = getc(file);
+  return data;
 }
 
 /* Precisa ser assim porque é big-endian */
 static inline uint16_t read2bytes(FILE * file) {
-    uint16_t data = getc(file);
-    data = (data << 8) | (getc(file));
-    return data;
+  uint16_t data = getc(file);
+  data = (data << 8) | (getc(file));
+  return data;
 }
 
 /* Precisa ser assim porque é big-endian */
 static inline uint32_t read4bytes(FILE * file) {
-    uint32_t data = getc(file);
-    data = (data << 8) | (getc(file));
-    data = (data << 8) | (getc(file));
-    data = (data << 8) | (getc(file));
-    return data;
+  uint32_t data = getc(file);
+  data = (data << 8) | (getc(file));
+  data = (data << 8) | (getc(file));
+  data = (data << 8) | (getc(file));
+  return data;
 }
