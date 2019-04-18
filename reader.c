@@ -151,6 +151,27 @@ classFile* classReader(char * className) {
 	}
 
 	/* methods */
+	cf->methods_count = read2bytes(file);
+	if(!cf->methods_count){
+		cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
+		for(int i = 0; i < cf->methods_count; i++){
+			cf->methods[i].access_flags = read2bytes(file);
+			cf->methods[i].name_index = read2bytes(file);
+			cf->methods[i].descriptor_index = read2bytes(file);
+			cf->methods[i].attributes_count = read2bytes(file);
+			cf->methods[i].attributes = (attribute_info* )malloc(cf->methods[i].attributes_count * sizeof(attribute_info));
+			for(int j = 0; j < cf->methods->attributes_count; j++) {
+				cf->methods[i].attributes[j].attribute_name_index = read2bytes(file);
+				cf->methods[i].attributes[j].attribute_length = read4bytes(file);
+				cf->methods[i].attributes[j].info = (uint8_t * )malloc(cf->methods[i].attributes[j].attribute_length * sizeof(uint8_t));
+				for(int k = 0; k < cf->methods[i].attributes[j].attribute_length; k++){
+					cf->methods[i].attributes[j].info[k] = read1byte(file);
+				}
+			}
+		}
+	}
+
+
 	/* attributes */
 
 	return cf;
