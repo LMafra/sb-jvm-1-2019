@@ -145,9 +145,9 @@ typedef struct classFile {
 } classFile;
 
 /* Function headers */
-static inline uint8_t read1byte(FILE* fp);
-static inline uint16_t read2bytes(FILE* fp);
-static inline uint32_t read4bytes(FILE* fp);
+uint8_t read1byte(FILE* fp);
+uint16_t read2bytes(FILE* fp);
+uint32_t read4bytes(FILE* fp);
 classFile* classReader(char * className);
 
 #endif 

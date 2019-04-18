@@ -76,6 +76,7 @@ classFile* classReader(char * className) {
 				cp[i].info.Long.low_bytes = read4bytes(file);
 				/* como tem o dobro do tamanho normal, ocupa duas posições no vetor */
 				i++;
+        break;
 			case CONSTANT_Double:
 				cp[i].info.Double.high_bytes = read4bytes(file);
 				cp[i].info.Double.low_bytes = read4bytes(file);
@@ -154,21 +155,20 @@ classFile* classReader(char * className) {
 	return cf;
 }
 
-
-static inline uint8_t read1byte(FILE * file) {
+uint8_t read1byte(FILE * file) {
   uint8_t data = getc(file);
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-static inline uint16_t read2bytes(FILE * file) {
+uint16_t read2bytes(FILE * file) {
   uint16_t data = getc(file);
   data = (data << 8) | (getc(file));
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-static inline uint32_t read4bytes(FILE * file) {
+uint32_t read4bytes(FILE * file) {
   uint32_t data = getc(file);
   data = (data << 8) | (getc(file));
   data = (data << 8) | (getc(file));
