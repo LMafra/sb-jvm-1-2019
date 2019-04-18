@@ -142,10 +142,12 @@ classFile* classReader(char * className) {
 			for(int j = 0; j < cf->fields->attributes_count; j++) {
 				cf->fields[i].attributes[j].attribute_name_index = read2bytes(file);
 				cf->fields[i].attributes[j].attribute_length = read4bytes(file);
-				//agora eu te mato
+				cf->fields[i].attributes[j].info = (uint8_t * )malloc(cf->fields[i].attributes[j].attribute_length * sizeof(uint8_t));
+				for(int k = 0; k < cf->fields[i].attributes[j].attribute_length; k++){
+					cf->fields[i].attributes[j].info[k] = read1byte(file);
+				}
 			}
 		}
-		
 	}
 
 	/* methods */
