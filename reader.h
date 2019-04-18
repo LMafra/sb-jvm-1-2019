@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 /* Definitions */
 #define CONSTANT_Class 7
@@ -105,7 +106,7 @@ typedef struct attribute_info {
       uint16_t number_of_exceptions;
       uint16_t* exception_index_table;
     } Exceptions;
-  } info;
+  } att_info;
   
 } attribute_info;
 
