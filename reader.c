@@ -3,7 +3,7 @@
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
- * Gabriel Vasconcelos \n
+ * Gabriel Vasconcelos 16/0120781 \n
  * Leonardo de Almeida \n
  * Lucas Mafra 12/0126443 \n
  * Wladimir Gramacho \n

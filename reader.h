@@ -97,7 +97,16 @@ typedef struct cp_info {
 typedef struct attribute_info {    
   uint16_t attribute_name_index;
   uint32_t attribute_length;
-  uint8_t* info;
+  union {
+    struct {
+      uint8_t constantvalue_index;;
+    } ConstantValue;
+    struct {
+      uint16_t number_of_exceptions;
+      uint16_t* exception_index_table;
+    } Exceptions;
+  } info;
+  
 } attribute_info;
 
 typedef struct field_info {
