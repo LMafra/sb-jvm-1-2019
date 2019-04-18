@@ -43,7 +43,6 @@ classFile* classReader(char * className) {
 	cf->constant_pool = (cp_info* ) malloc((cf->constant_pool_count-1) * sizeof(cp_info));
 	cp_info* cp = cf->constant_pool;
 
-	/* fiz diferente pode dar merda */
 	for(int i = 0; i < cf->constant_pool_count-1; i++) { 
 		cp[i].tag = read1byte(file);
 		switch (cp[i].tag) { /* adicionar checagem se constantes sao validas */
