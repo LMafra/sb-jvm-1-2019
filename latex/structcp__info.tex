@@ -1,0 +1,71 @@
+\hypertarget{structcp__info}{}\doxysection{cp\+\_\+info Struct Reference}
+\label{structcp__info}\index{cp\_info@{cp\_info}}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structcp__info_a29d87595bc993eb6cd53f30e8305ec74}\label{structcp__info_a29d87595bc993eb6cd53f30e8305ec74}} 
+uint8\+\_\+t {\bfseries tag}
+\item 
+\mbox{\Hypertarget{structcp__info_a9944345bff6a82d3be26a623d02227fa}\label{structcp__info_a9944345bff6a82d3be26a623d02227fa}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries name\_index}\\
+\>\} {\bfseries Class}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries class\_index}\\
+\>\>uint16\_t {\bfseries name\_and\_type\_index}\\
+\>\} {\bfseries Fieldref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries class\_index}\\
+\>\>uint16\_t {\bfseries name\_and\_type\_index}\\
+\>\} {\bfseries Methodref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries class\_index}\\
+\>\>uint16\_t {\bfseries name\_and\_type\_index}\\
+\>\} {\bfseries InterfaceMethodref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries string\_index}\\
+\>\} {\bfseries String}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries bytes}\\
+\>\} {\bfseries Integer}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries bytes}\\
+\>\} {\bfseries Float}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries high\_bytes}\\
+\>\>uint32\_t {\bfseries low\_bytes}\\
+\>\} {\bfseries Long}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries high\_bytes}\\
+\>\>uint32\_t {\bfseries low\_bytes}\\
+\>\} {\bfseries Double}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries name\_index}\\
+\>\>uint16\_t {\bfseries descriptor\_index}\\
+\>\} {\bfseries NameAndType}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries length}\\
+\>\>uint8\_t $\ast$ {\bfseries bytes}\\
+\>\} {\bfseries Utf8}\\
+\>struct \{\\
+\>\>uint8\_t {\bfseries reference\_kind}\\
+\>\>uint16\_t {\bfseries reference\_index}\\
+\>\} {\bfseries MethodHandle}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries descriptor\_index}\\
+\>\} {\bfseries MethodType}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries bootstrap\_method\_attr\_index}\\
+\>\>uint16\_t {\bfseries name\_and\_type\_index}\\
+\>\} {\bfseries InvokeDynamic}\\
+\} {\bfseries info}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{reader_8h}{reader.\+h}}\end{DoxyCompactItemize}

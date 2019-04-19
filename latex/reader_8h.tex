@@ -1,0 +1,114 @@
+\hypertarget{reader_8h}{}\doxysection{reader.\+h File Reference}
+\label{reader_8h}\index{reader.h@{reader.h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcp__info}{cp\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structattribute__info}{attribute\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structfield__info}{field\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}}
+\item 
+struct \mbox{\hyperlink{structmethod__info}{method\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structclass_file}{class\+File}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{reader_8h_a72b5b534aa409975da610a36f648fa0a}\label{reader_8h_a72b5b534aa409975da610a36f648fa0a}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Class}~7
+\item 
+\mbox{\Hypertarget{reader_8h_a008d43478c2e2973e7413f5d1c48095d}\label{reader_8h_a008d43478c2e2973e7413f5d1c48095d}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Fieldref}~9
+\item 
+\mbox{\Hypertarget{reader_8h_a2a179cf178ea867c6ab1700508c269dd}\label{reader_8h_a2a179cf178ea867c6ab1700508c269dd}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Methodref}~10
+\item 
+\mbox{\Hypertarget{reader_8h_ac0e92044d246c6e4d691116f89a70ebb}\label{reader_8h_ac0e92044d246c6e4d691116f89a70ebb}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Interface\+Methodref}~11
+\item 
+\mbox{\Hypertarget{reader_8h_a0a7acbe175de56072a2f0a1a051418e1}\label{reader_8h_a0a7acbe175de56072a2f0a1a051418e1}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+String}~8
+\item 
+\mbox{\Hypertarget{reader_8h_a856a6553a55d721970ca5450eb1ccd2c}\label{reader_8h_a856a6553a55d721970ca5450eb1ccd2c}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Integer}~3
+\item 
+\mbox{\Hypertarget{reader_8h_ab914627ce5b25c4acfc98f2eacb78473}\label{reader_8h_ab914627ce5b25c4acfc98f2eacb78473}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Float}~4
+\item 
+\mbox{\Hypertarget{reader_8h_a426ca017b895fc522671a561d460be7a}\label{reader_8h_a426ca017b895fc522671a561d460be7a}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Long}~5
+\item 
+\mbox{\Hypertarget{reader_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}\label{reader_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Double}~6
+\item 
+\mbox{\Hypertarget{reader_8h_a5b6ba749976ae61415983ca0b890c91a}\label{reader_8h_a5b6ba749976ae61415983ca0b890c91a}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Name\+And\+Type}~12
+\item 
+\mbox{\Hypertarget{reader_8h_afc46559a7d3f7baf519fc183c2fad2b4}\label{reader_8h_afc46559a7d3f7baf519fc183c2fad2b4}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Utf8}~1
+\item 
+\mbox{\Hypertarget{reader_8h_adb3c84f82163f217ab7f8fa0258d80ce}\label{reader_8h_adb3c84f82163f217ab7f8fa0258d80ce}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Handle}~15
+\item 
+\mbox{\Hypertarget{reader_8h_a991ba557d63f94e2cdf05c9f80630a6f}\label{reader_8h_a991ba557d63f94e2cdf05c9f80630a6f}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Type}~16
+\item 
+\mbox{\Hypertarget{reader_8h_a127046386d755d4a91c71aa9b453a8bb}\label{reader_8h_a127046386d755d4a91c71aa9b453a8bb}} 
+\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Invoke\+Dynamic}~18
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{reader_8h_adfb47ee1036d22a4738c6c22849e5681}\label{reader_8h_adfb47ee1036d22a4738c6c22849e5681}} 
+typedef struct \mbox{\hyperlink{structcp__info}{cp\+\_\+info}} {\bfseries cp\+\_\+info}
+\item 
+\mbox{\Hypertarget{reader_8h_ab2754ff49c228029dd54d71e253388da}\label{reader_8h_ab2754ff49c228029dd54d71e253388da}} 
+typedef struct \mbox{\hyperlink{structattribute__info}{attribute\+\_\+info}} {\bfseries attribute\+\_\+info}
+\item 
+\mbox{\Hypertarget{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}\label{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}} 
+typedef struct \mbox{\hyperlink{structfield__info}{field\+\_\+info}} {\bfseries field\+\_\+info}
+\item 
+\mbox{\Hypertarget{reader_8h_aa03f4dc5b8040ad8c63eb4a500ac35d3}\label{reader_8h_aa03f4dc5b8040ad8c63eb4a500ac35d3}} 
+typedef struct \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}} {\bfseries exceptions\+\_\+attribute}
+\item 
+\mbox{\Hypertarget{reader_8h_a09a057cfa24c88e3defabdfcaac953c1}\label{reader_8h_a09a057cfa24c88e3defabdfcaac953c1}} 
+typedef struct \mbox{\hyperlink{structmethod__info}{method\+\_\+info}} {\bfseries method\+\_\+info}
+\item 
+\mbox{\Hypertarget{reader_8h_af9aae635c0088b85e23532f1a2e15271}\label{reader_8h_af9aae635c0088b85e23532f1a2e15271}} 
+typedef struct \mbox{\hyperlink{structclass_file}{class\+File}} {\bfseries class\+File}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{reader_8h_a68c32640a3909937adaec6775a260aa5}\label{reader_8h_a68c32640a3909937adaec6775a260aa5}} 
+uint8\+\_\+t {\bfseries read1byte} (F\+I\+LE $\ast$fp)
+\item 
+\mbox{\Hypertarget{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}\label{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}} 
+uint16\+\_\+t {\bfseries read2bytes} (F\+I\+LE $\ast$fp)
+\item 
+\mbox{\Hypertarget{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}\label{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}} 
+uint32\+\_\+t {\bfseries read4bytes} (F\+I\+LE $\ast$fp)
+\item 
+\mbox{\Hypertarget{reader_8h_a581665709a6695c3b913310a6467f55a}\label{reader_8h_a581665709a6695c3b913310a6467f55a}} 
+\mbox{\hyperlink{structclass_file}{class\+File}} $\ast$ {\bfseries class\+Reader} (char $\ast$class\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Universidade de Brasilia
+
+Bruno Sanguinetti ~\newline
+Gabriel Vasconcelos ~\newline
+Leonardo de Almeida ~\newline
+Lucas Mafra 12/0126443 ~\newline
+Wladimir Gramacho ~\newline
+\hypertarget{reader_8h_DESCRIPTION}{}\doxysubsection{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}\label{reader_8h_DESCRIPTION}
+Cabeçalho do leitor do .class. ~\newline

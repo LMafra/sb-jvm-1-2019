@@ -1,0 +1,30 @@
+\hypertarget{structattribute__info}{}\doxysection{attribute\+\_\+info Struct Reference}
+\label{structattribute__info}\index{attribute\_info@{attribute\_info}}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structattribute__info_aa8d580cb4c1e585270a11167bfdec6ff}\label{structattribute__info_aa8d580cb4c1e585270a11167bfdec6ff}} 
+uint16\+\_\+t {\bfseries attribute\+\_\+name\+\_\+index}
+\item 
+\mbox{\Hypertarget{structattribute__info_a05bf4c6510e85d1adb7d75c2742b8550}\label{structattribute__info_a05bf4c6510e85d1adb7d75c2742b8550}} 
+uint32\+\_\+t {\bfseries attribute\+\_\+length}
+\item 
+\mbox{\Hypertarget{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}\label{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint8\_t {\bfseries constantvalue\_index}\\
+\>\} {\bfseries ConstantValue}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries number\_of\_exceptions}\\
+\>\>uint16\_t $\ast$ {\bfseries exception\_index\_table}\\
+\>\} {\bfseries Exceptions}\\
+\} {\bfseries att\_info}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{reader_8h}{reader.\+h}}\end{DoxyCompactItemize}
