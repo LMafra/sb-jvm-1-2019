@@ -10,8 +10,7 @@
 
 ## Autores
 
-* **Bruno Sanguinetti R. Barros** |
---------------------------------- |    *18/0046063*     |     [GitHub](https://github.com/BrunoSNT)
+* **Bruno Sanguinetti R. Barros** |    *18/0046063*     |     [GitHub](https://github.com/BrunoSNT)
 * **Gabriel Vasconcelos**         |    *0000000000*     |     [GitHub](https://github.com/gcvasconcelos)
 * **Leonardo de Almeida**         |    *0000000000*     |     [NULL](https://github.com/)
 * **Lucas Mafra**                 |    *12/0126443*     |     [GitHub](https://github.com/LMafra)
