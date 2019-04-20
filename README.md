@@ -1,12 +1,12 @@
-# Trabalho 1
+# Informações
 
-## Informações
+## Cabeçalho
 
 * 18/04/2019
 * Brasília, DF, Brasil
 * Software Básico
 * Turma: A - 01/2019
-* Professor: Alguma coisa ladeira
+* Professor: Marcelo Ladeira
 
 ## Autores
 
