@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exceptions_5fattribute',['exceptions_attribute',['../structexceptions__attribute.html',1,'']]]
+  ['double',['Double',['../struct_double.html',1,'']]]
 ];

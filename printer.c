@@ -16,13 +16,9 @@
 * 
 */
 
- 
-
-
-
 #include "printer.h"
 
-void classPrinter( classFile* cf) {
+void classPrinter( classFile* cf) { /*! Long Detailed description after the member */
   /* General Information */
   printf("# Class file Structure\n");
   printf("CAFEBABE: 0x%0x \n", cf->magic);

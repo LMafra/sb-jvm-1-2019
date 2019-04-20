@@ -15,10 +15,9 @@
 * @section DESCRIPTION
 */
 
-
 #include "reader.h"
 
-classFile* classReader(char * className) {  /*!< Detailed description after the member */
+classFile* classReader(char * className) {  /*! Detailed description after the member */
   FILE* file;
   file = fopen(className, "rb");
 

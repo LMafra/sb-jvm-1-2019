@@ -20,7 +20,7 @@
 #include "printer.h"
 #include "reader.h"
 
-int main() {
+int main() { /*! Long Detailed description after the member */
   classFile* cf;
 
 	cf = classReader("tests/Array.class");
