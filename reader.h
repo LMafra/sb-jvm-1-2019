@@ -9,12 +9,10 @@
  ***********************************************/
 
 /**
- * @file 
- * @section DESCRIPTION
- * 
- * Cabeçalho do leitor do .class. \n
- *  
- */
+* @file
+* @brief Cabeçalho do leitor do .class. \n 
+* @section DESCRIPTION 
+*/
  
 #ifndef READER_H
 #define READER_H

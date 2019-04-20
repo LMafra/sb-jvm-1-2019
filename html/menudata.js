@@ -21,10 +21,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Related Pages",url:"pages.html"},
-{text:"Data Structures",url:"annotated.html",children:[
-{text:"Data Structures",url:"annotated.html"},
-{text:"Data Structure Index",url:"classes.html"}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"}]}]}
+{text:"Página principal",url:"index.html"},
+{text:"Páginas relacionadas",url:"pages.html"},
+{text:"Estruturas de dados",url:"annotated.html",children:[
+{text:"Estruturas de dados",url:"annotated.html"},
+{text:"Índice das estruturas de dados",url:"classes.html"}]},
+{text:"Ficheiros",url:"files.html",children:[
+{text:"Lista de ficheiros",url:"files.html"}]}]}

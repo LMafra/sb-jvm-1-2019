@@ -1,5 +1,4 @@
-/* @file 
- * @section DESCRIPTION
+ /********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
@@ -7,11 +6,18 @@
  * Leonardo de Almeida \n
  * Lucas Mafra 12/0126443 \n
  * Wladimir Gramacho \n
- * 
- * Responsavel por imprimir no terminal 
- * a estrutura do classfile lido. \n
- *  
- */
+ ***********************************************/
+
+/**
+* @file
+* @brief Responsavel por imprimir no terminal 
+*        a estrutura do classfile lido. \n
+* @section DESCRIPTION
+* 
+*/
+
+ 
+
 
 
 #include "printer.h"

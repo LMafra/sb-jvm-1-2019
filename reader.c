@@ -1,17 +1,20 @@
-/* @file 
- * @section DESCRIPTION
+ /********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
- * Gabriel Vasconcelos 16/0120781 \n
+ * Gabriel Vasconcelos \n
  * Leonardo de Almeida \n
  * Lucas Mafra 12/0126443 \n
  * Wladimir Gramacho \n
- * 
- * Responsavel por ler o .class e 
- * montar as estruturas. \n
- *  
- */
+ ***********************************************/
+
+/**
+* @file
+* @brief Responsavel por ler o .class e 
+*        montar as estruturas. \n
+* @section DESCRIPTION
+*/
+
 
 #include "reader.h"
 

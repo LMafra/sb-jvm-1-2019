@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "acefmrs",
+  0: "acefmprs",
   1: "acefm",
-  2: "r",
+  2: "mpr",
   3: "s"
 };
 
@@ -16,9 +16,9 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Data Structures",
-  2: "Files",
-  3: "Pages"
+  0: "Tudo",
+  1: "Estruturas de dados",
+  2: "Ficheiros",
+  3: "Páginas"
 };
 

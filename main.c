@@ -1,5 +1,4 @@
-/* @file 
- * @section DESCRIPTION
+ /********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
@@ -7,10 +6,14 @@
  * Leonardo de Almeida \n
  * Lucas Mafra 12/0126443 \n
  * Wladimir Gramacho \n
- * 
- * Função responsável pelo processamento do arquivo .class
- *  e execução das instruções da JVM
- */
+ ***********************************************/
+
+/**
+* @file
+* @brief Responsável pelo processamento do arquivo 
+*        .class e execução das instruções da JVM
+* @section DESCRIPTION
+*/
 
 
 #include <stdlib.h>
