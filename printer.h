@@ -25,6 +25,6 @@
 #include "reader.h"
 
 /* Functions */
-void classPrinter( classFile* cf);
+void classPrinter( classFile* cf); /*!< Detailed description after the member */
 
 #endif

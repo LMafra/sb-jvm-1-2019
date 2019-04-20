@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Leitor e Exibidor JVM: Código-Fonte de printer.h</title>
+<title>Leitor e Exibidor JVM: Página principal</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -13,10 +13,11 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
+<div id="titlearea" class="containter d-flex justify-content-center">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -24,14 +25,14 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Leitor e Exibidor JVM
    </div>
-   <div id="projectbrief">01/2019 - Software Básico - Professor Ladeira</div>
+   <div class="d-flex justify-content-center" id="projectbrief">01/2019 - Software Básico - Professor Ladeira</div>
+   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   </td>
  </tr>
  </tbody>
 </table>
 </div>
-<!-- end header part -->
-<!-- Gerado por Doxygen 1.8.16 -->
+<!-- end header part --><!-- Gerado por Doxygen 1.8.16 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
@@ -67,11 +68,18 @@ $(function() {
 <div class="title">printer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="printer_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; <span class="comment">/********************************************/</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef PRINTER_H</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define PRINTER_H</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* Includes */</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="reader_8h.html">reader.h</a>&quot;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/* Functions */</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> classPrinter( <a class="code" href="structclass_file.html">classFile</a>* cf);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div></div><!-- fragment --></div><!-- contents -->
+<a href="printer_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; <span class="comment">/********************************************/</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef PRINTER_H</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define PRINTER_H</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* Includes */</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="reader_8h.html">reader.h</a>&quot;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/* Functions */</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="printer_8h.html#a58bec871ef3de734e2a498d4889ef671">classPrinter</a>( <a class="code" href="structclass_file.html">classFile</a>* cf); </div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div></div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructclass_file_html"><div class="ttname"><a href="structclass_file.html">classFile</a></div><div class="ttdef"><b>Definition:</b> reader.h:140</div></div>
+<div class="ttc" id="aprinter_8h_html_a58bec871ef3de734e2a498d4889ef671"><div class="ttname"><a href="printer_8h.html#a58bec871ef3de734e2a498d4889ef671">classPrinter</a></div><div class="ttdeci">void classPrinter(classFile *cf)</div><div class="ttdef"><b>Definition:</b> printer.c:25</div></div>
 <div class="ttc" id="areader_8h_html"><div class="ttname"><a href="reader_8h.html">reader.h</a></div><div class="ttdoc">Cabeçalho do leitor do .class.  .</div></div>
+<!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><p class="float-left position-absolute">Horsemade by The Amazing Suicidal Horsegroup</p><address class="footer"><small>
 Gerado por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.16

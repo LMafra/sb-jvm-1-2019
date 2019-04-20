@@ -15,7 +15,6 @@
 * @section DESCRIPTION
 */
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include "printer.h"

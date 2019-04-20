@@ -18,7 +18,7 @@
 
 #include "reader.h"
 
-classFile* classReader(char * className) {
+classFile* classReader(char * className) {  /*!< Detailed description after the member */
   FILE* file;
   file = fopen(className, "rb");
 
@@ -186,20 +186,20 @@ classFile* classReader(char * className) {
 	return cf;
 }
 
-uint8_t read1byte(FILE * file) {
+uint8_t read1byte(FILE * file) {  /*!< Detailed description after the member */
   uint8_t data = getc(file);
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint16_t read2bytes(FILE * file) {
+uint16_t read2bytes(FILE * file) {  /*!< Detailed description after the member */
   uint16_t data = getc(file);
   data = (data << 8) | (getc(file));
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint32_t read4bytes(FILE * file) {
+uint32_t read4bytes(FILE * file) {  /*!< Detailed description after the member */
   uint32_t data = getc(file);
   data = (data << 8) | (getc(file));
   data = (data << 8) | (getc(file));
