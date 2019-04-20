@@ -14,7 +14,7 @@
 * **Gabriel Vasconcelos** - *000000000* - GitHub -> [gcvasconcelos](https://github.com/gcvasconcelos)
 * **Leonardo de Almeida** - *000000000* - GitHub -> [NULL](https://github.com/)
 * **Lucas Mafra** - *12/0126443* - GitHub -> [LMafra](https://github.com/LMafra)
-* **Wladimir Gramacho** - *000000000* - GitHub -> [wladimirgramacho(https://github.com/wladimirgramacho)
+* **Wladimir Gramacho** - *000000000* - GitHub -> [wladimirgramacho](https://github.com/wladimirgramacho)
 
 ## Getting Started
 
