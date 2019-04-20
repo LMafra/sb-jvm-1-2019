@@ -35,11 +35,15 @@ Tenha certeza que o gtest esteja incluido durante os testes.
 
 ### Compilando e Executando
 
-Como compilar:
-`~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c -Wall -std=c99`
+Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99`:
+```
+~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c -Wall -std=c99
+```
 
-Como  executar:
-`~dir/sb-jvm-1-2019 user$ ./main`
+Como  executar `./main`:
+```
+~dir/sb-jvm-1-2019 user$ ./main
+```
 
 Entre no diretório ```../``` e execute o seguinte comando para compilar e executar:
 
