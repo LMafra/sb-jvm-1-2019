@@ -1,1 +1,100 @@
-Como compilar\+: {\ttfamily gcc -\/o main \mbox{\hyperlink{main_8c}{main.\+c}} \mbox{\hyperlink{reader_8c}{reader.\+c}} \mbox{\hyperlink{printer_8c}{printer.\+c}} -\/Wall -\/std=c99} 
+
+\begin{DoxyItemize}
+\item 18/04/2019
+\item Brasília, DF, Brasil
+\item Software Básico
+\item Turma\+: A -\/ 01/2019
+\item Professor\+: Alguma coisa ladeira
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Bruno Sanguinetti R. Barros}} -\/ {\itshape 18/0046063} -\/ Git\+Hub -\/$>$ \href{https://github.com/BrunoSNT}{\texttt{ Bruno\+S\+NT}}
+\item {\bfseries{Gabriel Vasconcelos}} -\/ {\itshape 000000000} -\/ Git\+Hub -\/$>$ \href{https://github.com/gcvasconcelos}{\texttt{ gcvasconcelos}}
+\item {\bfseries{Leonardo de Almeida}} -\/ {\itshape 000000000} -\/ Git\+Hub -\/$>$ \href{https://github.com/}{\texttt{ N\+U\+LL}}
+\item {\bfseries{Lucas Mafra}} -\/ {\itshape 12/0126443} -\/ Git\+Hub -\/$>$ \href{https://github.com/LMafra}{\texttt{ L\+Mafra}}
+\item {\bfseries{Wladimir Gramacho}} -\/ {\itshape 000000000} -\/ Git\+Hub -\/$>$ \mbox{[}wladimirgramacho(\href{https://github.com/wladimirgramacho}{\texttt{ https\+://github.\+com/wladimirgramacho}})
+\end{DoxyItemize}
+
+Essas instruções farão com que você tenha uma cópia deste projeto em sua máquina local para fins de desenvolvimento e teste.
+
+Para roda os devidos teste nesse software você precisa ter instalado em sua máquina o googletest, uma biblioteca de testes unitários para a linguagem de programação C/\+C++.
+
+Por favor leia T\+U\+T\+O\+R\+I\+AL G\+T\+E\+ST I\+N\+S\+T\+A\+LL para mais detalhes sobre como instalar o gtest
+
+Por favor leia G\+T\+E\+ST I\+N\+FO para mais detalhes sobre o gtest
+
+Tenha certeza que o gtest esteja incluido durante os testes. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{@include "gtest/gtest"}
+\end{DoxyCode}
+
+
+Como compilar\+: {\ttfamily $\sim$dir/sb-\/jvm-\/1-\/2019 user\$ gcc -\/o main \mbox{\hyperlink{main_8c}{main.\+c}} \mbox{\hyperlink{reader_8c}{reader.\+c}} \mbox{\hyperlink{printer_8c}{printer.\+c}} -\/Wall -\/std=c99}
+
+Como executar\+: {\ttfamily $\sim$dir/sb-\/jvm-\/1-\/2019 user\$ ./main}
+
+Entre no diretório {\ttfamily ../} e execute o seguinte comando para compilar e executar\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{~dir/sb-\/jvm-\/1-\/2019 user\$ make run}
+\end{DoxyCode}
+
+
+Para apenas compilar
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{~dir/sb-\/jvm-\/1-\/2019 user\$ make}
+\end{DoxyCode}
+
+
+Todos os testes foram feitos com comparação binaria, não fatal (não interrompe o teste após detecção do erro), fornecida pelo googletest como pode ser observado no arquivo de testes \href{https://github.com/BrunoSNT}{\texttt{ teste\+\_\+file}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Fatal assertion  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nonfatal assertion  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Verifies   }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Fatal assertion  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nonfatal assertion  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Verifies   }\\\cline{1-3}
+\endhead
+{\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+E\+Q(val1, val2);}  &{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+E\+Q(val1, val2);}  &{\ttfamily val1 == val2}   \\\cline{1-3}
+\end{longtabu}
+
+
+Os testes foram realizados em etapas previamente determidadas\+:
+
+
+\begin{DoxyItemize}
+\item teste de conversão de caractere -\/ função converte()
+\item teste de conversão de strings -\/ função avalia()
+\item teste de unidade na avaliação/conversao romano-\/arabico
+\item teste de dezena na avaliação/conversao romano-\/arabico
+\item teste de centena na avaliação/conversao romano-\/arabico
+\item teste de milhar na avaliação/conversao romano-\/arabico
+\item teste de avaliação/conversao geral romano-\/arabico
+\item teste de tratamento de erros na avaliação-\/conversao romano-\/arabico
+\end{DoxyItemize}
+
+O que se esperava do teste em todas as estapas era uma saída de valor correto em algarismos arabicos dada determinada entrada em algarismo romanos. Em caso de entradas inválidas a função deveria retornar -\/1.
+
+Durante todo o projeto, após cada aprovaçao nos teste, foram executados os comandos 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cppcheck -\/-\/enable=warning <file>}
+\DoxyCodeLine{cpplint <file>}
+\end{DoxyCode}
+ E em seguida feitas as devidas alterações para enquadrar o código nos padrões delimitados se nescessário
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/google/googletest}{\texttt{ Google Test}} -\/ Test framework
+\item \href{https://github.com/cpplint/cpplint}{\texttt{ C\+P\+P\+Lint}} -\/ Coding Style Guide
+\item \href{cppcheck.sourceforge.net}{\texttt{ C\+P\+P\+Check}} -\/ Static Code Analysis Tool
+\item \href{https://code.visualstudio.com}{\texttt{ V\+S\+Code}} -\/ Code Editor
+\end{DoxyItemize}
+
+This project is licensed under the M\+IT License -\/ see the \href{https://opensource.org/licenses/MIT}{\texttt{ L\+I\+C\+E\+N\+SE}} file for details 
