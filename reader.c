@@ -146,6 +146,9 @@ classFile* classReader(char * className) {
       } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
         cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
+          cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
+        }
       }
     }
   }
@@ -165,11 +168,14 @@ classFile* classReader(char * className) {
       
       uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index; 
       /* não estou usando o att length e mallocando o att_info o que pode dar merda */
-      if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
+      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+        for (int k = 0; k < cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
+          cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
+        }
       }
     }
   }

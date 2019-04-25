@@ -148,4 +148,27 @@ void classPrinter( classFile* cf) {
 
   /* Fields */
 	printf("Fields Count: cp_info #%d\n",cf->fields_count);  
+  for (int i = 0; i < cf->fields_count; i++) {
+    printf("[%d] Field:\n", i+1);
+    printf("\taccess_flags: %d\n", cf->fields[i].access_flags);
+    printf("\tname_index: %d\n", cf->fields[i].name_index);
+    printf("\tdescriptor_index: %d\n", cf->fields[i].descriptor_index);
+    printf("\tattributes_count: %d\n", cf->fields[i].attributes_count);
+    for (int j = 0; j < cf->fields->attributes_count; j++) {
+      printf("\t[%d] Attribute:\n");
+      printf("\t\tattribute_name_index: %d\n", cf->fields[i].attributes[j].attribute_name_index);
+      printf("\t\tattribute_length: %d\n", cf->fields[i].attributes[j].attribute_length);
+      uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index;
+      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
+        printf("\t\tconstantvalue_index: %d\n", cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index);
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+        printf("\t\tnumber_of_exceptions: %d\n", cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions);
+        printf("\t\texception_index_table:");
+        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
+          printf(" %d", cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
+        }
+        printf("\n");
+      }
+    }
+  }
 }
