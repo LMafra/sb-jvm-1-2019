@@ -171,4 +171,30 @@ void classPrinter( classFile* cf) {
       }
     }
   }
+
+  /* Methods */
+  printf("Methods Count: cp_info #%d\n",cf->methods_count);  
+  for (int i = 0; i < cf->methods_count; i++) {
+    printf("[%d] Method:\n", i+1);
+    printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
+    printf("\tname_index: %d\n", cf->methods[i].name_index);
+    printf("\tdescriptor_index: %d\n", cf->methods[i].descriptor_index);
+    printf("\tattributes_count: %d\n", cf->methods[i].attributes_count);
+    for (int j = 0; j < cf->methods->attributes_count; j++) {
+      printf("\t[%d] Attribute:\n");
+      printf("\t\tattribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
+      printf("\t\tattribute_length: %d\n", cf->methods[i].attributes[j].attribute_length);
+      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index;
+      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
+        printf("\t\tconstantvalue_index: %d\n", cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index);
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+        printf("\t\tnumber_of_exceptions: %d\n", cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions);
+        printf("\t\texception_index_table:");
+        for (int k = 0; k < cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
+          printf(" %d", cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
+        }
+        printf("\n");
+      }
+    }
+  }
 }
