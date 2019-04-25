@@ -22,20 +22,20 @@
 #include <string.h>
 
 /* Definitions */
-#define CONSTANT_Class 7
-#define CONSTANT_Fieldref 9
-#define CONSTANT_Methodref 10
-#define CONSTANT_InterfaceMethodref 11
-#define CONSTANT_String 8
-#define CONSTANT_Integer 3
-#define CONSTANT_Float 4
-#define CONSTANT_Long 5
-#define CONSTANT_Double 6
-#define CONSTANT_NameAndType 12
-#define CONSTANT_Utf8 1
-#define CONSTANT_MethodHandle 15
-#define CONSTANT_MethodType 16
-#define CONSTANT_InvokeDynamic 18
+#define CONSTANT_Class                7
+#define CONSTANT_Fieldref             9
+#define CONSTANT_Methodref            10
+#define CONSTANT_InterfaceMethodref   11
+#define CONSTANT_String               8
+#define CONSTANT_Integer              3
+#define CONSTANT_Float                4
+#define CONSTANT_Long                 5
+#define CONSTANT_Double               6
+#define CONSTANT_NameAndType          12
+#define CONSTANT_Utf8                 1
+#define CONSTANT_MethodHandle         15
+#define CONSTANT_MethodType           16
+#define CONSTANT_InvokeDynamic        18
 
 /* .class Structure */
 typedef struct cp_info {
@@ -118,21 +118,12 @@ typedef struct field_info {
   attribute_info* attributes;
 } field_info;
 
-typedef struct exceptions_attribute {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
-  uint16_t number_of_exceptions;
-  uint16_t* exception_index_table;
-} exceptions_attribute; 
-
 typedef struct method_info{
   uint16_t access_flags;
   uint16_t name_index;
   uint16_t descriptor_index;
   uint16_t attributes_count;
   attribute_info* attributes;
-  /* não fica muito claro na doc como isso funciona */
-  exceptions_attribute* exceptions;
 } method_info;
 
 typedef struct classFile {

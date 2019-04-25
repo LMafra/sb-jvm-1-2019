@@ -91,9 +91,8 @@ classFile* classReader(char * className) {
 				cp[i].info.Utf8.bytes = (uint8_t* )malloc((cp[i].info.Utf8.length+1) * sizeof(uint8_t));
 				/* fiz diferente pode dar merda */
 				uint8_t* bt = cp[i].info.Utf8.bytes;
-				for(int j = 0; j < cp[i].info.Utf8.length; j++) {
+				for(int j = 0; j < cp[i].info.Utf8.length; j++, bt++) {
 					*bt = getc(file);
-					bt++;
 				}
 				bt = '\0';
 				break;
@@ -121,64 +120,64 @@ classFile* classReader(char * className) {
 
 	/* interfaces */
 	cf->interfaces_count = read2bytes(file);
-	if (!cf->interfaces_count) {
-		cf->interfaces = (uint16_t* )malloc(cf->interfaces_count * sizeof(uint16_t));
-		for (int i = 0; i < cf->interfaces_count; i++) {
-			cf->interfaces[i] = read2bytes(file);
-		}
-	}
+  cf->interfaces = (uint16_t* )malloc(cf->interfaces_count * sizeof(uint16_t));
+  for (int i = 0; i < cf->interfaces_count; i++) {
+    cf->interfaces[i] = read2bytes(file);
+  }
 
 	/* fields */
 	cf->fields_count = read2bytes(file);
-	if (!cf->fields_count) {
-		cf->fields = (field_info* )malloc(cf->fields_count * sizeof(field_info));
-		for(int i = 0; i < cf->fields_count; i++) {
-			cf->fields[i].access_flags = read2bytes(file);
-			cf->fields[i].name_index = read2bytes(file);
-			cf->fields[i].descriptor_index = read2bytes(file);
+  cf->fields = (field_info* )malloc(cf->fields_count * sizeof(field_info));
+  for(int i = 0; i < cf->fields_count; i++) {
+    cf->fields[i].access_flags = read2bytes(file);
+    cf->fields[i].name_index = read2bytes(file);
+    cf->fields[i].descriptor_index = read2bytes(file);
 
-			cf->fields[i].attributes_count = read2bytes(file);
-			cf->fields[i].attributes = (attribute_info* )malloc(cf->fields[i].attributes_count * sizeof(attribute_info));
-			for(int j = 0; j < cf->fields->attributes_count; j++) {
-				cf->fields[i].attributes[j].attribute_name_index = read2bytes(file);
-				cf->fields[i].attributes[j].attribute_length = read4bytes(file);
-				uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index; 
-        if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
-          cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-        } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
-          cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
-          cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
-        }
-			}
-		}
-	}
+    cf->fields[i].attributes_count = read2bytes(file);
+    cf->fields[i].attributes = (attribute_info* )malloc(cf->fields[i].attributes_count * sizeof(attribute_info));
+    for(int j = 0; j < cf->fields->attributes_count; j++) {
+      cf->fields[i].attributes[j].attribute_name_index = read2bytes(file);
+      cf->fields[i].attributes[j].attribute_length = read4bytes(file);
+      
+      uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index; 
+      if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
+        cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
+      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+        cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
+        cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+      }
+    }
+  }
 
 	/* methods */
 	cf->methods_count = read2bytes(file);
-	if(!cf->methods_count){
-		cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
-		for(int i = 0; i < cf->methods_count; i++){
-			cf->methods[i].access_flags = read2bytes(file);
-			cf->methods[i].name_index = read2bytes(file);
-			cf->methods[i].descriptor_index = read2bytes(file);
-			cf->methods[i].attributes_count = read2bytes(file);
-			cf->methods[i].attributes = (attribute_info* )malloc(cf->methods[i].attributes_count * sizeof(attribute_info));
-			for(int j = 0; j < cf->methods->attributes_count; j++) {
-				cf->methods[i].attributes[j].attribute_name_index = read2bytes(file);
-				cf->methods[i].attributes[j].attribute_length = read4bytes(file);
-        uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index; 
-        if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
-          cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-        } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
-          cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
-          cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
-        }
-			}
-		}
-	}
-
+  cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
+  for(int i = 0; i < cf->methods_count; i++){
+    cf->methods[i].access_flags = read2bytes(file);
+    cf->methods[i].name_index = read2bytes(file);
+    cf->methods[i].descriptor_index = read2bytes(file);
+    cf->methods[i].attributes_count = read2bytes(file);
+    cf->methods[i].attributes = (attribute_info* )malloc(cf->methods[i].attributes_count * sizeof(attribute_info));
+    for(int j = 0; j < cf->methods->attributes_count; j++) {
+      cf->methods[i].attributes[j].attribute_name_index = read2bytes(file);
+      cf->methods[i].attributes[j].attribute_length = read4bytes(file);
+      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index; 
+      if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
+        cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
+      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+        cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
+        cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+      }
+    }
+  }
 
 	/* attributes */
+  cf->attributes_count = read2bytes(file);
+  cf->attributes = (attribute_info *)malloc(cf->attributes_count * sizeof(attribute_info));
+  for (int i = 0; i < cf->attributes_count; i++) {
+    
+  }
+  
 
 	return cf;
 }

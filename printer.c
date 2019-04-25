@@ -106,5 +106,46 @@ void classPrinter( classFile* cf) {
   }
   
   /* General Information */
+  printf("----Second General Info----\n");
+	printf("Access Flags: 0x%0x ", cf->access_flags);
+  switch (cf->access_flags) {
+    case ACC_PUBLIC:
+      printf("[public]\n");
+      break;  
+    case ACC_FINAL:
+      printf("[final]\n");
+      break;  
+    case ACC_SUPER:
+      printf("[super]\n");
+      break;  
+    case ACC_INTERFACE:
+      printf("[interface]\n");
+      break;  
+    case ACC_ABSTRACT:
+      printf("[abstract]\n");
+      break;  
+    case ACC_SYNTHETIC:
+      printf("[synthetic]\n");
+      break;  
+    case ACC_ANNOTATION:
+      printf("[annotation]\n");
+      break;  
+    case ACC_ENUM:
+      printf("[enum]\n");
+      break;  
+    default:
+      printf("\n");
+      break;
+  }
+	printf("This Class: cp_info #%d\n", cf->this_class);
+	printf("Super Class: cp_info #%d\n", cf->super_class);
 
+  /* Interfaces */
+	printf("Interfaces Count: cp_info #%d\n", cf->interfaces_count);
+  for (int i = 0; i < cf->interfaces_count; i++) {
+    printf("[%d] Interface: cp_info #%d\n", i+1, cf->interfaces[i]);
+  }
+
+  /* Fields */
+	printf("Fields Count: cp_info #%d\n",cf->fields_count);  
 }
