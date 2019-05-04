@@ -178,7 +178,7 @@ classFile* classReader(char * className) {
     
   }
   
-
+	fclose(file);
 	return cf;
 }
 
