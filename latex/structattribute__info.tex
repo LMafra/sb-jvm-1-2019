@@ -1,0 +1,86 @@
+\hypertarget{structattribute__info}{}\doxysection{Referência à estrutura attribute\+\_\+info}
+\label{structattribute__info}\index{attribute\_info@{attribute\_info}}
+
+
+A\+LO.  
+
+
+
+
+{\ttfamily \#include $<$reader.\+h$>$}
+
+\doxysubsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structattribute__info_aa8d580cb4c1e585270a11167bfdec6ff}{attribute\+\_\+name\+\_\+index}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structattribute__info_a05bf4c6510e85d1adb7d75c2742b8550}{attribute\+\_\+length}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint8\_t {\bfseries constantvalue\_index}\\
+\>\} \mbox{\hyperlink{structattribute__info_adacceda938a0213388287603dcb2ae48}{ConstantValue}}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structattribute__info_a7c0c2c58d833f7b63d0b6ab483e537f1}{number\_of\_exceptions}}\\
+\>\>uint16\_t $\ast$ \mbox{\hyperlink{structattribute__info_a38178aee6eed0ea3d063727fed9cd100}{exception\_index\_table}}\\
+\>\} \mbox{\hyperlink{structattribute__info_afb254085f5d3b9512f501555b270a59c}{Exceptions}}\\
+\} \mbox{\hyperlink{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}{att\_info}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+A\+LO. 
+
+Detailed description after the member 
+
+\doxysubsection{Documentação dos campos e atributos}
+\mbox{\Hypertarget{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}\label{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}} 
+\index{attribute\_info@{attribute\_info}!att\_info@{att\_info}}
+\index{att\_info@{att\_info}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{att\_info}{att\_info}}
+{\footnotesize\ttfamily union \{ ... \}   attribute\+\_\+info\+::att\+\_\+info}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_a05bf4c6510e85d1adb7d75c2742b8550}\label{structattribute__info_a05bf4c6510e85d1adb7d75c2742b8550}} 
+\index{attribute\_info@{attribute\_info}!attribute\_length@{attribute\_length}}
+\index{attribute\_length@{attribute\_length}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{attribute\_length}{attribute\_length}}
+{\footnotesize\ttfamily uint32\+\_\+t attribute\+\_\+info\+::attribute\+\_\+length}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_aa8d580cb4c1e585270a11167bfdec6ff}\label{structattribute__info_aa8d580cb4c1e585270a11167bfdec6ff}} 
+\index{attribute\_info@{attribute\_info}!attribute\_name\_index@{attribute\_name\_index}}
+\index{attribute\_name\_index@{attribute\_name\_index}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{attribute\_name\_index}{attribute\_name\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t attribute\+\_\+info\+::attribute\+\_\+name\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_adacceda938a0213388287603dcb2ae48}\label{structattribute__info_adacceda938a0213388287603dcb2ae48}} 
+\index{attribute\_info@{attribute\_info}!ConstantValue@{ConstantValue}}
+\index{ConstantValue@{ConstantValue}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{ConstantValue}{ConstantValue}}
+{\footnotesize\ttfamily struct \{ ... \}   attribute\+\_\+info\+::\+Constant\+Value}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_a38178aee6eed0ea3d063727fed9cd100}\label{structattribute__info_a38178aee6eed0ea3d063727fed9cd100}} 
+\index{attribute\_info@{attribute\_info}!exception\_index\_table@{exception\_index\_table}}
+\index{exception\_index\_table@{exception\_index\_table}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{exception\_index\_table}{exception\_index\_table}}
+{\footnotesize\ttfamily uint16\+\_\+t$\ast$ attribute\+\_\+info\+::exception\+\_\+index\+\_\+table}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_afb254085f5d3b9512f501555b270a59c}\label{structattribute__info_afb254085f5d3b9512f501555b270a59c}} 
+\index{attribute\_info@{attribute\_info}!Exceptions@{Exceptions}}
+\index{Exceptions@{Exceptions}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{Exceptions}{Exceptions}}
+{\footnotesize\ttfamily struct \{ ... \}   attribute\+\_\+info\+::\+Exceptions}
+
+Detailed description after the member \mbox{\Hypertarget{structattribute__info_a7c0c2c58d833f7b63d0b6ab483e537f1}\label{structattribute__info_a7c0c2c58d833f7b63d0b6ab483e537f1}} 
+\index{attribute\_info@{attribute\_info}!number\_of\_exceptions@{number\_of\_exceptions}}
+\index{number\_of\_exceptions@{number\_of\_exceptions}!attribute\_info@{attribute\_info}}
+\doxysubsubsection{\texorpdfstring{number\_of\_exceptions}{number\_of\_exceptions}}
+{\footnotesize\ttfamily uint16\+\_\+t attribute\+\_\+info\+::number\+\_\+of\+\_\+exceptions}
+
+Detailed description after the member 
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{reader_8h}{reader.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,172 @@
+\hypertarget{structcp__info}{}\doxysection{Referência à estrutura cp\+\_\+info}
+\label{structcp__info}\index{cp\_info@{cp\_info}}
+
+
+A\+LO.  
+
+
+
+
+{\ttfamily \#include $<$reader.\+h$>$}
+
+\doxysubsection*{Campos de Dados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structcp__info_a29d87595bc993eb6cd53f30e8305ec74}\label{structcp__info_a29d87595bc993eb6cd53f30e8305ec74}} 
+uint8\+\_\+t {\bfseries tag}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_a3c8912fe67e7d3f9ce150aa6f5bec22d}{name\_index}}\\
+\>\} {\bfseries Class}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ab2b48e96f2178c47f9f6b683c9b2fc59}{class\_index}}\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ad7a8733b3b078818a59cc33eb1fa7dc3}{name\_and\_type\_index}}\\
+\>\} {\bfseries Fieldref}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ab2b48e96f2178c47f9f6b683c9b2fc59}{class\_index}}\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ad7a8733b3b078818a59cc33eb1fa7dc3}{name\_and\_type\_index}}\\
+\>\} {\bfseries Methodref}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ab2b48e96f2178c47f9f6b683c9b2fc59}{class\_index}}\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_ad7a8733b3b078818a59cc33eb1fa7dc3}{name\_and\_type\_index}}\\
+\>\} {\bfseries InterfaceMethodref}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_aa63dfc7668d7eff682f88b09c48eddc8}{string\_index}}\\
+\>\} {\bfseries String}\\
+\>struct \{\\
+\>\>uint32\_t \mbox{\hyperlink{structcp__info_a34ed0f597e452fbeb97cb0f551a678bb}{bytes}}\\
+\>\} {\bfseries Integer}\\
+\>struct \{\\
+\>\>uint32\_t \mbox{\hyperlink{structcp__info_a34ed0f597e452fbeb97cb0f551a678bb}{bytes}}\\
+\>\} {\bfseries Float}\\
+\>struct \{\\
+\>\} {\bfseries Long}\\
+\>struct \{\\
+\>\>uint32\_t \mbox{\hyperlink{structcp__info_ae3858dffc80b9cda456040e27ea19cfe}{high\_bytes}}\\
+\>\>uint32\_t \mbox{\hyperlink{structcp__info_aaafd386722f592c8821e682e4e3718b4}{low\_bytes}}\\
+\>\} {\bfseries Double}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_a3c8912fe67e7d3f9ce150aa6f5bec22d}{name\_index}}\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_aef3c90a1a874ca4acbc49029aaa0d4cb}{descriptor\_index}}\\
+\>\} {\bfseries NameAndType}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_afa18d3ff419ce300281ca759a20a2cc3}{length}}\\
+\>\>uint8\_t $\ast$ \mbox{\hyperlink{structcp__info_a34c1da9248b884af89b5c91d55087100}{bytes}}\\
+\>\} {\bfseries Utf8}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structcp__info_a69c3a9b691b01e61ca9a47cd34f6dc41}{reference\_kind}}\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_a8d167a7f4a522da93dc76c7f5fe246b4}{reference\_index}}\\
+\>\} {\bfseries MethodHandle}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structcp__info_aef3c90a1a874ca4acbc49029aaa0d4cb}{descriptor\_index}}\\
+\>\} {\bfseries MethodType}\\
+\>{\bfseries InvokeDynamic}\\
+\} \mbox{\hyperlink{structcp__info_a9944345bff6a82d3be26a623d02227fa}{info}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structcp__info_aca6166ef140ed62b7b219479d09dc20b}{bootstrap\+\_\+method\+\_\+attr\+\_\+index}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+A\+LO. 
+
+Detailed description after the member 
+
+\doxysubsection{Documentação dos campos e atributos}
+\mbox{\Hypertarget{structcp__info_aca6166ef140ed62b7b219479d09dc20b}\label{structcp__info_aca6166ef140ed62b7b219479d09dc20b}} 
+\index{cp\_info@{cp\_info}!bootstrap\_method\_attr\_index@{bootstrap\_method\_attr\_index}}
+\index{bootstrap\_method\_attr\_index@{bootstrap\_method\_attr\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{bootstrap\_method\_attr\_index}{bootstrap\_method\_attr\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::bootstrap\+\_\+method\+\_\+attr\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a34ed0f597e452fbeb97cb0f551a678bb}\label{structcp__info_a34ed0f597e452fbeb97cb0f551a678bb}} 
+\index{cp\_info@{cp\_info}!bytes@{bytes}}
+\index{bytes@{bytes}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{bytes}{bytes}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint32\+\_\+t cp\+\_\+info\+::bytes}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a34c1da9248b884af89b5c91d55087100}\label{structcp__info_a34c1da9248b884af89b5c91d55087100}} 
+\index{cp\_info@{cp\_info}!bytes@{bytes}}
+\index{bytes@{bytes}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{bytes}{bytes}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ cp\+\_\+info\+::bytes}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_ab2b48e96f2178c47f9f6b683c9b2fc59}\label{structcp__info_ab2b48e96f2178c47f9f6b683c9b2fc59}} 
+\index{cp\_info@{cp\_info}!class\_index@{class\_index}}
+\index{class\_index@{class\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{class\_index}{class\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::class\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_aef3c90a1a874ca4acbc49029aaa0d4cb}\label{structcp__info_aef3c90a1a874ca4acbc49029aaa0d4cb}} 
+\index{cp\_info@{cp\_info}!descriptor\_index@{descriptor\_index}}
+\index{descriptor\_index@{descriptor\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{descriptor\_index}{descriptor\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::descriptor\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_ae3858dffc80b9cda456040e27ea19cfe}\label{structcp__info_ae3858dffc80b9cda456040e27ea19cfe}} 
+\index{cp\_info@{cp\_info}!high\_bytes@{high\_bytes}}
+\index{high\_bytes@{high\_bytes}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{high\_bytes}{high\_bytes}}
+{\footnotesize\ttfamily uint32\+\_\+t cp\+\_\+info\+::high\+\_\+bytes}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a9944345bff6a82d3be26a623d02227fa}\label{structcp__info_a9944345bff6a82d3be26a623d02227fa}} 
+\index{cp\_info@{cp\_info}!info@{info}}
+\index{info@{info}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily union \{ ... \}   cp\+\_\+info\+::info}
+
+
+
+A\+LO. 
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_afa18d3ff419ce300281ca759a20a2cc3}\label{structcp__info_afa18d3ff419ce300281ca759a20a2cc3}} 
+\index{cp\_info@{cp\_info}!length@{length}}
+\index{length@{length}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::length}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_aaafd386722f592c8821e682e4e3718b4}\label{structcp__info_aaafd386722f592c8821e682e4e3718b4}} 
+\index{cp\_info@{cp\_info}!low\_bytes@{low\_bytes}}
+\index{low\_bytes@{low\_bytes}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{low\_bytes}{low\_bytes}}
+{\footnotesize\ttfamily uint32\+\_\+t cp\+\_\+info\+::low\+\_\+bytes}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_ad7a8733b3b078818a59cc33eb1fa7dc3}\label{structcp__info_ad7a8733b3b078818a59cc33eb1fa7dc3}} 
+\index{cp\_info@{cp\_info}!name\_and\_type\_index@{name\_and\_type\_index}}
+\index{name\_and\_type\_index@{name\_and\_type\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{name\_and\_type\_index}{name\_and\_type\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::name\+\_\+and\+\_\+type\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a3c8912fe67e7d3f9ce150aa6f5bec22d}\label{structcp__info_a3c8912fe67e7d3f9ce150aa6f5bec22d}} 
+\index{cp\_info@{cp\_info}!name\_index@{name\_index}}
+\index{name\_index@{name\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{name\_index}{name\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::name\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a8d167a7f4a522da93dc76c7f5fe246b4}\label{structcp__info_a8d167a7f4a522da93dc76c7f5fe246b4}} 
+\index{cp\_info@{cp\_info}!reference\_index@{reference\_index}}
+\index{reference\_index@{reference\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{reference\_index}{reference\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::reference\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_a69c3a9b691b01e61ca9a47cd34f6dc41}\label{structcp__info_a69c3a9b691b01e61ca9a47cd34f6dc41}} 
+\index{cp\_info@{cp\_info}!reference\_kind@{reference\_kind}}
+\index{reference\_kind@{reference\_kind}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{reference\_kind}{reference\_kind}}
+{\footnotesize\ttfamily uint8\+\_\+t cp\+\_\+info\+::reference\+\_\+kind}
+
+Detailed description after the member \mbox{\Hypertarget{structcp__info_aa63dfc7668d7eff682f88b09c48eddc8}\label{structcp__info_aa63dfc7668d7eff682f88b09c48eddc8}} 
+\index{cp\_info@{cp\_info}!string\_index@{string\_index}}
+\index{string\_index@{string\_index}!cp\_info@{cp\_info}}
+\doxysubsubsection{\texorpdfstring{string\_index}{string\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t cp\+\_\+info\+::string\+\_\+index}
+
+Detailed description after the member 
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{reader_8h}{reader.\+h}}\end{DoxyCompactItemize}
