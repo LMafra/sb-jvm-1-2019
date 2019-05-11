@@ -215,5 +215,4 @@ uint16_t read2bytes(FILE* fp);              /*!< \brief Detailed description aft
 uint32_t read4bytes(FILE* fp);              /*!< \brief Detailed description after the member */
 classFile* classReader(char * className);   /*!< \brief Detailed description after the member */
 
-#endif 
- 
+#endif

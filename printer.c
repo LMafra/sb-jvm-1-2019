@@ -149,7 +149,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   }
 
   /* Fields */
-	printf("Fields Count: cp_info #%d\n",cf->fields_count);  
+	printf("Fields Count: #%d\n",cf->fields_count);  
   for (int i = 0; i < cf->fields_count; i++) {
     printf("[%d] Field:\n", i+1);
     printf("\taccess_flags: %d\n", cf->fields[i].access_flags);
@@ -203,7 +203,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   }
 
   /* Methods */
-  printf("Methods Count: cp_info #%d\n",cf->methods_count);  
+  printf("Methods Count: %d\n",cf->methods_count);  
   for (int i = 0; i < cf->methods_count; i++) {
     printf("[%d] Method:\n", i+1);
     printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
@@ -214,7 +214,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
       printf("\t[%d] Attribute:\n",j+1);
       printf("\t\tattribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
       printf("\t\tattribute_length: %d\n", cf->methods[i].attributes[j].attribute_length);
-      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index;
+      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index - 1;
       if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         printf("\t\tconstantvalue_index: %d\n", cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index);
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {

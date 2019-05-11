@@ -138,10 +138,11 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
     cf->fields[i].attributes_count = read2bytes(file);
     cf->fields[i].attributes = (attribute_info* )malloc(cf->fields[i].attributes_count * sizeof(attribute_info));
     for(int j = 0; j < cf->fields[i].attributes_count; j++) {
+      // cf->fields[i].attributes = attributesReader();
       cf->fields[i].attributes[j].attribute_name_index = read2bytes(file);
       cf->fields[i].attributes[j].attribute_length = read4bytes(file);
       
-      uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index; 
+      uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index-1; 
       /* não estou usando o att length e mallocando o att_info o que pode dar merda */
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
@@ -191,12 +192,13 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
     cf->methods[i].name_index = read2bytes(file);
     cf->methods[i].descriptor_index = read2bytes(file);
     cf->methods[i].attributes_count = read2bytes(file);
+    printf("WWW attribute_count: %d\n", cf->methods[i].attributes_count);
     cf->methods[i].attributes = (attribute_info* )malloc(cf->methods[i].attributes_count * sizeof(attribute_info));
     for(int j = 0; j < cf->methods[i].attributes_count; j++) {
       cf->methods[i].attributes[j].attribute_name_index = read2bytes(file);
+      printf("WWW attribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
       cf->methods[i].attributes[j].attribute_length = read4bytes(file);
-      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index; 
-      /* não estou usando o att length e mallocando o att_info o que pode dar merda */
+      uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index - 1;
       if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
@@ -205,7 +207,7 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
           cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
         }
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
         cf->methods[i].attributes[j].att_info.Code.max_stack = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Code.max_locals = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Code.code_length = read2bytes(file);
@@ -225,7 +227,6 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
         cf->methods[i].attributes[j].att_info.Code.attributes = (attribute_info *)malloc(cf->methods[i].attributes[j].att_info.Code.attributes_count * sizeof(attribute_info));
         // sem tempo irmao
       } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-
       } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
         cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
         cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
