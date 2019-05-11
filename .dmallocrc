@@ -1,0 +1,18 @@
+#
+# Dmalloc runtime configuration file for the debug malloc library
+#
+
+# no debugging
+none    none
+
+# basic debugging
+debug1  log-stats, log-non-free, check-fence
+
+# more logging and some heap checking
+debug2  log-stats, log-non-free, log-trans, \
+        check-fence, check-heap, error-abort
+
+# good utilities
+debug3  log-stats, log-non-free, log-trans, \
+        log-admin, check-fence, check-heap, realloc-copy, \
+        free-blank, error-abort
