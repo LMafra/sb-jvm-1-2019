@@ -1,21 +1,23 @@
-/* @file 
- * @section DESCRIPTION
+ /********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
- * Gabriel Vasconcelos 16/0120781 \n
+ * Gabriel Vasconcelos \n
  * Leonardo de Almeida \n
  * Lucas Mafra 12/0126443 \n
  * Wladimir Gramacho \n
- * 
- * Responsavel por ler o .class e 
- * montar as estruturas. \n
- *  
- */
+ ***********************************************/
+
+/**
+* @file
+* @brief Responsavel por ler o .class e 
+*        montar as estruturas. \n
+* @section DESCRIPTION
+*/
 
 #include "reader.h"
 
-classFile* classReader(char * className) {
+classFile* classReader(char * className) {  /*! Detailed description after the member */
   FILE* file;
   file = fopen(className, "rb");
 
@@ -187,23 +189,27 @@ classFile* classReader(char * className) {
     /* alguem que ainda não codou tenta implementar pra pegar a logica */
   }
   
+<<<<<<< HEAD
+=======
+	fclose(file);
+>>>>>>> 8897da7e2f171237b6764cdbe6ef99b257de2eab
 	return cf;
 }
 
-uint8_t read1byte(FILE * file) {
+uint8_t read1byte(FILE * file) {  /*!< Detailed description after the member */
   uint8_t data = getc(file);
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint16_t read2bytes(FILE * file) {
+uint16_t read2bytes(FILE * file) {  /*!< Detailed description after the member */
   uint16_t data = getc(file);
   data = (data << 8) | (getc(file));
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint32_t read4bytes(FILE * file) {
+uint32_t read4bytes(FILE * file) {  /*!< Detailed description after the member */
   uint32_t data = getc(file);
   data = (data << 8) | (getc(file));
   data = (data << 8) | (getc(file));
