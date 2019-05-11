@@ -24,6 +24,7 @@ int main() { /*! Long Detailed description after the member */
   classFile* cf;
 
 	cf = classReader("tests/Array.class");
+  printf("HASJGFSDAKUGUVEUKHHGJAHJKHGDJSH");
   classPrinter(cf);
 
   return 0;

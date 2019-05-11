@@ -157,7 +157,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     printf("\tdescriptor_index: %d\n", cf->fields[i].descriptor_index);
     printf("\tattributes_count: %d\n", cf->fields[i].attributes_count);
     for (int j = 0; j < cf->fields->attributes_count; j++) {
-      printf("\t[%d] Attribute:\n");
+      printf("\t[%d] Attribute:\n", j+1);
       printf("\t\tattribute_name_index: %d\n", cf->fields[i].attributes[j].attribute_name_index);
       printf("\t\tattribute_length: %d\n", cf->fields[i].attributes[j].attribute_length);
       uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index;
@@ -170,6 +170,34 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
           printf(" %d", cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
         }
         printf("\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
+        printf("\t\tmax_stack: %d\n", cf->fields[i].attributes[j].att_info.Code.max_stack);
+        printf("\t\tmax_locals: %d\n", cf->fields[i].attributes[j].att_info.Code.max_locals);
+        printf("\t\tcode_length: %d\n", cf->fields[i].attributes[j].att_info.Code.code_length);
+        printf("\t\tCode:");
+        for(int k = 0; k < cf->fields[i].attributes[j].att_info.Code.code_length; k++) {
+          printf(" %d", cf->fields[i].attributes[j].att_info.Code.code[k]);
+        }
+        printf("\n");
+        printf("\t\texception_table_length: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_length);
+        printf("\t\texception_table:\n");
+        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Code.exception_table_length; k++) {
+          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].start_pc);
+          printf("\t\t\tend_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].end_pc);
+          printf("\t\t\thandler_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc);
+          printf("\t\t\tcatch_type: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
+        }
+        printf("\t\tattributes_count: %d\n", cf->fields[i].attributes[j].att_info.Code.attributes_count);
+        printf("\t\tattributes_count: SEM TEMPO IRMÃO\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+        printf("\t\tDeprecated\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
+        printf("\t\tline_number_table_length: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length);
+        printf("\t\tline_number_table\n");
+        for (int k = 0; k < cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
+          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].start_pc);
+          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].line_number);
+        }
       }
     }
   }
@@ -183,7 +211,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     printf("\tdescriptor_index: %d\n", cf->methods[i].descriptor_index);
     printf("\tattributes_count: %d\n", cf->methods[i].attributes_count);
     for (int j = 0; j < cf->methods->attributes_count; j++) {
-      printf("\t[%d] Attribute:\n");
+      printf("\t[%d] Attribute:\n",j+1);
       printf("\t\tattribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
       printf("\t\tattribute_length: %d\n", cf->methods[i].attributes[j].attribute_length);
       uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index;
@@ -196,6 +224,34 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
           printf(" %d", cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
         }
         printf("\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
+        printf("\t\tmax_stack: %d\n", cf->methods[i].attributes[j].att_info.Code.max_stack);
+        printf("\t\tmax_locals: %d\n", cf->methods[i].attributes[j].att_info.Code.max_locals);
+        printf("\t\tcode_length: %d\n", cf->methods[i].attributes[j].att_info.Code.code_length);
+        printf("\t\tCode:");
+        for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
+          printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]);
+        }
+        printf("\n");
+        printf("\t\texception_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_length);
+        printf("\t\texception_table:\n");
+        for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.exception_table_length; k++) {
+          printf("\t\t\tstart_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].start_pc);
+          printf("\t\t\tend_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].end_pc);
+          printf("\t\t\thandler_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc);
+          printf("\t\t\tcatch_type: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
+        }
+        printf("\t\tattributes_count: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes_count);
+        printf("\t\tattributes_count: SEM TEMPO IRMÃO\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+        printf("\t\tDeprecated\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
+        printf("\t\tline_number_table_length: %d\n", cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length);
+        printf("\t\tline_number_table\n");
+        for (int k = 0; k < cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
+          printf("\t\t\tstart_pc: %d\n", cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].start_pc);
+          printf("\t\t\tstart_pc: %d\n", cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].line_number);
+        }
       }
     }
   }
