@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Leitor e Exibidor JVM: Página principal</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea" class="containter d-flex justify-content-center">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Leitor e Exibidor JVM
+   </div>
+   <div class="d-flex justify-content-center" id="projectbrief">01/2019 - Software Básico - Professor Ladeira</div>
+   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part --><!-- Gerado por Doxygen 1.8.16 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro reader.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Cabeçalho do leitor do .class. <br  />
+.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div>
+<p><a href="reader_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcp__info.html">cp_info</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structcp__info.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structattribute__info.html">attribute_info</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structattribute__info.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfield__info.html">field_info</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structfield__info.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structexceptions__attribute.html">exceptions_attribute</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structexceptions__attribute.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmethod__info.html">method_info</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structmethod__info.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structclass_file.html">classFile</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="structclass_file.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a72b5b534aa409975da610a36f648fa0a"><td class="memItemLeft" align="right" valign="top"><a id="a72b5b534aa409975da610a36f648fa0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Class</b>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a72b5b534aa409975da610a36f648fa0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a008d43478c2e2973e7413f5d1c48095d"><td class="memItemLeft" align="right" valign="top"><a id="a008d43478c2e2973e7413f5d1c48095d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Fieldref</b>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:a008d43478c2e2973e7413f5d1c48095d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a179cf178ea867c6ab1700508c269dd"><td class="memItemLeft" align="right" valign="top"><a id="a2a179cf178ea867c6ab1700508c269dd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Methodref</b>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a2a179cf178ea867c6ab1700508c269dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0e92044d246c6e4d691116f89a70ebb"><td class="memItemLeft" align="right" valign="top"><a id="ac0e92044d246c6e4d691116f89a70ebb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_InterfaceMethodref</b>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:ac0e92044d246c6e4d691116f89a70ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a7acbe175de56072a2f0a1a051418e1"><td class="memItemLeft" align="right" valign="top"><a id="a0a7acbe175de56072a2f0a1a051418e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_String</b>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a0a7acbe175de56072a2f0a1a051418e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856a6553a55d721970ca5450eb1ccd2c"><td class="memItemLeft" align="right" valign="top"><a id="a856a6553a55d721970ca5450eb1ccd2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Integer</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a856a6553a55d721970ca5450eb1ccd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab914627ce5b25c4acfc98f2eacb78473"><td class="memItemLeft" align="right" valign="top"><a id="ab914627ce5b25c4acfc98f2eacb78473"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Float</b>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:ab914627ce5b25c4acfc98f2eacb78473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a426ca017b895fc522671a561d460be7a"><td class="memItemLeft" align="right" valign="top"><a id="a426ca017b895fc522671a561d460be7a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Long</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a426ca017b895fc522671a561d460be7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49341c3b4ade4bfa1a64be8d2f73ae1"><td class="memItemLeft" align="right" valign="top"><a id="ab49341c3b4ade4bfa1a64be8d2f73ae1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Double</b>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:ab49341c3b4ade4bfa1a64be8d2f73ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b6ba749976ae61415983ca0b890c91a"><td class="memItemLeft" align="right" valign="top"><a id="a5b6ba749976ae61415983ca0b890c91a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_NameAndType</b>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:a5b6ba749976ae61415983ca0b890c91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc46559a7d3f7baf519fc183c2fad2b4"><td class="memItemLeft" align="right" valign="top"><a id="afc46559a7d3f7baf519fc183c2fad2b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_Utf8</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:afc46559a7d3f7baf519fc183c2fad2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3c84f82163f217ab7f8fa0258d80ce"><td class="memItemLeft" align="right" valign="top"><a id="adb3c84f82163f217ab7f8fa0258d80ce"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_MethodHandle</b>&#160;&#160;&#160;15</td></tr>
+<tr class="separator:adb3c84f82163f217ab7f8fa0258d80ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a991ba557d63f94e2cdf05c9f80630a6f"><td class="memItemLeft" align="right" valign="top"><a id="a991ba557d63f94e2cdf05c9f80630a6f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_MethodType</b>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a991ba557d63f94e2cdf05c9f80630a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a127046386d755d4a91c71aa9b453a8bb"><td class="memItemLeft" align="right" valign="top"><a id="a127046386d755d4a91c71aa9b453a8bb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONSTANT_InvokeDynamic</b>&#160;&#160;&#160;18</td></tr>
+<tr class="separator:a127046386d755d4a91c71aa9b453a8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:adfb47ee1036d22a4738c6c22849e5681"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcp__info.html">cp_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#adfb47ee1036d22a4738c6c22849e5681">cp_info</a></td></tr>
+<tr class="memdesc:adfb47ee1036d22a4738c6c22849e5681"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#adfb47ee1036d22a4738c6c22849e5681">Mais...</a><br /></td></tr>
+<tr class="separator:adfb47ee1036d22a4738c6c22849e5681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2754ff49c228029dd54d71e253388da"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structattribute__info.html">attribute_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#ab2754ff49c228029dd54d71e253388da">attribute_info</a></td></tr>
+<tr class="memdesc:ab2754ff49c228029dd54d71e253388da"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#ab2754ff49c228029dd54d71e253388da">Mais...</a><br /></td></tr>
+<tr class="separator:ab2754ff49c228029dd54d71e253388da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34bf7d0c204894b02970b0d72f640a5b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structfield__info.html">field_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#a34bf7d0c204894b02970b0d72f640a5b">field_info</a></td></tr>
+<tr class="memdesc:a34bf7d0c204894b02970b0d72f640a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#a34bf7d0c204894b02970b0d72f640a5b">Mais...</a><br /></td></tr>
+<tr class="separator:a34bf7d0c204894b02970b0d72f640a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa03f4dc5b8040ad8c63eb4a500ac35d3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structexceptions__attribute.html">exceptions_attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#aa03f4dc5b8040ad8c63eb4a500ac35d3">exceptions_attribute</a></td></tr>
+<tr class="memdesc:aa03f4dc5b8040ad8c63eb4a500ac35d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#aa03f4dc5b8040ad8c63eb4a500ac35d3">Mais...</a><br /></td></tr>
+<tr class="separator:aa03f4dc5b8040ad8c63eb4a500ac35d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a057cfa24c88e3defabdfcaac953c1"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structmethod__info.html">method_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#a09a057cfa24c88e3defabdfcaac953c1">method_info</a></td></tr>
+<tr class="memdesc:a09a057cfa24c88e3defabdfcaac953c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#a09a057cfa24c88e3defabdfcaac953c1">Mais...</a><br /></td></tr>
+<tr class="separator:a09a057cfa24c88e3defabdfcaac953c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9aae635c0088b85e23532f1a2e15271"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structclass_file.html">classFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#af9aae635c0088b85e23532f1a2e15271">classFile</a></td></tr>
+<tr class="memdesc:af9aae635c0088b85e23532f1a2e15271"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALO.  <a href="#af9aae635c0088b85e23532f1a2e15271">Mais...</a><br /></td></tr>
+<tr class="separator:af9aae635c0088b85e23532f1a2e15271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a68c32640a3909937adaec6775a260aa5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#a68c32640a3909937adaec6775a260aa5">read1byte</a> (FILE *fp)</td></tr>
+<tr class="memdesc:a68c32640a3909937adaec6775a260aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detailed description after the member.  <a href="#a68c32640a3909937adaec6775a260aa5">Mais...</a><br /></td></tr>
+<tr class="separator:a68c32640a3909937adaec6775a260aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc20c4f5a97fa625cd39ce1fa242f548"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#afc20c4f5a97fa625cd39ce1fa242f548">read2bytes</a> (FILE *fp)</td></tr>
+<tr class="memdesc:afc20c4f5a97fa625cd39ce1fa242f548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detailed description after the member.  <a href="#afc20c4f5a97fa625cd39ce1fa242f548">Mais...</a><br /></td></tr>
+<tr class="separator:afc20c4f5a97fa625cd39ce1fa242f548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd39e757a11e4f4952a87e3d66b1d1f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#afdd39e757a11e4f4952a87e3d66b1d1f">read4bytes</a> (FILE *fp)</td></tr>
+<tr class="memdesc:afdd39e757a11e4f4952a87e3d66b1d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detailed description after the member.  <a href="#afdd39e757a11e4f4952a87e3d66b1d1f">Mais...</a><br /></td></tr>
+<tr class="separator:afdd39e757a11e4f4952a87e3d66b1d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581665709a6695c3b913310a6467f55a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structclass_file.html">classFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#a581665709a6695c3b913310a6467f55a">classReader</a> (char *className)</td></tr>
+<tr class="memdesc:a581665709a6695c3b913310a6467f55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detailed description after the member.  <a href="#a581665709a6695c3b913310a6467f55a">Mais...</a><br /></td></tr>
+<tr class="separator:a581665709a6695c3b913310a6467f55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:adc0078457ab0d114498d51109effee45"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#adc0078457ab0d114498d51109effee45">bootstrap_method_attr_index</a></td></tr>
+<tr class="separator:adc0078457ab0d114498d51109effee45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd42ae0637fbb79ed49fdda758f10675"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader_8h.html#acd42ae0637fbb79ed49fdda758f10675">name_and_type_index</a></td></tr>
+<tr class="separator:acd42ae0637fbb79ed49fdda758f10675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Cabeçalho do leitor do .class. <br  />
+. </p>
+<p>Universidade de Brasilia</p>
+<p>Bruno Sanguinetti <br  />
+Gabriel Vasconcelos <br  />
+Leonardo de Almeida <br  />
+Lucas Mafra 12/0126443 <br  />
+Wladimir Gramacho <br  />
+</p>
+<h1><a class="anchor" id="DESCRIPTION"></a>
+DESCRIPTION</h1>
+</div><h2 class="groupheader">Documentação dos tipos</h2>
+<a id="ab2754ff49c228029dd54d71e253388da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2754ff49c228029dd54d71e253388da">&#9670;&nbsp;</a></span>attribute_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structattribute__info.html">attribute_info</a>  <a class="el" href="structattribute__info.html">attribute_info</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="af9aae635c0088b85e23532f1a2e15271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9aae635c0088b85e23532f1a2e15271">&#9670;&nbsp;</a></span>classFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structclass_file.html">classFile</a>  <a class="el" href="structclass_file.html">classFile</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="adfb47ee1036d22a4738c6c22849e5681"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb47ee1036d22a4738c6c22849e5681">&#9670;&nbsp;</a></span>cp_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structcp__info.html">cp_info</a>  <a class="el" href="structcp__info.html">cp_info</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="aa03f4dc5b8040ad8c63eb4a500ac35d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa03f4dc5b8040ad8c63eb4a500ac35d3">&#9670;&nbsp;</a></span>exceptions_attribute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structexceptions__attribute.html">exceptions_attribute</a>  <a class="el" href="structexceptions__attribute.html">exceptions_attribute</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="a34bf7d0c204894b02970b0d72f640a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34bf7d0c204894b02970b0d72f640a5b">&#9670;&nbsp;</a></span>field_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structfield__info.html">field_info</a>  <a class="el" href="structfield__info.html">field_info</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="a09a057cfa24c88e3defabdfcaac953c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09a057cfa24c88e3defabdfcaac953c1">&#9670;&nbsp;</a></span>method_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structmethod__info.html">method_info</a>  <a class="el" href="structmethod__info.html">method_info</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ALO. </p>
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="a581665709a6695c3b913310a6467f55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581665709a6695c3b913310a6467f55a">&#9670;&nbsp;</a></span>classReader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structclass_file.html">classFile</a>* classReader </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>className</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detailed description after the member. </p>
+<p>Detailed description after the member</p>
+
+</div>
+</div>
+<a id="a68c32640a3909937adaec6775a260aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68c32640a3909937adaec6775a260aa5">&#9670;&nbsp;</a></span>read1byte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t read1byte </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detailed description after the member. </p>
+<p>&lt; Detailed description after the member</p>
+
+</div>
+</div>
+<a id="afc20c4f5a97fa625cd39ce1fa242f548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc20c4f5a97fa625cd39ce1fa242f548">&#9670;&nbsp;</a></span>read2bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t read2bytes </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detailed description after the member. </p>
+<p>&lt; Detailed description after the member</p>
+
+</div>
+</div>
+<a id="afdd39e757a11e4f4952a87e3d66b1d1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdd39e757a11e4f4952a87e3d66b1d1f">&#9670;&nbsp;</a></span>read4bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t read4bytes </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detailed description after the member. </p>
+<p>&lt; Detailed description after the member</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das variáveis</h2>
+<a id="adc0078457ab0d114498d51109effee45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc0078457ab0d114498d51109effee45">&#9670;&nbsp;</a></span>bootstrap_method_attr_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t bootstrap_method_attr_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+<a id="acd42ae0637fbb79ed49fdda758f10675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd42ae0637fbb79ed49fdda758f10675">&#9670;&nbsp;</a></span>name_and_type_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t name_and_type_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Detailed description after the member </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/>
+<p class="float-left position-absolute">Horsemade by The Amazing Suicidal Horsegroup<img class="footer position-absolute" src="icon.png" alt="icon"/>| -- |™</p>
+<address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
+</body>
+</html>
