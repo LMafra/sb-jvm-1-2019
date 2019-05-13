@@ -11,13 +11,13 @@ Responsavel por ler o .class e montar as estruturas. ~\newline
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structclass_file}{class\+File}} $\ast$ \mbox{\hyperlink{reader_8c_a581665709a6695c3b913310a6467f55a}{class\+Reader}} (char $\ast$class\+Name)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{reader_8c_a4884ff07e7dbbbf7f4c9d8fdc0493369}{read1byte}} (F\+I\+LE $\ast$file)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lê um byte (8bits) de um arquivo. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{reader_8c_aaa124552b976d30fed0607d28cdff5ff}{read2bytes}} (F\+I\+LE $\ast$file)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lê dois bytes (16bits) de um arquivo. \end{DoxyCompactList}\item 
 uint32\+\_\+t \mbox{\hyperlink{reader_8c_ad39fe26685a828224d7f2dbe23102e3b}{read4bytes}} (F\+I\+LE $\ast$file)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lê quatro bytes (32bits) de um arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descrição detalhada}
@@ -26,12 +26,12 @@ Responsavel por ler o .class e montar as estruturas. ~\newline
 
 Universidade de Brasilia
 
-Bruno Sanguinetti ~\newline
-Gabriel Vasconcelos ~\newline
-Leonardo de Almeida ~\newline
+Bruno Sanguinetti 18/0046063 ~\newline
+Gabriel Vasconcelos 16/0120781 ~\newline
+Leonardo de Almeida 15/0135491 ~\newline
 Lucas Mafra 12/0126443 ~\newline
-Wladimir Gramacho ~\newline
-\hypertarget{main.c_DESCRIPTION}{}\doxysubsection{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}\label{main.c_DESCRIPTION}
+Wladimir Gramacho 15/0058718 ~\newline
+\hypertarget{printer.c_DESCRIPTION}{}\doxysubsection{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}\label{printer.c_DESCRIPTION}
 
 
 \doxysubsection{Documentação das funções}
@@ -43,9 +43,9 @@ Wladimir Gramacho ~\newline
 
 
 
-Detailed description after the member. 
+O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. 
 
-Detailed description after the member\mbox{\Hypertarget{reader_8c_a4884ff07e7dbbbf7f4c9d8fdc0493369}\label{reader_8c_a4884ff07e7dbbbf7f4c9d8fdc0493369}} 
+O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. A leitura é por blocos de bytes que sao percorridos pelas funcoes read1byte(arg$\ast$), read2bytes(arg$\ast$) e read4bytes(arg$\ast$) e sem seguida carregados em memoria por alocamento da estrutura abstrata cf.\mbox{\Hypertarget{reader_8c_a4884ff07e7dbbbf7f4c9d8fdc0493369}\label{reader_8c_a4884ff07e7dbbbf7f4c9d8fdc0493369}} 
 \index{reader.c@{reader.c}!read1byte@{read1byte}}
 \index{read1byte@{read1byte}!reader.c@{reader.c}}
 \doxysubsubsection{\texorpdfstring{read1byte()}{read1byte()}}
@@ -53,9 +53,10 @@ Detailed description after the member\mbox{\Hypertarget{reader_8c_a4884ff07e7dbb
 
 
 
-Detailed description after the member. 
+Lê um byte (8bits) de um arquivo. 
 
-$<$ Detailed description after the member\mbox{\Hypertarget{reader_8c_aaa124552b976d30fed0607d28cdff5ff}\label{reader_8c_aaa124552b976d30fed0607d28cdff5ff}} 
+$<$ Usa a funcao getc para ler um byte de um arquivo ~\newline
+ \mbox{\Hypertarget{reader_8c_aaa124552b976d30fed0607d28cdff5ff}\label{reader_8c_aaa124552b976d30fed0607d28cdff5ff}} 
 \index{reader.c@{reader.c}!read2bytes@{read2bytes}}
 \index{read2bytes@{read2bytes}!reader.c@{reader.c}}
 \doxysubsubsection{\texorpdfstring{read2bytes()}{read2bytes()}}
@@ -63,9 +64,9 @@ $<$ Detailed description after the member\mbox{\Hypertarget{reader_8c_aaa124552b
 
 
 
-Detailed description after the member. 
+Lê dois bytes (16bits) de um arquivo. 
 
-$<$ Detailed description after the member\mbox{\Hypertarget{reader_8c_ad39fe26685a828224d7f2dbe23102e3b}\label{reader_8c_ad39fe26685a828224d7f2dbe23102e3b}} 
+Usa a funcao getc para ler dois bytes de um arquivo, por meio de um right-\/shift para a leitura do segundo byte\mbox{\Hypertarget{reader_8c_ad39fe26685a828224d7f2dbe23102e3b}\label{reader_8c_ad39fe26685a828224d7f2dbe23102e3b}} 
 \index{reader.c@{reader.c}!read4bytes@{read4bytes}}
 \index{read4bytes@{read4bytes}!reader.c@{reader.c}}
 \doxysubsubsection{\texorpdfstring{read4bytes()}{read4bytes()}}
@@ -73,6 +74,6 @@ $<$ Detailed description after the member\mbox{\Hypertarget{reader_8c_ad39fe2668
 
 
 
-Detailed description after the member. 
+Lê quatro bytes (32bits) de um arquivo. 
 
-$<$ Detailed description after the member
+Usa a funcao getc para ler quatro bytes de um arquivo por meio de um right-\/shift para a leitura do segundo, terceiro e quarto byte

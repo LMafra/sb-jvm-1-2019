@@ -26,6 +26,22 @@ union \{\\
 \>\>uint16\_t \mbox{\hyperlink{structattribute__info_a7c0c2c58d833f7b63d0b6ab483e537f1}{number\_of\_exceptions}}\\
 \>\>uint16\_t $\ast$ \mbox{\hyperlink{structattribute__info_a38178aee6eed0ea3d063727fed9cd100}{exception\_index\_table}}\\
 \>\} \mbox{\hyperlink{structattribute__info_afb254085f5d3b9512f501555b270a59c}{Exceptions}}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries max\_stack}\\
+\>\>uint16\_t {\bfseries max\_locals}\\
+\>\>uint32\_t {\bfseries code\_length}\\
+\>\>uint8\_t $\ast$ {\bfseries code}\\
+\>\>uint16\_t {\bfseries exception\_table\_length}\\
+\>\>\mbox{\hyperlink{struct_exception_table}{exception\_table}} $\ast$ {\bfseries exception\_table\_array}\\
+\>\>uint16\_t {\bfseries attributes\_count}\\
+\>\>struct \mbox{\hyperlink{structattribute__info}{attribute\_info}} $\ast$ {\bfseries attributes}\\
+\>\} {\bfseries Code}\\
+\>struct \{\\
+\>\} {\bfseries Deprecated}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries line\_number\_table\_length}\\
+\>\>\mbox{\hyperlink{struct_line_number_table}{line\_number\_table}} $\ast$ {\bfseries line\_number\_table\_array}\\
+\>\} {\bfseries LineNumberTable}\\
 \} \mbox{\hyperlink{structattribute__info_a7cf1ed65321afa94f4d21b472a7b2059}{att\_info}}\\
 
 \end{tabbing}\end{DoxyCompactItemize}

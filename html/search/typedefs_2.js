@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exceptions_5fattribute',['exceptions_attribute',['../reader_8h.html#aa03f4dc5b8040ad8c63eb4a500ac35d3',1,'reader.h']]]
+  ['field_5finfo',['field_info',['../reader_8h.html#a34bf7d0c204894b02970b0d72f640a5b',1,'reader.h']]]
 ];

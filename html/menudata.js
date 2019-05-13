@@ -60,7 +60,15 @@ var menudata={children:[
 {text:"Ficheiros",url:"files.html",children:[
 {text:"Lista de ficheiros",url:"files.html"},
 {text:"Globais",url:"globals.html",children:[
-{text:"Tudo",url:"globals.html"},
+{text:"Tudo",url:"globals.html",children:[
+{text:"a",url:"globals.html#index_a"},
+{text:"b",url:"globals.html#index_b"},
+{text:"c",url:"globals.html#index_c"},
+{text:"f",url:"globals.html#index_f"},
+{text:"m",url:"globals.html#index_m"},
+{text:"n",url:"globals.html#index_n"},
+{text:"r",url:"globals.html#index_r"}]},
 {text:"Funções",url:"globals_func.html"},
 {text:"Variáveis",url:"globals_vars.html"},
-{text:"Definições de tipos",url:"globals_type.html"}]}]}]}
+{text:"Definições de tipos",url:"globals_type.html"},
+{text:"Macros",url:"globals_defs.html"}]}]}]}

@@ -1,11 +1,11 @@
  /********************************************//**
  * Universidade de Brasilia
  *
- * Bruno Sanguinetti \n
- * Gabriel Vasconcelos \n
- * Leonardo de Almeida \n
+ * Bruno Sanguinetti 18/0046063 \n
+ * Gabriel Vasconcelos 16/0120781 \n
+ * Leonardo de Almeida 15/0135491 \n
  * Lucas Mafra 12/0126443 \n
- * Wladimir Gramacho \n
+ * Wladimir Gramacho 15/0058718 \n
  ***********************************************/
 
 /**
@@ -23,47 +23,51 @@
 #include <stdint.h>
 #include <string.h>
 
-/* Definitions */
-#define CONSTANT_Class 7                 /*!< \def Detailed description after the member */
-#define CONSTANT_Fieldref 9              /*!< \def Detailed description after the member */
-#define CONSTANT_Methodref 10            /*!< \def Detailed description after the member */
-#define CONSTANT_InterfaceMethodref 11   /*!< \def Detailed description after the member */
-#define CONSTANT_String 8                /*!< \def Detailed description after the member */
-#define CONSTANT_Integer 3               /*!< \def Detailed description after the member */
-#define CONSTANT_Float 4                 /*!< \def Detailed description after the member */
-#define CONSTANT_Long 5                  /*!< \def Detailed description after the member */
-#define CONSTANT_Double 6                /*!< \def Detailed description after the member */
-#define CONSTANT_NameAndType 12          /*!< \def Detailed description after the member */
-#define CONSTANT_Utf8 1                  /*!< \def Detailed description after the member */
-#define CONSTANT_MethodHandle 15         /*!< \def Detailed description after the member */
-#define CONSTANT_MethodType 16           /*!< \def Detailed description after the member */
-#define CONSTANT_InvokeDynamic 18        /*!< \def Detailed description after the member */
+/* Definitions/Constants type - Constant pool tags */
+#define CONSTANT_Class 7                 /*!< \brief constante de Class definida como 7 */
+#define CONSTANT_Fieldref 9              /*!< \brief constante de Fieldref definida como 9 */
+#define CONSTANT_Methodref 10            /*!< \brief constante de Methodref definida como 10 */
+#define CONSTANT_InterfaceMethodref 11   /*!< \brief constante de InterfaceMethodref definida como 11 */
+#define CONSTANT_String 8                /*!< \brief constante de String como definida 8 */
+#define CONSTANT_Integer 3               /*!< \brief constante de Integer definida como 3 */
+#define CONSTANT_Float 4                 /*!< \brief constante de Float definida como 4 */
+#define CONSTANT_Long 5                  /*!< \brief constante de Long definida como 5 */
+#define CONSTANT_Double 6                /*!< \brief constante de Double definida como 6 */
+#define CONSTANT_NameAndType 12          /*!< \brief constante de NameAndType definida como 12 */
+#define CONSTANT_Utf8 1                  /*!< \brief constante de Utf8 definida como 1 */
+#define CONSTANT_MethodHandle 15         /*!< \brief constante de MethodHandle definida como 15 */
+#define CONSTANT_MethodType 16           /*!< \brief constante de MethodType definida como 16 */
+#define CONSTANT_InvokeDynamic 18        /*!< \brief constante de InvokeDynamic definida como 18 */
 
-/*! Detailed description after the member \brief ALO */
+/*! \brief A estrutura do cp_info ira compor 
+*   a constant_pool do classFile 
+*
+*  cp_info varia de acordo com o byte lido em sua tag
+* 
+*/
 typedef struct cp_info {                    
-  uint8_t tag;
+  uint8_t tag;                        /*!< \brief Valor de um byte que indica o tipo de entrada*/
   union{
     struct{ 
-      uint16_t name_index;            /*!< Detailed description after the member */
-    } Class;                          /*! \struct Class
+      uint16_t name_index;            /*!< \brief Detailed description after the member */
+    } Class;                          /*!< Class
                                       Detailed description after the member
                                       \brief ALO */                       
     struct {  
-      uint16_t class_index;           /*!< Detailed description after the member */
-      uint16_t name_and_type_index;   /*!< Detailed description after the member */
-    } Fieldref;                       /*! \struct Fieldred
-                                      Detailed description after the member
-                                      \brief ALO */
+      uint16_t class_index;           /*!< Detailed description after the member1 */
+      uint16_t name_and_type_index;   /*!< Detailed description after the member2 */
+    } Fieldref;                       /*!< \brief ALO */
+
     struct {   
       uint16_t class_index;           /*!< Detailed description after the member */
       uint16_t name_and_type_index;   /*!< Detailed description after the member */
-    } Methodref;                      /*! \struct Methodref 
+    } Methodref;                      /*!< Methodref 
                                       Detailed description after the member
                                       \brief ALO */
     struct {  
       uint16_t class_index;           /*!< Detailed description after the member */
       uint16_t name_and_type_index;   /*!< Detailed description after the member */
-    } InterfaceMethodref;             /*! \struct InterfaceMethodref
+    } InterfaceMethodref;             /*!< \struct InterfaceMethodref
                                       Detailed description after the member
                                       \brief ALO*/
     struct {  
@@ -122,7 +126,7 @@ typedef struct cp_info {
     } InvokeDynamic;                         /*!< \struct InvokeDynamic
                                              Detailed description after the member
                                              \brief ALO*/
-  } info; /*!< Detailed description after the member \brief ALO*/
+  } info; /*!< \brief Tipo de dado retornado pela union*/
 } cp_info;
 
 typedef struct ExceptionTable{
@@ -189,30 +193,43 @@ typedef struct method_info{
   attribute_info* attributes;         /*!< Detailed description after the member */
 } method_info;                        
 
-/*! Detailed description after the member \brief ALO */
+
+/*! \brief A estrutura de um classFile 
+ *         em bytes (8-bits).
+ *
+ * A estrutura de um classFile 
+ * baseado em bytes de 8-bits. Todos os 16-bit, 32-bit, 
+ * e 64-bit sao construidos por leituras de dois, 
+ * quatro, e oito bytes (8bits) consecutivos. 
+ * Dados de multibyte sao armazenados em ordem big-endian, 
+ * onde o high-byte vem primeiro.
+ */
 typedef struct classFile {           
-  uint32_t magic;                     /*!< Detailed description after the member */
-  uint16_t minor_version;             /*!< Detailed description after the member */
-  uint16_t major_version;             /*!< Detailed description after the member */
-  uint16_t constant_pool_count;       /*!< Detailed description after the member */
-  cp_info* constant_pool;             /*!< Detailed description after the member */
-  uint16_t access_flags;              /*!< Detailed description after the member */
-  uint16_t this_class;                /*!< Detailed description after the member */
-  uint16_t super_class;               /*!< Detailed description after the member */
-  uint16_t interfaces_count;          /*!< Detailed description after the member */
-  uint16_t* interfaces;               /*!< Detailed description after the member */
-  uint16_t fields_count;              /*!< Detailed description after the member */
-  field_info* fields;                 /*!< Detailed description after the member */
-  uint16_t methods_count;             /*!< Detailed description after the member */
-  method_info* methods;               /*!< Detailed description after the member */
-  uint16_t attributes_count;          /*!< Detailed description after the member */
-  attribute_info* attributes;         /*!< Detailed description after the member */
+  uint32_t magic;                     /*!< \brief Magic fornece o 'numero magico' que intentifica
+                                          o formato classfile e tem valor 0xCAFEBABE */
+  uint16_t minor_version;             /*!< \brief Minor version do classfile denotado como 'm' em M.m */
+  uint16_t major_version;             /*!< \brief Majot version do classfile denotado como 'M' em M.m */
+  uint16_t constant_pool_count;       /*!< \brief Numero de entradas em constant_pool mais um */
+  cp_info* constant_pool;             /*!< \brief Tábela de estruturas */
+  uint16_t access_flags;              /*!< \brief Flags usadas para denotar permissoes e propriedades da classe */
+  uint16_t this_class;                /*!< \brief Valor que corresponde a um index valido na constant_pool */
+  uint16_t super_class;               /*!< \brief Valor que corresponde a 0 ou um index valido na constant_pool */
+  uint16_t interfaces_count;          /*!< \brief Numero de interfaces e superinterfaces da classe */
+  uint16_t* interfaces;               /*!< \brief Valor que corresponde a um index valido na constant_pool*/
+  uint16_t fields_count;              /*!< \brief Numero de estruturas fields na tabela de fields*/
+  field_info* fields;                 /*!< \brief Descricao de um field desta classe */
+  uint16_t methods_count;             /*!< \brief Numero de estruturas methods na tabela de methods */
+  method_info* methods;               /*!< \brief Descricao de um method desta classe */
+  uint16_t attributes_count;          /*!< \brief Numero de estruturas attributes na tabela de attributes */
+  attribute_info* attributes;         /*!< \brief Aributos da descritos pela tabela do classfile*/
 } classFile;                          
 
 /* Function headers */
-uint8_t read1byte(FILE* fp);                /*!< \brief Detailed description after the member */
-uint16_t read2bytes(FILE* fp);              /*!< \brief Detailed description after the member */
-uint32_t read4bytes(FILE* fp);              /*!< \brief Detailed description after the member */
-classFile* classReader(char * className);   /*!< \brief Detailed description after the member */
+uint8_t read1byte(FILE* fp);                /*!< \brief Lê um byte (8bits) de um arquivo. */
+uint16_t read2bytes(FILE* fp);              /*!< \brief Lê dois bytes (16bits) de um arquivo. */
+uint32_t read4bytes(FILE* fp);              /*!< \brief Lê quatro bytes (32bits) de um arquivo. */
+classFile* classReader(char * className);   /*!< \brief O método classReader(arg*) é responsavel
+                                                        por ler e carregar em memoria as informacoes 
+                                                        do classfile */
 
 #endif

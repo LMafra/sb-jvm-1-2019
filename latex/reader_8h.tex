@@ -14,94 +14,102 @@ Cabeçalho do leitor do .class. ~\newline
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structcp__info}{cp\+\_\+info}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A estrutura do \mbox{\hyperlink{structcp__info}{cp\+\_\+info}} ira compor a constant\+\_\+pool do \mbox{\hyperlink{structclass_file}{class\+File}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_exception_table}{Exception\+Table}}
+\item 
+struct \mbox{\hyperlink{struct_line_number_table}{Line\+Number\+Table}}
+\item 
 struct \mbox{\hyperlink{structattribute__info}{attribute\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structfield__info}{field\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structmethod__info}{method\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structclass_file}{class\+File}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A estrutura de um \mbox{\hyperlink{structclass_file}{class\+File}} em bytes (8-\/bits). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{reader_8h_a72b5b534aa409975da610a36f648fa0a}\label{reader_8h_a72b5b534aa409975da610a36f648fa0a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Class}~7
-\item 
+\#define \mbox{\hyperlink{reader_8h_a72b5b534aa409975da610a36f648fa0a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Class}}~7
+\begin{DoxyCompactList}\small\item\em constante de Class definida como 7 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a008d43478c2e2973e7413f5d1c48095d}\label{reader_8h_a008d43478c2e2973e7413f5d1c48095d}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Fieldref}~9
-\item 
+\#define \mbox{\hyperlink{reader_8h_a008d43478c2e2973e7413f5d1c48095d}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Fieldref}}~9
+\begin{DoxyCompactList}\small\item\em constante de Fieldref definida como 9 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a2a179cf178ea867c6ab1700508c269dd}\label{reader_8h_a2a179cf178ea867c6ab1700508c269dd}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Methodref}~10
-\item 
+\#define \mbox{\hyperlink{reader_8h_a2a179cf178ea867c6ab1700508c269dd}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Methodref}}~10
+\begin{DoxyCompactList}\small\item\em constante de Methodref definida como 10 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_ac0e92044d246c6e4d691116f89a70ebb}\label{reader_8h_ac0e92044d246c6e4d691116f89a70ebb}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Interface\+Methodref}~11
-\item 
+\#define \mbox{\hyperlink{reader_8h_ac0e92044d246c6e4d691116f89a70ebb}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Interface\+Methodref}}~11
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_interface_methodref}{Interface\+Methodref}} definida como 11 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a0a7acbe175de56072a2f0a1a051418e1}\label{reader_8h_a0a7acbe175de56072a2f0a1a051418e1}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+String}~8
-\item 
+\#define \mbox{\hyperlink{reader_8h_a0a7acbe175de56072a2f0a1a051418e1}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+String}}~8
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_string}{String}} como definida 8 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a856a6553a55d721970ca5450eb1ccd2c}\label{reader_8h_a856a6553a55d721970ca5450eb1ccd2c}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Integer}~3
-\item 
+\#define \mbox{\hyperlink{reader_8h_a856a6553a55d721970ca5450eb1ccd2c}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Integer}}~3
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_integer}{Integer}} definida como 3 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_ab914627ce5b25c4acfc98f2eacb78473}\label{reader_8h_ab914627ce5b25c4acfc98f2eacb78473}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Float}~4
-\item 
+\#define \mbox{\hyperlink{reader_8h_ab914627ce5b25c4acfc98f2eacb78473}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Float}}~4
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_float}{Float}} definida como 4 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a426ca017b895fc522671a561d460be7a}\label{reader_8h_a426ca017b895fc522671a561d460be7a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Long}~5
-\item 
+\#define \mbox{\hyperlink{reader_8h_a426ca017b895fc522671a561d460be7a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Long}}~5
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_long}{Long}} definida como 5 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}\label{reader_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Double}~6
-\item 
+\#define \mbox{\hyperlink{reader_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Double}}~6
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_double}{Double}} definida como 6 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a5b6ba749976ae61415983ca0b890c91a}\label{reader_8h_a5b6ba749976ae61415983ca0b890c91a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Name\+And\+Type}~12
-\item 
+\#define \mbox{\hyperlink{reader_8h_a5b6ba749976ae61415983ca0b890c91a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Name\+And\+Type}}~12
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_name_and_type}{Name\+And\+Type}} definida como 12 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_afc46559a7d3f7baf519fc183c2fad2b4}\label{reader_8h_afc46559a7d3f7baf519fc183c2fad2b4}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Utf8}~1
-\item 
+\#define \mbox{\hyperlink{reader_8h_afc46559a7d3f7baf519fc183c2fad2b4}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Utf8}}~1
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_utf8}{Utf8}} definida como 1 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_adb3c84f82163f217ab7f8fa0258d80ce}\label{reader_8h_adb3c84f82163f217ab7f8fa0258d80ce}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Handle}~15
-\item 
+\#define \mbox{\hyperlink{reader_8h_adb3c84f82163f217ab7f8fa0258d80ce}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Handle}}~15
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_method_handle}{Method\+Handle}} definida como 15 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a991ba557d63f94e2cdf05c9f80630a6f}\label{reader_8h_a991ba557d63f94e2cdf05c9f80630a6f}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Type}~16
-\item 
+\#define \mbox{\hyperlink{reader_8h_a991ba557d63f94e2cdf05c9f80630a6f}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Method\+Type}}~16
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_method_type}{Method\+Type}} definida como 16 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{reader_8h_a127046386d755d4a91c71aa9b453a8bb}\label{reader_8h_a127046386d755d4a91c71aa9b453a8bb}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Invoke\+Dynamic}~18
-\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{reader_8h_a127046386d755d4a91c71aa9b453a8bb}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Invoke\+Dynamic}}~18
+\begin{DoxyCompactList}\small\item\em constante de \mbox{\hyperlink{struct_invoke_dynamic}{Invoke\+Dynamic}} definida como 18 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Definições de tipos}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{structcp__info}{cp\+\_\+info}} \mbox{\hyperlink{reader_8h_adfb47ee1036d22a4738c6c22849e5681}{cp\+\_\+info}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A estrutura do \mbox{\hyperlink{structcp__info}{cp\+\_\+info}} ira compor a constant\+\_\+pool do \mbox{\hyperlink{structclass_file}{class\+File}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{reader_8h_a8939593a040e7787f7b390a18efe5847}\label{reader_8h_a8939593a040e7787f7b390a18efe5847}} 
+typedef struct \mbox{\hyperlink{struct_exception_table}{Exception\+Table}} {\bfseries exception\+\_\+table}
+\item 
+\mbox{\Hypertarget{reader_8h_aeffd95182a57dad2a8b9eb525f643f35}\label{reader_8h_aeffd95182a57dad2a8b9eb525f643f35}} 
+typedef struct \mbox{\hyperlink{struct_line_number_table}{Line\+Number\+Table}} {\bfseries line\+\_\+number\+\_\+table}
+\item 
 typedef struct \mbox{\hyperlink{structattribute__info}{attribute\+\_\+info}} \mbox{\hyperlink{reader_8h_ab2754ff49c228029dd54d71e253388da}{attribute\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 typedef struct \mbox{\hyperlink{structfield__info}{field\+\_\+info}} \mbox{\hyperlink{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}{field\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
-typedef struct \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}} \mbox{\hyperlink{reader_8h_aa03f4dc5b8040ad8c63eb4a500ac35d3}{exceptions\+\_\+attribute}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 typedef struct \mbox{\hyperlink{structmethod__info}{method\+\_\+info}} \mbox{\hyperlink{reader_8h_a09a057cfa24c88e3defabdfcaac953c1}{method\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\item 
 typedef struct \mbox{\hyperlink{structclass_file}{class\+File}} \mbox{\hyperlink{reader_8h_af9aae635c0088b85e23532f1a2e15271}{class\+File}}
-\begin{DoxyCompactList}\small\item\em A\+LO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A estrutura de um \mbox{\hyperlink{structclass_file}{class\+File}} em bytes (8-\/bits). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Funções}
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{reader_8h_a68c32640a3909937adaec6775a260aa5}{read1byte}} (F\+I\+LE $\ast$fp)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lê um byte (8bits) de um arquivo. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}{read2bytes}} (F\+I\+LE $\ast$fp)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lê dois bytes (16bits) de um arquivo. \end{DoxyCompactList}\item 
 uint32\+\_\+t \mbox{\hyperlink{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}{read4bytes}} (F\+I\+LE $\ast$fp)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lê quatro bytes (32bits) de um arquivo. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structclass_file}{class\+File}} $\ast$ \mbox{\hyperlink{reader_8h_a581665709a6695c3b913310a6467f55a}{class\+Reader}} (char $\ast$class\+Name)
-\begin{DoxyCompactList}\small\item\em Detailed description after the member. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variáveis}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \mbox{\hyperlink{reader_8h_adc0078457ab0d114498d51109effee45}{bootstrap\+\_\+method\+\_\+attr\+\_\+index}}
+uint16\+\_\+t \mbox{\hyperlink{reader_8h_a4210930b642766ec237406282083adf8}{class\+\_\+index}}
 \item 
 uint16\+\_\+t \mbox{\hyperlink{reader_8h_acd42ae0637fbb79ed49fdda758f10675}{name\+\_\+and\+\_\+type\+\_\+index}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{reader_8h_adc0078457ab0d114498d51109effee45}{bootstrap\+\_\+method\+\_\+attr\+\_\+index}}
 \end{DoxyCompactItemize}
 
 
@@ -111,12 +119,12 @@ Cabeçalho do leitor do .class. ~\newline
 
 Universidade de Brasilia
 
-Bruno Sanguinetti ~\newline
-Gabriel Vasconcelos ~\newline
-Leonardo de Almeida ~\newline
+Bruno Sanguinetti 18/0046063 ~\newline
+Gabriel Vasconcelos 16/0120781 ~\newline
+Leonardo de Almeida 15/0135491 ~\newline
 Lucas Mafra 12/0126443 ~\newline
-Wladimir Gramacho ~\newline
-\hypertarget{main.c_DESCRIPTION}{}\doxysubsection{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}\label{main.c_DESCRIPTION}
+Wladimir Gramacho 15/0058718 ~\newline
+\hypertarget{printer.c_DESCRIPTION}{}\doxysubsection{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}\label{printer.c_DESCRIPTION}
 
 
 \doxysubsection{Documentação dos tipos}
@@ -138,9 +146,9 @@ Detailed description after the member \mbox{\Hypertarget{reader_8h_af9aae635c008
 
 
 
-A\+LO. 
+A estrutura de um \mbox{\hyperlink{structclass_file}{class\+File}} em bytes (8-\/bits). 
 
-Detailed description after the member \mbox{\Hypertarget{reader_8h_adfb47ee1036d22a4738c6c22849e5681}\label{reader_8h_adfb47ee1036d22a4738c6c22849e5681}} 
+A estrutura de um \mbox{\hyperlink{structclass_file}{class\+File}} baseado em bytes de 8-\/bits. Todos os 16-\/bit, 32-\/bit, e 64-\/bit sao construidos por leituras de dois, quatro, e oito bytes (8bits) consecutivos. Dados de multibyte sao armazenados em ordem big-\/endian, onde o high-\/byte vem primeiro. \mbox{\Hypertarget{reader_8h_adfb47ee1036d22a4738c6c22849e5681}\label{reader_8h_adfb47ee1036d22a4738c6c22849e5681}} 
 \index{reader.h@{reader.h}!cp\_info@{cp\_info}}
 \index{cp\_info@{cp\_info}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{cp\_info}{cp\_info}}
@@ -148,19 +156,9 @@ Detailed description after the member \mbox{\Hypertarget{reader_8h_adfb47ee1036d
 
 
 
-A\+LO. 
+A estrutura do \mbox{\hyperlink{structcp__info}{cp\+\_\+info}} ira compor a constant\+\_\+pool do \mbox{\hyperlink{structclass_file}{class\+File}}. 
 
-Detailed description after the member \mbox{\Hypertarget{reader_8h_aa03f4dc5b8040ad8c63eb4a500ac35d3}\label{reader_8h_aa03f4dc5b8040ad8c63eb4a500ac35d3}} 
-\index{reader.h@{reader.h}!exceptions\_attribute@{exceptions\_attribute}}
-\index{exceptions\_attribute@{exceptions\_attribute}!reader.h@{reader.h}}
-\doxysubsubsection{\texorpdfstring{exceptions\_attribute}{exceptions\_attribute}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}}  \mbox{\hyperlink{structexceptions__attribute}{exceptions\+\_\+attribute}}}
-
-
-
-A\+LO. 
-
-Detailed description after the member \mbox{\Hypertarget{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}\label{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}} 
+\mbox{\hyperlink{structcp__info}{cp\+\_\+info}} varia de acordo com o byte lido em sua tag \mbox{\Hypertarget{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}\label{reader_8h_a34bf7d0c204894b02970b0d72f640a5b}} 
 \index{reader.h@{reader.h}!field\_info@{field\_info}}
 \index{field\_info@{field\_info}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{field\_info}{field\_info}}
@@ -191,9 +189,9 @@ Detailed description after the member
 
 
 
-Detailed description after the member. 
+O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. 
 
-Detailed description after the member\mbox{\Hypertarget{reader_8h_a68c32640a3909937adaec6775a260aa5}\label{reader_8h_a68c32640a3909937adaec6775a260aa5}} 
+O método class\+Reader(arg$\ast$) é responsavel por ler e carregar em memoria as informacoes do classfile. A leitura é por blocos de bytes que sao percorridos pelas funcoes read1byte(arg$\ast$), read2bytes(arg$\ast$) e read4bytes(arg$\ast$) e sem seguida carregados em memoria por alocamento da estrutura abstrata cf.\mbox{\Hypertarget{reader_8h_a68c32640a3909937adaec6775a260aa5}\label{reader_8h_a68c32640a3909937adaec6775a260aa5}} 
 \index{reader.h@{reader.h}!read1byte@{read1byte}}
 \index{read1byte@{read1byte}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{read1byte()}{read1byte()}}
@@ -201,9 +199,10 @@ Detailed description after the member\mbox{\Hypertarget{reader_8h_a68c32640a3909
 
 
 
-Detailed description after the member. 
+Lê um byte (8bits) de um arquivo. 
 
-$<$ Detailed description after the member\mbox{\Hypertarget{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}\label{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}} 
+$<$ Usa a funcao getc para ler um byte de um arquivo ~\newline
+ \mbox{\Hypertarget{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}\label{reader_8h_afc20c4f5a97fa625cd39ce1fa242f548}} 
 \index{reader.h@{reader.h}!read2bytes@{read2bytes}}
 \index{read2bytes@{read2bytes}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{read2bytes()}{read2bytes()}}
@@ -211,9 +210,9 @@ $<$ Detailed description after the member\mbox{\Hypertarget{reader_8h_afc20c4f5a
 
 
 
-Detailed description after the member. 
+Lê dois bytes (16bits) de um arquivo. 
 
-$<$ Detailed description after the member\mbox{\Hypertarget{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}\label{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}} 
+Usa a funcao getc para ler dois bytes de um arquivo, por meio de um right-\/shift para a leitura do segundo byte\mbox{\Hypertarget{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}\label{reader_8h_afdd39e757a11e4f4952a87e3d66b1d1f}} 
 \index{reader.h@{reader.h}!read4bytes@{read4bytes}}
 \index{read4bytes@{read4bytes}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{read4bytes()}{read4bytes()}}
@@ -221,9 +220,9 @@ $<$ Detailed description after the member\mbox{\Hypertarget{reader_8h_afdd39e757
 
 
 
-Detailed description after the member. 
+Lê quatro bytes (32bits) de um arquivo. 
 
-$<$ Detailed description after the member
+Usa a funcao getc para ler quatro bytes de um arquivo por meio de um right-\/shift para a leitura do segundo, terceiro e quarto byte
 
 \doxysubsection{Documentação das variáveis}
 \mbox{\Hypertarget{reader_8h_adc0078457ab0d114498d51109effee45}\label{reader_8h_adc0078457ab0d114498d51109effee45}} 
@@ -231,6 +230,12 @@ $<$ Detailed description after the member
 \index{bootstrap\_method\_attr\_index@{bootstrap\_method\_attr\_index}!reader.h@{reader.h}}
 \doxysubsubsection{\texorpdfstring{bootstrap\_method\_attr\_index}{bootstrap\_method\_attr\_index}}
 {\footnotesize\ttfamily uint16\+\_\+t bootstrap\+\_\+method\+\_\+attr\+\_\+index}
+
+Detailed description after the member \mbox{\Hypertarget{reader_8h_a4210930b642766ec237406282083adf8}\label{reader_8h_a4210930b642766ec237406282083adf8}} 
+\index{reader.h@{reader.h}!class\_index@{class\_index}}
+\index{class\_index@{class\_index}!reader.h@{reader.h}}
+\doxysubsubsection{\texorpdfstring{class\_index}{class\_index}}
+{\footnotesize\ttfamily uint16\+\_\+t class\+\_\+index}
 
 Detailed description after the member \mbox{\Hypertarget{reader_8h_acd42ae0637fbb79ed49fdda758f10675}\label{reader_8h_acd42ae0637fbb79ed49fdda758f10675}} 
 \index{reader.h@{reader.h}!name\_and\_type\_index@{name\_and\_type\_index}}

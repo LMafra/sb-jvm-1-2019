@@ -17,7 +17,10 @@
 
 #include "reader.h"
 
-classFile* classReader(char * className) {  /*! Detailed description after the member */
+classFile* classReader(char * className) {  /*! O método classReader(arg*) é responsavel
+por ler e carregar em memoria as informacoes do classfile. A leitura é por blocos de bytes
+que sao percorridos pelas funcoes read1byte(arg*), read2bytes(arg*) e read4bytes(arg*) e sem seguida 
+carregados em memoria por alocamento da estrutura abstrata cf. */
   FILE* file;
   file = fopen(className, "rb");
 
@@ -250,20 +253,24 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
 	return cf;
 }
 
-uint8_t read1byte(FILE * file) {  /*!< Detailed description after the member */
+uint8_t read1byte(FILE * file) {  /*!< Usa a funcao getc para ler um byte de um arquivo  */
   uint8_t data = getc(file);
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint16_t read2bytes(FILE * file) {  /*!< Detailed description after the member */
-  uint16_t data = getc(file);
-  data = (data << 8) | (getc(file));
+uint16_t read2bytes(FILE * file) {    /*! Usa a funcao getc para ler dois bytes de 
+                                       um arquivo, por meio de um right-shift para a 
+                                       leitura do segundo byte */
+  uint16_t data = getc(file);       
+  data = (data << 8) | (getc(file)); 
   return data;
 }
 
 /* Precisa ser assim porque é big-endian */
-uint32_t read4bytes(FILE * file) {  /*!< Detailed description after the member */
+uint32_t read4bytes(FILE * file) {  /*! Usa a funcao getc para ler quatro bytes de
+                                       um arquivo por meio de um right-shift para a
+                                       leitura do segundo, terceiro e quarto byte */
   uint32_t data = getc(file);
   data = (data << 8) | (getc(file));
   data = (data << 8) | (getc(file));
