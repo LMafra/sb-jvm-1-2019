@@ -125,6 +125,18 @@ typedef struct cp_info {
   } info; /*!< Detailed description after the member \brief ALO*/
 } cp_info;
 
+typedef struct ExceptionTable{
+  uint16_t start_pc;
+  uint16_t end_pc;
+  uint16_t handler_pc;
+  uint16_t catch_type;
+} exception_table;
+
+typedef struct LineNumberTable {
+  uint16_t start_pc;
+  uint16_t line_number;
+} line_number_table;
+
 /*! Detailed description after the member \brief ALO */
 typedef struct attribute_info {
   uint16_t attribute_name_index;          /*!< Detailed description after the member */
@@ -137,6 +149,24 @@ typedef struct attribute_info {
       uint16_t number_of_exceptions;      /*!< Detailed description after the member */
       uint16_t* exception_index_table;    /*!< Detailed description after the member */
     } Exceptions;  /*!< Detailed description after the member */
+    struct {
+      uint16_t max_stack;
+      uint16_t max_locals;
+      uint32_t code_length;
+      uint8_t* code;
+      uint16_t exception_table_length;
+      exception_table *exception_table_array;
+      uint16_t attributes_count;
+      struct attribute_info* attributes;
+    } Code;
+    struct {
+
+    } Deprecated;
+
+    struct {
+      uint16_t line_number_table_length;
+      line_number_table *line_number_table_array;
+    } LineNumberTable; 
   } att_info;      /*!< Detailed description after the member */
   
 } attribute_info;
@@ -148,15 +178,7 @@ typedef struct field_info {
   uint16_t descriptor_index;   /*!< Detailed description after the member */
   uint16_t attributes_count;   /*!< Detailed description after the member */
   attribute_info* attributes;  /*!< Detailed description after the member */
-} field_info;
-
-/*! Detailed description after the member \brief ALO */
-typedef struct exceptions_attribute {
-  uint16_t attribute_name_index;        /*!< Detailed description after the member */
-  uint32_t attribute_length;            /*!< Detailed description after the member */
-  uint16_t number_of_exceptions;        /*!< Detailed description after the member */
-  uint16_t* exception_index_table;      /*!< Detailed description after the member */
-} exceptions_attribute;                 
+} field_info;               
 
 /*! Detailed description after the member \brief ALO */
 typedef struct method_info{           
@@ -165,8 +187,6 @@ typedef struct method_info{
   uint16_t descriptor_index;          /*!< Detailed description after the member */
   uint16_t attributes_count;          /*!< Detailed description after the member */
   attribute_info* attributes;         /*!< Detailed description after the member */
-  /* não fica muito claro na doc como isso funciona */
-  exceptions_attribute* exceptions;   /*!< Detailed description after the member */
 } method_info;                        
 
 /*! Detailed description after the member \brief ALO */
@@ -195,5 +215,4 @@ uint16_t read2bytes(FILE* fp);              /*!< \brief Detailed description aft
 uint32_t read4bytes(FILE* fp);              /*!< \brief Detailed description after the member */
 classFile* classReader(char * className);   /*!< \brief Detailed description after the member */
 
-#endif 
- 
+#endif
