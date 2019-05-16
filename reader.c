@@ -143,43 +143,10 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
       cf->fields[i].attributes[j].attribute_length = read4bytes(file);
       
       uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index-1; 
-      /* não estou usando o att length e mallocando o att_info o que pode dar merda */
+      /* fields */
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
-        cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
-        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
-          cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
-        }
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
-        cf->fields[i].attributes[j].att_info.Code.max_stack = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Code.max_locals = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Code.code_length = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Code.code = (uint8_t*) malloc(cf->fields[i].attributes[j].att_info.Code.code_length * sizeof(uint8_t));
-        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Code.code_length; k++) {
-          cf->fields[i].attributes[j].att_info.Code.code[k] = read1byte(file);
-        }
-        cf->fields[i].attributes[j].att_info.Code.exception_table_length = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Code.exception_table_array = (exception_table*) malloc(cf->fields[i].attributes[j].att_info.Code.exception_table_length * sizeof(exception_table));
-        for(int k = 0; k < cf->fields[i].attributes[j].att_info.Code.exception_table_length; k++) {
-          cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].start_pc = read2bytes(file);
-          cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].end_pc = read2bytes(file);
-          cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc = read4bytes(file);
-          cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].catch_type = read4bytes(file);
-        }
-        cf->fields[i].attributes[j].att_info.Code.attributes_count = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.Code.attributes = (attribute_info *)malloc(cf->fields[i].attributes[j].att_info.Code.attributes_count * sizeof(attribute_info));
-        // sem tempo irmao
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
-        cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
-        cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
-        for(int k = 0; k < cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
-          cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].start_pc = read2bytes(file);
-          cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].line_number = read2bytes(file);
-        }
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
       }
     }
   }
@@ -199,9 +166,7 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
       printf("WWW attribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
       cf->methods[i].attributes[j].attribute_length = read4bytes(file);
       uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index - 1;
-      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
-        cf->methods[i].attributes[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
@@ -226,8 +191,8 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
         cf->methods[i].attributes[j].att_info.Code.attributes_count = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Code.attributes = (attribute_info *)malloc(cf->methods[i].attributes[j].att_info.Code.attributes_count * sizeof(attribute_info));
         // sem tempo irmao
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      } else if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
         cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
         cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
