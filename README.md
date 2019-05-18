@@ -1,3 +1,7 @@
+![alt text](http://www.unb.br/images/Imagens/logo_unb.png)
+
+# Software Básico - 1/2019
+
 # Informações
 
 ## Cabeçalho
@@ -12,9 +16,9 @@
 
 * **Bruno Sanguinetti R. Barros** |    *18/0046063*     |     [GitHub](https://github.com/BrunoSNT)
 * **Gabriel Vasconcelos**         |    *16/0120781*     |     [GitHub](https://github.com/gcvasconcelos)
-* **Leonardo de Almeida**         |    *0000000000*     |     [NULL](https://github.com/)
+* **Leonardo de Almeida**         |    *15/0135491*     |     [GitHub](https://github.com/leodealmeida)
 * **Lucas Mafra**                 |    *12/0126443*     |     [GitHub](https://github.com/LMafra)
-* **Wladimir Gramacho**           |    *0000000000*     |     [GitHub](https://github.com/wladimirgramacho)
+* **Wladimir Gramacho**           |    *15/0048718*     |     [GitHub](https://github.com/wladimirgramacho)
 
 ## Getting Started
 
