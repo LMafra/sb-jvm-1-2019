@@ -209,51 +209,22 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   for (int i = 0; i < cf->fields_count; i++) {
     printf("[%d] Field:\n", i+1);
     printf("\taccess_flags: %d\n", cf->fields[i].access_flags);
-    printf("\tname_index: %d\n", cf->fields[i].name_index);
-    printf("\tdescriptor_index: %d\n", cf->fields[i].descriptor_index);
+    printf("\tname_index: cp_info #%d ", cf->fields[i].name_index);
+    cpIndexReader(cf->constant_pool, cf->fields[i].name_index);
+    printf("\tdescriptor_index: cp_info #%d ", cf->fields[i].descriptor_index);
+    cpIndexReader(cf->constant_pool, cf->fields[i].descriptor_index);
     printf("\tattributes_count: %d\n", cf->fields[i].attributes_count);
     for (int j = 0; j < cf->fields->attributes_count; j++) {
       printf("\t[%d] Attribute:\n", j+1);
-      printf("\t\tattribute_name_index: %d\n", cf->fields[i].attributes[j].attribute_name_index);
+      printf("\t\tattribute_name_index: cp_info #%d ", cf->fields[i].attributes[j].attribute_name_index);
+      cpIndexReader(cf->constant_pool, cf->fields[i].attributes[j].attribute_name_index);
       printf("\t\tattribute_length: %d\n", cf->fields[i].attributes[j].attribute_length);
       uint16_t cp_index = cf->fields[i].attributes[j].attribute_name_index;
       if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
-        printf("\t\tconstantvalue_index: %d\n", cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index);
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
-        printf("\t\tnumber_of_exceptions: %d\n", cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions);
-        printf("\t\texception_index_table:");
-        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
-          printf(" %d", cf->fields[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
-        }
-        printf("\n");
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
-        printf("\t\tmax_stack: %d\n", cf->fields[i].attributes[j].att_info.Code.max_stack);
-        printf("\t\tmax_locals: %d\n", cf->fields[i].attributes[j].att_info.Code.max_locals);
-        printf("\t\tcode_length: %d\n", cf->fields[i].attributes[j].att_info.Code.code_length);
-        printf("\t\tCode:");
-        for(int k = 0; k < cf->fields[i].attributes[j].att_info.Code.code_length; k++) {
-          printf(" %d", cf->fields[i].attributes[j].att_info.Code.code[k]);
-        }
-        printf("\n");
-        printf("\t\texception_table_length: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_length);
-        printf("\t\texception_table:\n");
-        for (int k = 0; k < cf->fields[i].attributes[j].att_info.Code.exception_table_length; k++) {
-          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].start_pc);
-          printf("\t\t\tend_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].end_pc);
-          printf("\t\t\thandler_pc: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc);
-          printf("\t\t\tcatch_type: %d\n", cf->fields[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
-        }
-        printf("\t\tattributes_count: %d\n", cf->fields[i].attributes[j].att_info.Code.attributes_count);
-        printf("\t\tattributes_count: SEM TEMPO IRMÃO\n");
+        printf("\t\tconstantvalue_index: cp_info #%d ", cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index);
+        cpIndexReader(cf->constant_pool, cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index);
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("\t\tDeprecated\n");
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
-        printf("\t\tline_number_table_length: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length);
-        printf("\t\tline_number_table\n");
-        for (int k = 0; k < cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
-          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].start_pc);
-          printf("\t\t\tstart_pc: %d\n", cf->fields[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].line_number);
-        }
       }
     }
   }
@@ -263,12 +234,15 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   for (int i = 0; i < cf->methods_count; i++) {
     printf("[%d] Method:\n", i+1);
     printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
-    printf("\tname_index: %d\n", cf->methods[i].name_index);
-    printf("\tdescriptor_index: %d\n", cf->methods[i].descriptor_index);
+    printf("\tname_index: cp_info %d ", cf->methods[i].name_index);
+    cpIndexReader(cf->constant_pool, cf->methods[i].name_index);
+    printf("\tdescriptor_index: cp_info %d ", cf->methods[i].descriptor_index);
+    cpIndexReader(cf->constant_pool, cf->methods[i].descriptor_index);
     printf("\tattributes_count: %d\n", cf->methods[i].attributes_count);
     for (int j = 0; j < cf->methods->attributes_count; j++) {
       printf("\t[%d] Attribute:\n",j+1);
-      printf("\t\tattribute_name_index: %d\n", cf->methods[i].attributes[j].attribute_name_index);
+      printf("\t\tattribute_name_index: cp_info #%d ", cf->methods[i].attributes[j].attribute_name_index);
+      cpIndexReader(cf->constant_pool, cf->methods[i].attributes[j].attribute_name_index);
       printf("\t\tattribute_length: %d\n", cf->methods[i].attributes[j].attribute_length);
       uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index - 1;
       if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
@@ -291,7 +265,8 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
         printf("\t\tattributes_count: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes_count);
         printf("\t\tattributes_count:\n");
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
-          printf("\t\t\tattribute_name_index: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index);
+          printf("\t\t\tattribute_name_index: cp_info #%d ", cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index);
+          cpIndexReader(cf->constant_pool, cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index);
           printf("\t\t\tattribute_length: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_length);
 					uint16_t cp_indexao = cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index - 1;
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
@@ -305,11 +280,11 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
 				}
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         printf("\t\tnumber_of_exceptions: %d\n", cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions);
-        printf("\t\texception_index_table:");
+        printf("\t\texception_index_table:\n");
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Exceptions.number_of_exceptions; k++) {
-          printf(" %d", cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
+          printf("\t\t\tcp_info #%d ", cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
+          cpIndexReader(cf->constant_pool, cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table[k]);
         }
-        printf("\n");
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("\t\tDeprecated\n");
       }
@@ -320,11 +295,12 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   printf("Attributes Count: %d\n",cf->attributes_count);
   for (int i = 0; i < 1; i++) {
     printf("[%d] Attribute:\n", i+1);
-    printf("\tattribute_name_index: %d\n", cf->attributes[i].attribute_name_index);
+    printf("\tattribute_name_index: cp_info #%d ", cf->attributes[i].attribute_name_index);
+    cpIndexReader(cf->constant_pool, cf->attributes[i].attribute_name_index);
     printf("\tattribute_length: %d\n", cf->attributes[i].attribute_length);
     uint16_t cp_index = cf->attributes[i].attribute_name_index - 1;
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      printf("Deprecated\n");
+      printf("\t\tDeprecated\n");
     }
   }
 }

@@ -146,8 +146,6 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
       uint16_t cp_index = fi_ai[j].attribute_name_index - 1;
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         fi_ai[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-        printf("Deprecated\n");
       } else {
 				for (int w = 0; w < fi_ai[j].attribute_length; w++){
 					read1byte(file);
