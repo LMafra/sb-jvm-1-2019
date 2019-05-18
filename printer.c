@@ -203,7 +203,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   }
 
   /* Methods */
-  printf("Methods Count: %d\n",cf->methods_count);  
+  printf("Methods Count: %d\n",cf->methods_count);
   for (int i = 0; i < cf->methods_count; i++) {
     printf("[%d] Method:\n", i+1);
     printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
@@ -257,6 +257,18 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("\t\tDeprecated\n");
       }
+    }
+  }
+
+  /* attributes */
+  printf("Attributes Count: %d\n",cf->attributes_count);
+  for (int i = 0; i < 1; i++) {
+    printf("[%d] Attribute:\n", i+1);
+    printf("\tattribute_name_index: %d\n", cf->attributes[i].attribute_name_index);
+    printf("\tattribute_length: %d\n", cf->attributes[i].attribute_length);
+    uint16_t cp_index = cf->attributes[i].attribute_name_index - 1;
+    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+      printf("Deprecated\n");
     }
   }
 }
