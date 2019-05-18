@@ -17,6 +17,49 @@
 */
 
 #include "printer.h"
+#include "reader.h"
+
+void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
+		switch (cp[cpIndex-1].tag) { 
+			case CONSTANT_Class:
+        cpIndexReader(cp, cp[cpIndex-1].info.Class.name_index);
+				break;
+			case CONSTANT_Fieldref:
+				cpIndexReader(cp, cp[cpIndex-1].info.Fieldref.class_index);
+				cpIndexReader(cp, cp[cpIndex-1].info.Fieldref.name_and_type_index);
+				break;
+			case CONSTANT_Methodref:
+				cpIndexReader(cp, cp[cpIndex-1].info.Methodref.class_index);
+				cpIndexReader(cp, cp[cpIndex-1].info.Methodref.name_and_type_index);
+				break;
+			case CONSTANT_InterfaceMethodref:
+				cpIndexReader(cp, cp[cpIndex-1].info.InterfaceMethodref.class_index);
+				cpIndexReader(cp, cp[cpIndex-1].info.InterfaceMethodref.name_and_type_index);
+				break;
+			case CONSTANT_String:
+				cpIndexReader(cp, cp[cpIndex-1].info.String.string_index);
+				break;	
+			case CONSTANT_NameAndType:
+				cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.name_index);
+				cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.descriptor_index);
+				break;
+			case CONSTANT_Utf8:
+				printf("%s\n", (char *)cp[cpIndex-1].info.Utf8.bytes);
+				break;
+			case CONSTANT_MethodHandle:
+				cpIndexReader(cp, cp[cpIndex-1].info.MethodHandle.reference_index);
+				break;
+			case CONSTANT_MethodType:
+				cpIndexReader(cp, cp[cpIndex-1].info.MethodType.descriptor_index);
+				break;
+			case CONSTANT_InvokeDynamic:
+				cpIndexReader(cp, cp[cpIndex-1].info.InvokeDynamic.bootstrap_method_attr_index);
+				cpIndexReader(cp, cp[cpIndex-1].info.InvokeDynamic.name_and_type_index);
+				break;
+			default:
+				break;
+		}
+}
 
 void classPrinter( classFile* cf) { /*! Long Detailed description after the member */
   /* General Information */
@@ -33,31 +76,34 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     switch (tag) {
       case CONSTANT_Class:
         printf("[%d] CONSTANT_Class_info\n", i+1);
-        printf("\tname_index: %d", cf->constant_pool[i].info.Class.name_index);
-        /* imprimir referencia desse index */
+        printf("\tname_index: #%d ", cf->constant_pool[i].info.Class.name_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.Class.name_index);
 				break;
 			case CONSTANT_Fieldref:
         printf("[%d] CONSTANT_Fieldref_info\n", i+1);
-        printf("\tclass_index: %d\n", cf->constant_pool[i].info.Fieldref.class_index);
-        printf("\tname_and_type_index: %d", cf->constant_pool[i].info.Fieldref.name_and_type_index);
-        /* imprimir referencia desse index */
+        printf("\tclass_index: %d ", cf->constant_pool[i].info.Fieldref.class_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.Fieldref.class_index);
+        printf("\tname_and_type_index: %d ", cf->constant_pool[i].info.Fieldref.name_and_type_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.Fieldref.name_and_type_index);
 				break;
 			case CONSTANT_Methodref:
         printf("[%d] CONSTANT_Methodref_info\n", i+1);
-        printf("\tclass_index: %d\n", cf->constant_pool[i].info.Methodref.class_index);
-        printf("\tname_and_type_index: %d", cf->constant_pool[i].info.Methodref.name_and_type_index);
-        /* imprimir referencia desse index */
+        printf("\tclass_index: %d ", cf->constant_pool[i].info.Methodref.class_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.Methodref.class_index);
+        printf("\tname_and_type_index: %d ", cf->constant_pool[i].info.Methodref.name_and_type_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.Methodref.name_and_type_index);
 				break;
 			case CONSTANT_InterfaceMethodref:
         printf("[%d] CONSTANT_InterfaceMethodref_info\n", i+1);
-        printf("\tclass_index: %d\n", cf->constant_pool[i].info.InterfaceMethodref.class_index);
-        printf("\tname_and_type_index: %d", cf->constant_pool[i].info.InterfaceMethodref.name_and_type_index);
-        /* imprimir referencia desse index */
+        printf("\tclass_index: %d ", cf->constant_pool[i].info.InterfaceMethodref.class_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.InterfaceMethodref.class_index);
+        printf("\tname_and_type_index: %d ", cf->constant_pool[i].info.InterfaceMethodref.name_and_type_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.InterfaceMethodref.name_and_type_index);
 				break;
 			case CONSTANT_String:
         printf("[%d] CONSTANT_String_info\n", i+1);
-        printf("\tstring_index: %d", cf->constant_pool[i].info.String.string_index);
-        /* imprimir referencia desse index */
+        printf("\tstring_index: %d ", cf->constant_pool[i].info.String.string_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.String.string_index);
 				break;	
 			case CONSTANT_Integer:
         printf("[%d] CONSTANT_Integer_info\n", i+1);
@@ -79,8 +125,10 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
 				break;
 			case CONSTANT_NameAndType:
         printf("[%d] CONSTANT_NameAndType_info\n", i+1);
-        printf("\tname_index: %d\n", cf->constant_pool[i].info.NameAndType.name_index);
-        printf("\tdescriptor_index: %d", cf->constant_pool[i].info.NameAndType.descriptor_index);
+        printf("\tname_index: %d ", cf->constant_pool[i].info.NameAndType.name_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.NameAndType.name_index);
+        printf("\tdescriptor_index: %d ", cf->constant_pool[i].info.NameAndType.descriptor_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.NameAndType.descriptor_index);
 				break;
 			case CONSTANT_Utf8:
         printf("[%d] CONSTANT_Utf8_info\n", i+1);
@@ -90,16 +138,20 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
 			case CONSTANT_MethodHandle:
         printf("[%d] CONSTANT_MethodHandle_info\n", i+1);
         printf("\treference_kind: %d\n", cf->constant_pool[i].info.MethodHandle.reference_kind);
-        printf("\treference_index: %d", cf->constant_pool[i].info.MethodHandle.reference_index);
+        printf("\treference_index: %d ", cf->constant_pool[i].info.MethodHandle.reference_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.MethodHandle.reference_index);
 				break;
 			case CONSTANT_MethodType:
         printf("[%d] CONSTANT_MethodType_info\n", i+1);
-        printf("\tdescriptor_index: %d", cf->constant_pool[i].info.MethodType.descriptor_index);
+        printf("\tdescriptor_index: %d ", cf->constant_pool[i].info.MethodType.descriptor_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.MethodType.descriptor_index);
 				break;
 			case CONSTANT_InvokeDynamic:
         printf("[%d] CONSTANT_InvokeDynamic_info\n", i+1);
-        printf("\tbootstrap_method_attr_index: %d\n", cf->constant_pool[i].info.InvokeDynamic.bootstrap_method_attr_index);
-        printf("\tname_and_type_index: %d", cf->constant_pool[i].info.InvokeDynamic.name_and_type_index);
+        printf("\tbootstrap_method_attr_index: %d ", cf->constant_pool[i].info.InvokeDynamic.bootstrap_method_attr_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.InvokeDynamic.bootstrap_method_attr_index);
+        printf("\tname_and_type_index: %d ", cf->constant_pool[i].info.InvokeDynamic.name_and_type_index);
+        cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.InvokeDynamic.name_and_type_index);
 				break;
 			default:
 				break;
@@ -139,13 +191,17 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
       printf("\n");
       break;
   }
-	printf("This Class: cp_info #%d\n", cf->this_class);
-	printf("Super Class: cp_info #%d\n", cf->super_class);
+	printf("This Class: cp_info #%d ", cf->this_class);
+  cpIndexReader(cf->constant_pool, cf->this_class);
+	printf("Super Class: cp_info #%d ", cf->super_class);
+  cpIndexReader(cf->constant_pool, cf->super_class);
 
   /* Interfaces */
-	printf("Interfaces Count: cp_info #%d\n", cf->interfaces_count);
+	printf("Interfaces Count: cp_info #%d ", cf->interfaces_count);
+  cpIndexReader(cf->constant_pool, cf->interfaces_count);
   for (int i = 0; i < cf->interfaces_count; i++) {
-    printf("[%d] Interface: cp_info #%d\n", i+1, cf->interfaces[i]);
+    printf("[%d] Interface: cp_info #%d ", i+1, cf->interfaces[i]);
+    cpIndexReader(cf->constant_pool, cf->interfaces[i]);
   }
 
   /* Fields */
