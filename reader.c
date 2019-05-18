@@ -210,8 +210,6 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
         for (int k = 0; k < mi_ai[j].att_info.Exceptions.number_of_exceptions; k++) {
           mi_ai[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
         }
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-				printf("Deprecated\n");
       } else {
 				for (int w = 0; w < mi_ai[j].attribute_length; w++){
 					read1byte(file);
@@ -228,9 +226,7 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
     ai[i].attribute_name_index = read2bytes(file);
     ai[i].attribute_length = read4bytes(file);
     uint16_t cp_index = ai[i].attribute_name_index - 1;
-    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      printf("Deprecated\n");
-    } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
+    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
 			ai[i].att_info.BootstrapMethods.bootstrap_methods_length = read2bytes(file);
 			ai[i].att_info.BootstrapMethods.bootstrap_methods_array = (bootstrap_methods *)calloc(ai[i].att_info.BootstrapMethods.bootstrap_methods_length, sizeof(bootstrap_methods));
 			bootstrap_methods *ai_bm = ai[i].att_info.BootstrapMethods.bootstrap_methods_array;
