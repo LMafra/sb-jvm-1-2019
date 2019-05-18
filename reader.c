@@ -30,7 +30,7 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
   }
 
 	classFile* cf = NULL;
-	cf = (classFile *)malloc (sizeof(classFile));
+	cf = (classFile *)calloc(1, sizeof(classFile));
 
 	cf->magic = read4bytes(file);
 
@@ -45,7 +45,7 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 
 	/* constant pool */
 	cf->constant_pool_count = read2bytes(file);
-	cf->constant_pool = (cp_info* ) malloc((cf->constant_pool_count-1) * sizeof(cp_info));
+	cf->constant_pool = (cp_info* ) calloc((cf->constant_pool_count-1), sizeof(cp_info));
 	cp_info* cp = cf->constant_pool;
 
 	for(int i = 0; i < cf->constant_pool_count-1; i++) { 
@@ -93,7 +93,7 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 			case CONSTANT_Utf8:
 				cp[i].info.Utf8.length = read2bytes(file);
 				/* +1 para adicionar o \0 na string do C */
-				cp[i].info.Utf8.bytes = (uint8_t* )malloc((cp[i].info.Utf8.length+1) * sizeof(uint8_t));
+				cp[i].info.Utf8.bytes = (uint8_t* )calloc((cp[i].info.Utf8.length+1), sizeof(uint8_t));
 				/* fiz diferente pode dar merda */
 				uint8_t* bt = cp[i].info.Utf8.bytes;
 				for(int j = 0; j < cp[i].info.Utf8.length; j++, bt++) {
@@ -125,64 +125,65 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 
 	/* interfaces */
 	cf->interfaces_count = read2bytes(file);
-  cf->interfaces = (uint16_t* )malloc(cf->interfaces_count * sizeof(uint16_t));
+  cf->interfaces = (uint16_t* )calloc(cf->interfaces_count, sizeof(uint16_t));
   for (int i = 0; i < cf->interfaces_count; i++) {
     cf->interfaces[i] = read2bytes(file);
   }
 
 	/* fields */
 	cf->fields_count = read2bytes(file);
-  cf->fields = (field_info* )malloc(cf->fields_count * sizeof(field_info));
+  cf->fields = (field_info* )calloc(cf->fields_count, sizeof(field_info));
+  field_info *fi = cf->fields;
   for(int i = 0; i < cf->fields_count; i++) {
-    field_info fi = cf->fields[i];
-    fi.access_flags = read2bytes(file);
-    fi.name_index = read2bytes(file);
-    fi.descriptor_index = read2bytes(file);
+    fi[i].access_flags = read2bytes(file);
+    fi[i].name_index = read2bytes(file);
+    fi[i].descriptor_index = read2bytes(file);
 
-    fi.attributes_count = read2bytes(file);
-    fi.attributes = (attribute_info* )malloc(fi.attributes_count * sizeof(attribute_info));
-    for(int j = 0; j < fi.attributes_count; j++) {
-      attribute_info fi_ai = fi.attributes[j];
-      fi_ai.attribute_name_index = read2bytes(file);
-      fi_ai.attribute_length = read4bytes(file);
+    fi[i].attributes_count = read2bytes(file);
+    fi[i].attributes = (attribute_info* )calloc(fi[i].attributes_count, sizeof(attribute_info));
+    attribute_info *fi_ai = fi[i].attributes;
+    for(int j = 0; j < fi[i].attributes_count; j++) {
+      fi_ai[j].attribute_name_index = read2bytes(file);
+      fi_ai[j].attribute_length = read4bytes(file);
       
-      uint16_t cp_index = fi_ai.attribute_name_index - 1; 
+      uint16_t cp_index = fi_ai[j].attribute_name_index - 1;
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
-        fi_ai.att_info.ConstantValue.constantvalue_index = read1byte(file);
+        fi_ai[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("Deprecated\n");
-      }
+      } else {
+				for (int w = 0; w < fi_ai[j].attribute_length; w++){
+					read1byte(file);
+				}
+			}
     }
   }
 
 	/* methods */
 	cf->methods_count = read2bytes(file);
-  cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
+  cf->methods = (method_info* )calloc(cf->methods_count, sizeof(method_info));
   method_info *mi = cf->methods;
-  for(int i = 0; i < 1; i++){
+  for(int i = 0; i < cf->methods_count; i++){
     mi[i].access_flags = read2bytes(file);
     mi[i].name_index = read2bytes(file);
     mi[i].descriptor_index = read2bytes(file);
     mi[i].attributes_count = read2bytes(file);
-    printf("WWW attribute_count: %d\n", mi[i].attributes_count);
-    mi[i].attributes = (attribute_info* )malloc(mi[i].attributes_count * sizeof(attribute_info));
+    mi[i].attributes = (attribute_info* )calloc(mi[i].attributes_count, sizeof(attribute_info));
     attribute_info *mi_ai = mi[i].attributes;
-    for(int j = 0; j < 1; j++) {
+    for(int j = 0; j < mi[i].attributes_count; j++) {
       mi_ai[j].attribute_name_index = read2bytes(file);
-      printf("WWW attribute_name_index: %d\n", mi_ai[j].attribute_name_index);
       mi_ai[j].attribute_length = read4bytes(file);
       uint16_t cp_index = mi_ai[j].attribute_name_index - 1;
-			printf("Resultado strcmp %d\n", strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code"));
 			if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
         mi_ai[j].att_info.Code.max_stack = read2bytes(file);
         mi_ai[j].att_info.Code.max_locals = read2bytes(file);
         mi_ai[j].att_info.Code.code_length = read4bytes(file);
-        mi_ai[j].att_info.Code.code = (uint8_t*) malloc(mi_ai[j].att_info.Code.code_length * sizeof(uint8_t));
+        mi_ai[j].att_info.Code.code = (uint8_t*) calloc(mi_ai[j].att_info.Code.code_length, sizeof(uint8_t));
         for (int k = 0; k < mi_ai[j].att_info.Code.code_length; k++) {
           mi_ai[j].att_info.Code.code[k] = read1byte(file);
         }
         mi_ai[j].att_info.Code.exception_table_length = read2bytes(file);
-        mi_ai[j].att_info.Code.exception_table_array = (exception_table*) malloc(mi_ai[j].att_info.Code.exception_table_length * sizeof(exception_table));
+        mi_ai[j].att_info.Code.exception_table_array = (exception_table*) calloc(mi_ai[j].att_info.Code.exception_table_length, sizeof(exception_table));
         for(int k = 0; k < mi_ai[j].att_info.Code.exception_table_length; k++) {
           mi_ai[j].att_info.Code.exception_table_array[k].start_pc = read2bytes(file);
           mi_ai[j].att_info.Code.exception_table_array[k].end_pc = read2bytes(file);
@@ -190,49 +191,52 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
           mi_ai[j].att_info.Code.exception_table_array[k].catch_type = read2bytes(file);
         }
         mi_ai[j].att_info.Code.attributes_count = read2bytes(file);
-        mi_ai[j].att_info.Code.attributes = (attribute_info *)malloc(mi_ai[j].att_info.Code.attributes_count * sizeof(attribute_info));
+        mi_ai[j].att_info.Code.attributes = (attribute_info *)calloc(mi_ai[j].att_info.Code.attributes_count, sizeof(attribute_info));
 				for (int k = 0; k < mi_ai[j].att_info.Code.attributes_count; k++){
 					mi_ai[j].att_info.Code.attributes[k].attribute_name_index = read2bytes(file);
-					printf("%d", mi_ai[j].att_info.Code.attributes[k].attribute_name_index);
 					mi_ai[j].att_info.Code.attributes[k].attribute_length = read4bytes(file);
 					uint16_t cp_indexao = mi_ai[j].att_info.Code.attributes[k].attribute_name_index - 1;
-					printf("cp_index = %u .", cp_indexao);
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
 						mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
-						printf("%d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length);
-						mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
+						mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array = (line_number_table*)calloc(mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length, sizeof(line_number_table));
 						for(int w = 0; w < mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
-							printf("start_pc %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
-							printf("line_number %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
+						}
+					} else {
+						for (int w = 0; w < mi_ai[j].att_info.Code.attributes[k].attribute_length; w++){
+							read1byte(file);
 						}
 					}
 				}
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         mi_ai[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
-        mi_ai[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(mi_ai[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+        mi_ai[j].att_info.Exceptions.exception_index_table = (uint16_t *)calloc(mi_ai[j].att_info.Exceptions.number_of_exceptions, sizeof(uint16_t));
         for (int k = 0; k < mi_ai[j].att_info.Exceptions.number_of_exceptions; k++) {
           mi_ai[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
         }
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
 				printf("Deprecated\n");
-      }
+      } else {
+				for (int w = 0; w < mi_ai[j].attribute_length; w++){
+					read1byte(file);
+				}
+			}
     }
   }
 
 	/* attributes */
-  // cf->attributes_count = read2bytes(file);
-  // cf->attributes = (attribute_info *)malloc(cf->attributes_count * sizeof(attribute_info));
-  // for (int i = 0; i < cf->attributes_count; i++) {
-  //   attribute_info ai = cf->attributes[i];
-  //   ai.attribute_name_index = read2bytes(file);
-  //   ai.attribute_length = read4bytes(file);
-  //   uint16_t cp_index = ai.attribute_name_index - 1;
-  //   if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-  //     printf("Deprecated\n");
-  //   }
-  // }
+  cf->attributes_count = read2bytes(file);
+  cf->attributes = (attribute_info *)calloc(cf->attributes_count, sizeof(attribute_info));
+  attribute_info *ai = cf->attributes;
+  for (int i = 0; i < cf->attributes_count; i++) {
+    ai[i].attribute_name_index = read2bytes(file);
+    ai[i].attribute_length = read4bytes(file);
+    uint16_t cp_index = ai[i].attribute_name_index - 1;
+    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+      printf("Deprecated\n");
+    }
+  }
   
 	fclose(file);
 	return cf;
