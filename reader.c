@@ -190,15 +190,21 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
         }
         cf->methods[i].attributes[j].att_info.Code.attributes_count = read2bytes(file);
         cf->methods[i].attributes[j].att_info.Code.attributes = (attribute_info *)malloc(cf->methods[i].attributes[j].att_info.Code.attributes_count * sizeof(attribute_info));
-        // sem tempo irmao
+				for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
+					cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index = read2bytes(file);
+					cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_length = read4bytes(file);
+					uint16_t cp_index = cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index - 1;
+					if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
+						cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
+						cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
+						for(int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
+							cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
+							cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
+						}
+					}
+				}
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
-        cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
-        cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
-        for(int k = 0; k < cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_length; k++) {
-          cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].start_pc = read2bytes(file);
-          cf->methods[i].attributes[j].att_info.LineNumberTable.line_number_table_array[k].line_number = read2bytes(file);
-        }
+				printf("Deprecated\n");
       }
     }
   }
@@ -207,8 +213,12 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
   cf->attributes_count = read2bytes(file);
   cf->attributes = (attribute_info *)malloc(cf->attributes_count * sizeof(attribute_info));
   for (int i = 0; i < cf->attributes_count; i++) {
-
-    /* alguem que ainda não codou tenta implementar pra pegar a logica */
+    cf->attributes[i].attribute_name_index = read2bytes(file);
+      printf("WWW attribute_name_index: %d\n", cf->attributes[i].attribute_name_index);
+      cf->attributes[i].attribute_length = read4bytes(file);
+      uint16_t cp_index = cf->attributes[i].attribute_name_index - 1;
+      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+      }
   }
   
 	fclose(file);
