@@ -49,7 +49,7 @@ typedef struct cp_info {
   uint8_t tag;                        /*!< \brief Valor de um byte que indica o tipo de entrada*/
   union{
     struct{ 
-      uint16_t name_index;            /*!< \brief Detailed description after the member */
+      uint16_t name_index;            /*!< \brief Um item valido da tabela constant_pool */
     } Class;                          /*!< Class
                                       Detailed description after the member
                                       \brief ALO */                       

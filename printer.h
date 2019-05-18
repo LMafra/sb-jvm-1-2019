@@ -25,14 +25,17 @@
 #include "reader.h"
 
 /* Definitions */
-#define ACC_PUBLIC      0x0001
-#define ACC_FINAL       0x0010
-#define ACC_SUPER       0x0020
-#define ACC_INTERFACE   0x0200
-#define ACC_ABSTRACT    0x0400
-#define ACC_SYNTHETIC   0x1000
-#define ACC_ANNOTATION  0x2000
-#define ACC_ENUM        0x4000
+#define ACC_PUBLIC      0x0001  /*!< \brief Declaracao: publico; pode ser acessada de fora do pacote. */
+#define ACC_PRIVADO     0x0002  /*!< \brief Declaracao: privado; usavel apenas dentro da classe. */
+#define ACC_PROTECTED   0x0004  /*!< \brief Declaracao: protected; usavel pela classe e subclasses. */
+#define ACC_STATIC      0x0008  /*!< \brief Declaracao: statico. */
+#define ACC_FINAL       0x0010  /*!< \brief Declaracao: final; after the member */
+#define ACC_SUPER       0x0020  /*!< \brief Declaracao: description after the member */
+#define ACC_INTERFACE   0x0200  /*!< \brief Declaracao: description after the member */
+#define ACC_ABSTRACT    0x0400  /*!< \brief Declaracao: description after the member */
+#define ACC_SYNTHETIC   0x1000  /*!< \brief Declaracao: description after the member */  
+#define ACC_ANNOTATION  0x2000  /*!< \brief Declaracao: description after the member */
+#define ACC_ENUM        0x4000  /*!< \brief Declaracao: description after the member */
 
 /* Functions */
 void classPrinter( classFile* cf); /*!< \brief Detailed description after the member */
