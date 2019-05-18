@@ -156,7 +156,7 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
 	cf->methods_count = read2bytes(file);
   cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
   method_info *mi = cf->methods;
-  for(int i = 0; i < 1; i++){
+  for(int i = 0; i < 2; i++){
     mi[i].access_flags = read2bytes(file);
     mi[i].name_index = read2bytes(file);
     mi[i].descriptor_index = read2bytes(file);
@@ -164,7 +164,7 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
     printf("WWW attribute_count: %d\n", mi[i].attributes_count);
     mi[i].attributes = (attribute_info* )malloc(mi[i].attributes_count * sizeof(attribute_info));
     attribute_info *mi_ai = mi[i].attributes;
-    for(int j = 0; j < 1; j++) {
+    for(int j = 0; j < mi[i].attributes_count; j++) {
       mi_ai[j].attribute_name_index = read2bytes(file);
       printf("WWW attribute_name_index: %d\n", mi_ai[j].attribute_name_index);
       mi_ai[j].attribute_length = read4bytes(file);
@@ -203,6 +203,10 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
 							printf("start_pc %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
 							printf("line_number %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
+						}
+					} else {
+						for (int w = 0; w < mi_ai[j].att_info.Code.attributes[k].attribute_length; w++){
+							read1byte(file);
 						}
 					}
 				}
