@@ -155,57 +155,63 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
 	/* methods */
 	cf->methods_count = read2bytes(file);
   cf->methods = (method_info* )malloc(cf->methods_count * sizeof(method_info));
-  for(int i = 0; i < cf->methods_count; i++){
-    method_info mi = cf->methods[i];
-    mi.access_flags = read2bytes(file);
-    mi.name_index = read2bytes(file);
-    mi.descriptor_index = read2bytes(file);
-    mi.attributes_count = read2bytes(file);
-    printf("WWW attribute_count: %d\n", mi.attributes_count);
-    mi.attributes = (attribute_info* )malloc(mi.attributes_count * sizeof(attribute_info));
-    for(int j = 0; j < mi.attributes_count; j++) {
-      attribute_info mi_ai = mi.attributes[j];
-      mi_ai.attribute_name_index = read2bytes(file);
-      printf("WWW attribute_name_index: %d\n", mi_ai.attribute_name_index);
-      mi_ai.attribute_length = read4bytes(file);
-      uint16_t cp_index = mi_ai.attribute_name_index - 1;
-      if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
-        mi_ai.att_info.Exceptions.number_of_exceptions = read2bytes(file);
-        mi_ai.att_info.Exceptions.exception_index_table = (uint16_t *)malloc(mi_ai.att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
-        for (int k = 0; k < mi_ai.att_info.Exceptions.number_of_exceptions; k++) {
-          mi_ai.att_info.Exceptions.exception_index_table[k] = read2bytes(file);
+  method_info *mi = cf->methods;
+  for(int i = 0; i < 1; i++){
+    mi[i].access_flags = read2bytes(file);
+    mi[i].name_index = read2bytes(file);
+    mi[i].descriptor_index = read2bytes(file);
+    mi[i].attributes_count = read2bytes(file);
+    printf("WWW attribute_count: %d\n", mi[i].attributes_count);
+    mi[i].attributes = (attribute_info* )malloc(mi[i].attributes_count * sizeof(attribute_info));
+    attribute_info *mi_ai = mi[i].attributes;
+    for(int j = 0; j < 1; j++) {
+      mi_ai[j].attribute_name_index = read2bytes(file);
+      printf("WWW attribute_name_index: %d\n", mi_ai[j].attribute_name_index);
+      mi_ai[j].attribute_length = read4bytes(file);
+      uint16_t cp_index = mi_ai[j].attribute_name_index - 1;
+			printf("Resultado strcmp %d\n", strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code"));
+			if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
+        mi_ai[j].att_info.Code.max_stack = read2bytes(file);
+        mi_ai[j].att_info.Code.max_locals = read2bytes(file);
+        mi_ai[j].att_info.Code.code_length = read4bytes(file);
+        mi_ai[j].att_info.Code.code = (uint8_t*) malloc(mi_ai[j].att_info.Code.code_length * sizeof(uint8_t));
+        for (int k = 0; k < mi_ai[j].att_info.Code.code_length; k++) {
+          mi_ai[j].att_info.Code.code[k] = read1byte(file);
         }
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
-        mi_ai.att_info.Code.max_stack = read2bytes(file);
-        mi_ai.att_info.Code.max_locals = read2bytes(file);
-        mi_ai.att_info.Code.code_length = read2bytes(file);
-        mi_ai.att_info.Code.code = (uint8_t*) malloc(mi_ai.att_info.Code.code_length * sizeof(uint8_t));
-        for (int k = 0; k < mi_ai.att_info.Code.code_length; k++) {
-          mi_ai.att_info.Code.code[k] = read1byte(file);
+        mi_ai[j].att_info.Code.exception_table_length = read2bytes(file);
+        mi_ai[j].att_info.Code.exception_table_array = (exception_table*) malloc(mi_ai[j].att_info.Code.exception_table_length * sizeof(exception_table));
+        for(int k = 0; k < mi_ai[j].att_info.Code.exception_table_length; k++) {
+          mi_ai[j].att_info.Code.exception_table_array[k].start_pc = read2bytes(file);
+          mi_ai[j].att_info.Code.exception_table_array[k].end_pc = read2bytes(file);
+          mi_ai[j].att_info.Code.exception_table_array[k].handler_pc = read2bytes(file);
+          mi_ai[j].att_info.Code.exception_table_array[k].catch_type = read2bytes(file);
         }
-        mi_ai.att_info.Code.exception_table_length = read2bytes(file);
-        mi_ai.att_info.Code.exception_table_array = (exception_table*) malloc(mi_ai.att_info.Code.exception_table_length * sizeof(exception_table));
-        for(int k = 0; k < mi_ai.att_info.Code.exception_table_length; k++) {
-          mi_ai.att_info.Code.exception_table_array[k].start_pc = read2bytes(file);
-          mi_ai.att_info.Code.exception_table_array[k].end_pc = read2bytes(file);
-          mi_ai.att_info.Code.exception_table_array[k].handler_pc = read4bytes(file);
-          mi_ai.att_info.Code.exception_table_array[k].catch_type = read4bytes(file);
-        }
-        mi_ai.att_info.Code.attributes_count = read2bytes(file);
-        mi_ai.att_info.Code.attributes = (attribute_info *)malloc(mi_ai.att_info.Code.attributes_count * sizeof(attribute_info));
-				for (int k = 0; k < mi_ai.att_info.Code.attributes_count; k++){
-					mi_ai.att_info.Code.attributes[k].attribute_name_index = read2bytes(file);
-					mi_ai.att_info.Code.attributes[k].attribute_length = read4bytes(file);
-					uint16_t cp_index = mi_ai.att_info.Code.attributes[k].attribute_name_index - 1;
-					if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "LineNumberTable")) {
-						mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
-						mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
-						for(int w = 0; w < mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
-							mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
-							mi_ai.att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
+        mi_ai[j].att_info.Code.attributes_count = read2bytes(file);
+        mi_ai[j].att_info.Code.attributes = (attribute_info *)malloc(mi_ai[j].att_info.Code.attributes_count * sizeof(attribute_info));
+				for (int k = 0; k < mi_ai[j].att_info.Code.attributes_count; k++){
+					mi_ai[j].att_info.Code.attributes[k].attribute_name_index = read2bytes(file);
+					printf("%d", mi_ai[j].att_info.Code.attributes[k].attribute_name_index);
+					mi_ai[j].att_info.Code.attributes[k].attribute_length = read4bytes(file);
+					uint16_t cp_indexao = mi_ai[j].att_info.Code.attributes[k].attribute_name_index - 1;
+					printf("cp_index = %u .", cp_indexao);
+					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
+						mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length = read2bytes(file);
+						printf("%d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length);
+						mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array = (line_number_table*)malloc(mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length * sizeof(line_number_table));
+						for(int w = 0; w < mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
+							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
+							printf("start_pc %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
+							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
+							printf("line_number %d\n", mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
 						}
 					}
 				}
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
+        mi_ai[j].att_info.Exceptions.number_of_exceptions = read2bytes(file);
+        mi_ai[j].att_info.Exceptions.exception_index_table = (uint16_t *)malloc(mi_ai[j].att_info.Exceptions.number_of_exceptions * sizeof(uint16_t));
+        for (int k = 0; k < mi_ai[j].att_info.Exceptions.number_of_exceptions; k++) {
+          mi_ai[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
+        }
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
 				printf("Deprecated\n");
       }
@@ -213,17 +219,17 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
   }
 
 	/* attributes */
-  cf->attributes_count = read2bytes(file);
-  cf->attributes = (attribute_info *)malloc(cf->attributes_count * sizeof(attribute_info));
-  for (int i = 0; i < cf->attributes_count; i++) {
-    attribute_info ai = cf->attributes[i];
-    ai.attribute_name_index = read2bytes(file);
-    ai.attribute_length = read4bytes(file);
-    uint16_t cp_index = ai.attribute_name_index - 1;
-    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      printf("Deprecated\n");
-    }
-  }
+  // cf->attributes_count = read2bytes(file);
+  // cf->attributes = (attribute_info *)malloc(cf->attributes_count * sizeof(attribute_info));
+  // for (int i = 0; i < cf->attributes_count; i++) {
+  //   attribute_info ai = cf->attributes[i];
+  //   ai.attribute_name_index = read2bytes(file);
+  //   ai.attribute_length = read4bytes(file);
+  //   uint16_t cp_index = ai.attribute_name_index - 1;
+  //   if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
+  //     printf("Deprecated\n");
+  //   }
+  // }
   
 	fclose(file);
 	return cf;
