@@ -137,6 +137,12 @@ typedef struct LineNumberTable {
   uint16_t line_number;
 } line_number_table;
 
+typedef struct BootstrapMethods {
+  uint16_t bootstrap_method_ref;
+  uint16_t num_bootstrap_arguments;
+  uint16_t* bootstrap_arguments;
+} bootstrap_methods;
+
 /*! Detailed description after the member \brief ALO */
 typedef struct attribute_info {
   uint16_t attribute_name_index;          /*!< Detailed description after the member */
@@ -167,6 +173,12 @@ typedef struct attribute_info {
       uint16_t line_number_table_length;
       line_number_table *line_number_table_array;
     } LineNumberTable; 
+
+    struct {
+      uint16_t bootstrap_methods_length;
+      bootstrap_methods* bootstrap_methods_array;
+    } BootstrapMethods;
+
   } att_info;      /*!< Detailed description after the member */
   
 } attribute_info;

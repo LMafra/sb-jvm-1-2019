@@ -232,7 +232,19 @@ classFile* classReader(char * className) {  /*! Detailed description after the m
     uint16_t cp_index = ai[i].attribute_name_index - 1;
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
       printf("Deprecated\n");
-    }
+    } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
+			ai[i].att_info.BootstrapMethods.bootstrap_methods_length = read2bytes(file);
+			ai[i].att_info.BootstrapMethods.bootstrap_methods_array = (bootstrap_methods *)calloc(ai[i].att_info.BootstrapMethods.bootstrap_methods_length, sizeof(bootstrap_methods));
+			bootstrap_methods *ai_bm = ai[i].att_info.BootstrapMethods.bootstrap_methods_array;
+			for (int j = 0; j < ai[i].att_info.BootstrapMethods.bootstrap_methods_length; j++){
+				ai_bm[j].bootstrap_method_ref = read2bytes(file);
+				ai_bm[j].num_bootstrap_arguments = read2bytes(file);
+				ai_bm[j].bootstrap_arguments = (uint16_t*) calloc(ai_bm[j].num_bootstrap_arguments, sizeof(uint16_t));
+        for (int k = 0; k < ai_bm[j].num_bootstrap_arguments; k++) {
+          ai_bm[j].bootstrap_arguments[k] = read2bytes(file);
+        }
+			}
+		}
   }
   
 	fclose(file);
