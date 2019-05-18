@@ -301,6 +301,18 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     uint16_t cp_index = cf->attributes[i].attribute_name_index - 1;
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
       printf("\t\tDeprecated\n");
+    } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
+      printf("\t\tBootstrapMethods\n");
+      printf("\t\tbootstrap_methods_length: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length);
+			for (int j = 0; j < cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length; j++){
+        printf("\t\tbootstrap_method_ref: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_method_ref);
+        printf("\t\tnum_bootstrap_arguments: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].num_bootstrap_arguments);
+        printf("\t\tbootstrap_arguments:");
+        for (int k = 0; k < cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].num_bootstrap_arguments; k++) {
+          printf(" %d", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_arguments[k]);
+        }
+        printf("\n");
+			}
     }
   }
 }
