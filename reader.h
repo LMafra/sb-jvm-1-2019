@@ -125,7 +125,7 @@ typedef struct cp_info {
       uint16_t name_and_type_index;          /*!< Detailed description after the member */
     } InvokeDynamic;                         /*!< \struct InvokeDynamic
                                              Detailed description after the member
-                                             \brief ALO*/
+                                             \brief ALO*/            
   } info; /*!< \brief Tipo de dado retornado pela union*/
 } cp_info;
 
@@ -163,6 +163,11 @@ typedef struct attribute_info {
       uint16_t attributes_count;
       struct attribute_info* attributes;
     } Code;
+
+    struct {
+      uint16_t sourcefile_index;
+    } SourceFile; 
+
     struct {
 
     } Deprecated;
@@ -174,6 +179,75 @@ typedef struct attribute_info {
   } att_info;      /*!< Detailed description after the member */
   
 } attribute_info;
+
+struct {
+  union {
+    struct {
+
+    } same_frame;
+    struct {
+      
+    } same_locals_1_stack_item_frame;
+    struct {
+      
+    } same_locals_1_stack_item_frame_extended;
+    struct {
+      
+    } chop_frame;
+    struct {
+      
+    } same_frame_extended;
+    struct {
+      
+    } append_frame;
+    struct {
+      
+    } full_frame;
+  } stack_map_union;
+} stack_map_frame;
+
+
+//irmao, isso é aqui msm?
+struct {
+  union {
+    struct {
+      uint8_t tag; /* 0 */
+    } Top_variable_info;
+    struct {
+      uint8_t tag; /* 1 */
+    } Integer_variable_info;
+    struct {
+      uint8_t tag; /* 2 */
+    } Float_variable_info;
+
+    struct {
+      uint8_t tag; /* 3 */
+    } Double_variable_info;
+
+    struct {
+      uint8_t tag; /* 4 */
+    } Long_variable_info;
+
+    struct {
+      uint8_t tag; /* 5 */
+    } Null_variable_info;
+
+    struct {
+      uint8_t tag; /* 6 */
+    } UninitializedThis_variable_info;
+
+    struct {
+      uint8_t tag; /* 7 */
+      uint16_t cpool_index;
+    } Object_variable_info;
+
+    struct {
+      uint8_t tag; /* 8 */
+      uint16_t offset;
+    } Uninitialized_variable_info;
+    
+  } verify_type_info;
+} verification_type_info;
 
 /*! Detailed description after the member \brief ALO */
 typedef struct field_info {

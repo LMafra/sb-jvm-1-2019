@@ -236,6 +236,10 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
       printf("Deprecated\n");
     }
+    else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
+      ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
+      printf("%d\n", ai[i].att_info.SourceFile.sourcefile_index);
+    }
   }
   
 	fclose(file);
