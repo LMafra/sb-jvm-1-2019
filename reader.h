@@ -231,7 +231,7 @@ typedef struct attribute_info {
     struct {  
       uint16_t number_of_exceptions;      /*!< Detailed description after the member */
       uint16_t* exception_index_table;    /*!< Detailed description after the member */
-    } Exceptions;  /*!< Detailed description after the member */
+    } Exceptions;                         /*!< Detailed description after the member */
     struct {
       uint16_t max_stack;
       uint16_t max_locals;

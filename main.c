@@ -22,7 +22,7 @@
 #include "freemem.h"
 #include "instructions.h"
 
-int main() { /*! Long Detailed description after the member */
+int main() { /*! funcao princial que executa o codigo. Inici */
   classFile* cf;
 
   initializeInstructions();

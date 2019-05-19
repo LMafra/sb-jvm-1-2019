@@ -22,6 +22,8 @@
 
 const char *VERIFICATION_TYPE_TAG[9] = {"TOP", "INTEGER", "FLOAT", "DOUBLE", "LONG", "NULL", "UNINITIALIZEDTHIS", "OBJECT", "UNINITIALIZED"};
 
+int goHorse = 0;
+
 void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
   switch (cp[cpIndex-1].tag) { 
     case CONSTANT_Class:
@@ -44,7 +46,10 @@ void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
       break;	
     case CONSTANT_NameAndType:
       cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.name_index);
-      cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.descriptor_index);
+      if (!goHorse) {
+        cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.descriptor_index);
+        goHorse = 0;
+      }
       break;
     case CONSTANT_Utf8:
       printf("%s ", (char *)cp[cpIndex-1].info.Utf8.bytes);
@@ -294,17 +299,44 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
         printf("\t\tcode_length: %d\n", cf->methods[i].attributes[j].att_info.Code.code_length);
         if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n");
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
+          // printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]);
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
           printf("\t\t\t%s ", instructions[opcode_index].name);
-          for (int w = 0; w < instructions[opcode_index].arguments; w++) {
-            k++;
-            printf("%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
-            if (instructions[opcode_index].references){
+          if (instructions[opcode_index].arguments == 2) {
+            if (!strcmp((char*)instructions[opcode_index].name, "goto")){
               k++;
-              printf("cp_info #%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
+              int16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              k++;
+              int16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              int16_t arg_res = (arg1 << 8) | arg2;
+              printf("%d ", arg_res);
+            } else {
+              k++;
+              uint16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              k++;
+              uint16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              uint16_t arg_res = (arg1 << 8) | arg2;
+              printf("%d ", arg_res);
+              if (instructions[opcode_index].references) {
+                cpIndexReader(cf->constant_pool, arg_res);
+                goHorse = 1;
+              }
             }
+          } else if ((instructions[opcode_index].arguments == 1)) {
+            k++;
+            printf("%d", cf->methods[i].attributes[j].att_info.Code.code[k]);
           }
           printf("\n");
+
+          // for (int w = 0; w < instructions[opcode_index].arguments; w++) {
+          //   k++;
+          //   uint8_t opcode_arg = cf->methods[i].attributes[j].att_info.Code.code[k];
+          //   printf("%d ", opcode_arg);
+          //   if (instructions[opcode_index].references){
+          //     cpIndexReader(cf->constant_pool, opcode_arg);
+          //   } 
+          // }
+          // printf("\n");
         }
         printf("\n");
         printf("\t\texception_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_length);
