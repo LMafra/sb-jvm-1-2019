@@ -264,6 +264,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   /* Methods Information */
   printf("\nMETHODS\n");
   printf("Methods Count: %d\n",cf->methods_count);
+  printf("Methods:\n");
   for (int i = 0; i < cf->methods_count; i++) {
     printf("[%d] Method: ", i);
     cpIndexReader(cf->constant_pool, cf->methods[i].name_index);
@@ -276,6 +277,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     cpIndexReader(cf->constant_pool, cf->methods[i].descriptor_index);
     printf("\n");
     printf("\tattributes_count: %d\n", cf->methods[i].attributes_count);
+    printf("\tMethod Attributes:\n");
     for (int j = 0; j < cf->methods->attributes_count; j++) {
       printf("\t[%d] Attribute: ",j+1);
       cpIndexReader(cf->constant_pool, cf->methods[i].attributes[j].attribute_name_index);
@@ -307,6 +309,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
           printf("\t\t%d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
         }
         printf("\t\tattributes_count: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes_count);
+        printf("\t\tCode Attributes:\n");
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
           printf("\t\t[%d] Attribute: ", k+1);
           cpIndexReader(cf->constant_pool, cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index);
@@ -431,12 +434,14 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
       printf("\t\tDeprecated\n");
     } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
       printf("\t\tbootstrap_methods_length: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length);
+      printf("\t\tBootstrap Methods:\n");
 			for (int j = 0; j < cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length; j++){
-        printf("\t\tbootstrap_method_ref: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_method_ref);
-        printf("\t\tnum_bootstrap_arguments: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].num_bootstrap_arguments);
-        printf("\t\tbootstrap_arguments:");
+        printf("\t\t[%d] Bootstrap Method:\n", j+1);
+        printf("\t\t\tbootstrap_method_ref: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_method_ref);
+        printf("\t\t\tnum_bootstrap_arguments: %d\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].num_bootstrap_arguments);
+        printf("\t\t\tBootstrap Arguments:\n\t\t\t\t");
         for (int k = 0; k < cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].num_bootstrap_arguments; k++) {
-          printf(" %d", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_arguments[k]);
+          printf("%d ", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_arguments[k]);
         }
         printf("\n");
 			}
