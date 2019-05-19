@@ -13,8 +13,8 @@
 * @brief \n
 * @section DESCRIPTION
 */
-#ifndef PRINTER_H
-#define PRINTER_H
+#ifndef FREEMEM_H
+#define FREEMEM_H
 
 #include <stdlib.h>
 #include <stdio.h>

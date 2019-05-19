@@ -147,6 +147,80 @@ typedef struct BootstrapMethods {
   uint16_t* bootstrap_arguments;
 } bootstrap_methods;
 
+typedef struct VerificationTypeInfo{
+  uint8_t tag;
+  union {
+    struct {
+      /* 0 */
+    } Top_variable_info;
+    struct {
+      /* 1 */
+    } Integer_variable_info;
+    struct {
+      /* 2 */
+    } Float_variable_info;
+    struct {
+      /* 3 */
+    } Double_variable_info;
+    struct {
+      /* 4 */
+    } Long_variable_info;
+    struct {
+      /* 5 */
+    } Null_variable_info;
+    struct {
+      /* 6 */
+    } UninitializedThis_variable_info;
+    struct {
+      /* 7 */
+      uint16_t cpool_index;
+    } Object_variable_info;
+    struct {
+      /* 8 */
+      uint16_t offset;
+    } Uninitialized_variable_info;
+  }verification_type;
+} verification_type_info;
+
+typedef struct StackMapFrame{
+    uint8_t frame_type; 
+    union {   
+      struct {
+        /* 0-63 */
+      } same_frame;
+      struct {
+        /* 64-127 */
+        verification_type_info *stack; /* 1 */
+      } same_locals_1_stack_item_frame;
+      struct {
+        /* 247 */
+        uint16_t offset_delta;
+        verification_type_info *stack; /* 1 */
+      } same_locals_1_stack_item_frame_extended;
+      struct {
+           /* 248-250 */
+        uint16_t offset_delta;
+      } chop_frame;
+      struct {
+        /* 251 */
+        uint16_t offset_delta;
+      } same_frame_extended;
+      struct {
+        /* 252-254 */
+        uint16_t offset_delta;
+        verification_type_info *locals; /* frame_type - 251 */
+      } append_frame;
+      struct {
+        /* 255 */
+        uint16_t offset_delta;
+        uint16_t number_of_locals;
+        verification_type_info *locals;
+        uint16_t number_of_stack_items;
+        verification_type_info *stack;
+      } full_frame;
+    } map_frame_type;
+} stack_map_frame;
+
 /*! Detailed description after the member \brief ALO */
 typedef struct attribute_info {
   uint16_t attribute_name_index;          /*!< Detailed description after the member */
@@ -169,97 +243,24 @@ typedef struct attribute_info {
       uint16_t attributes_count;
       struct attribute_info* attributes;
     } Code;
-
     struct {
       uint16_t sourcefile_index;
     } SourceFile; 
-
-    struct {
-
-    } Deprecated;
-
     struct {
       uint16_t line_number_table_length;
       line_number_table *line_number_table_array;
     } LineNumberTable; 
-
     struct {
       uint16_t bootstrap_methods_length;
       bootstrap_methods* bootstrap_methods_array;
     } BootstrapMethods;
-
+    struct {
+      uint16_t number_of_entries;
+      stack_map_frame *entries;
+    } StackMapTable;
   } att_info;      /*!< Detailed description after the member */
   
 } attribute_info;
-
-struct {
-  union {
-    struct {
-
-    } same_frame;
-    struct {
-      
-    } same_locals_1_stack_item_frame;
-    struct {
-      
-    } same_locals_1_stack_item_frame_extended;
-    struct {
-      
-    } chop_frame;
-    struct {
-      
-    } same_frame_extended;
-    struct {
-      
-    } append_frame;
-    struct {
-      
-    } full_frame;
-  } stack_map_union;
-} stack_map_frame;
-
-
-//irmao, isso é aqui msm?
-struct {
-  union {
-    struct {
-      uint8_t tag; /* 0 */
-    } Top_variable_info;
-    struct {
-      uint8_t tag; /* 1 */
-    } Integer_variable_info;
-    struct {
-      uint8_t tag; /* 2 */
-    } Float_variable_info;
-
-    struct {
-      uint8_t tag; /* 3 */
-    } Double_variable_info;
-
-    struct {
-      uint8_t tag; /* 4 */
-    } Long_variable_info;
-
-    struct {
-      uint8_t tag; /* 5 */
-    } Null_variable_info;
-
-    struct {
-      uint8_t tag; /* 6 */
-    } UninitializedThis_variable_info;
-
-    struct {
-      uint8_t tag; /* 7 */
-      uint16_t cpool_index;
-    } Object_variable_info;
-
-    struct {
-      uint8_t tag; /* 8 */
-      uint16_t offset;
-    } Uninitialized_variable_info;
-    
-  } verify_type_info;
-} verification_type_info;
 
 /*! Detailed description after the member \brief ALO */
 typedef struct field_info {
@@ -278,7 +279,6 @@ typedef struct method_info{
   uint16_t attributes_count;          /*!< Detailed description after the member */
   attribute_info* attributes;         /*!< Detailed description after the member */
 } method_info;                        
-
 
 /*! \brief A estrutura de um classFile 
  *         em bytes (8-bits).

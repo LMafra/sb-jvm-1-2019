@@ -201,7 +201,77 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
 						}
-					} else {
+					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
+            mi_ai[j].att_info.StackMapTable.number_of_entries = read2bytes(file);
+            mi_ai[j].att_info.StackMapTable.entries = (stack_map_frame *)calloc(mi_ai[j].att_info.StackMapTable.number_of_entries, sizeof(stack_map_frame));
+            stack_map_frame *smt = mi_ai[j].att_info.StackMapTable.entries;
+            for (int k = 0; k < mi_ai[j].att_info.StackMapTable.number_of_entries; k++) {
+              smt[k].frame_type = read1byte(file);
+              if (smt[k].frame_type < 64) {
+
+              } else if (smt[k].frame_type >= 64 && smt[k].frame_type <= 127) {
+                smt[k].map_frame_type.same_locals_1_stack_item_frame.stack = (verification_type_info *)calloc(1,sizeof(verification_type_info));
+                verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame.stack;
+                vti[0].tag = read1byte(file);
+                if (vti[0].tag == 7) {
+                  vti[0].verification_type.Object_variable_info.cpool_index = read2bytes(file);
+                } else if (vti[0].tag == 8) {
+                  vti[0].verification_type.Uninitialized_variable_info.offset = read2bytes(file);
+                }
+              } else if (smt[k].frame_type == 247) {
+                smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta = read2bytes(file);
+                smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.stack = (verification_type_info *)calloc(1,sizeof(verification_type_info));
+                verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
+                vti[0].tag = read1byte(file);
+                if (vti[0].tag == 7) {
+                  vti[0].verification_type.Object_variable_info.cpool_index = read2bytes(file);
+                } else if (vti[0].tag == 8) {
+                  vti[0].verification_type.Uninitialized_variable_info.offset = read2bytes(file);
+                }
+              } else if (smt[k].frame_type >= 248 && smt[k].frame_type <= 250 ) {
+								smt[k].map_frame_type.chop_frame.offset_delta = read2bytes(file);
+              } else if (smt[k].frame_type == 251 ) {
+								smt[k].map_frame_type.same_frame_extended.offset_delta = read2bytes(file);
+              } else if (smt[k].frame_type >= 252 && smt[k].frame_type <= 254) {
+								smt[k].map_frame_type.append_frame.offset_delta = read2bytes(file);
+								smt[k].map_frame_type.append_frame.locals = (verification_type_info *)calloc(smt[k].frame_type - 251,sizeof(verification_type_info));
+                verification_type_info *vti = smt[k].map_frame_type.append_frame.locals;
+								for (int w = 0; w < smt[k].frame_type - 251; w++){
+									vti[w].tag = read1byte(file);
+                  if (vti[w].tag == 7) {
+                    vti[w].verification_type.Object_variable_info.cpool_index = read2bytes(file);
+                  } else if (vti[w].tag == 8) {
+                    vti[w].verification_type.Uninitialized_variable_info.offset = read2bytes(file);
+                  }
+								}
+
+              } else if (smt[k].frame_type == 255) {
+                smt[k].map_frame_type.full_frame.offset_delta = read2bytes(file);
+                smt[k].map_frame_type.full_frame.number_of_locals = read2bytes(file);
+                smt[k].map_frame_type.full_frame.locals = (verification_type_info *)calloc(smt[k].map_frame_type.full_frame.number_of_locals, sizeof(verification_type_info));
+                verification_type_info *vti_loc = smt[k].map_frame_type.full_frame.locals;
+                for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_locals; w++) {
+                  vti_loc[w].tag = read1byte(file);
+                  if (vti_loc[w].tag == 7) {
+                    vti_loc[w].verification_type.Object_variable_info.cpool_index = read2bytes(file);
+                  } else if (vti_loc[w].tag == 8) {
+                    vti_loc[w].verification_type.Uninitialized_variable_info.offset = read2bytes(file);
+                  }
+                }
+                smt[k].map_frame_type.full_frame.number_of_stack_items = read2bytes(file);
+                smt[k].map_frame_type.full_frame.stack = (verification_type_info *)calloc(smt[k].map_frame_type.full_frame.number_of_stack_items, sizeof(verification_type_info));
+                verification_type_info *vti_stk = smt[k].map_frame_type.full_frame.stack;
+                for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_stack_items; w++) {
+                  vti_stk[w].tag = read1byte(file);
+                  if (vti_stk[w].tag == 7) {
+                    vti_stk[w].verification_type.Object_variable_info.cpool_index = read2bytes(file);
+                  } else if (vti_stk[w].tag == 8) {
+                    vti_stk[w].verification_type.Uninitialized_variable_info.offset = read2bytes(file);
+                  }
+                }
+              }
+            }
+          } else {
 						for (int w = 0; w < mi_ai[j].att_info.Code.attributes[k].attribute_length; w++){
 							read1byte(file);
 						}
@@ -243,7 +313,6 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 			}
 		} else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
       ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
-      printf("%d\n", ai[i].att_info.SourceFile.sourcefile_index);
     }
   }
   
