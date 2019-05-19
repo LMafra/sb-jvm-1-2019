@@ -50,7 +50,7 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 
 	for(int i = 0; i < cf->constant_pool_count-1; i++) { 
 		cp[i].tag = read1byte(file);
-		switch (cp[i].tag) { /* adicionar checagem se constantes sao validas */
+		switch (cp[i].tag) {
 			case CONSTANT_Class:
 				cp[i].info.Class.name_index = read2bytes(file);
 				break;
@@ -94,14 +94,12 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 				cp[i].info.Utf8.length = read2bytes(file);
 				/* +1 para adicionar o \0 na string do C */
 				cp[i].info.Utf8.bytes = (uint8_t* )calloc((cp[i].info.Utf8.length+1), sizeof(uint8_t));
-				/* fiz diferente pode dar merda */
 				uint8_t* bt = cp[i].info.Utf8.bytes;
 				for(int j = 0; j < cp[i].info.Utf8.length; j++, bt++) {
 					*bt = getc(file);
 				}
 				bt = '\0';
 				break;
-			/* essa parte nao tem no do mesquita, mas tem na documentação */
 			case CONSTANT_MethodHandle:
 				cp[i].info.MethodHandle.reference_kind = read1byte(file);
 				cp[i].info.MethodHandle.reference_index = read2bytes(file);

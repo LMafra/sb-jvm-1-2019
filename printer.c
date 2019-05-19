@@ -269,10 +269,10 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
     cpIndexReader(cf->constant_pool, cf->methods[i].name_index);
     printf("\n");
     printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
-    printf("\tname_index: cp_info %d ", cf->methods[i].name_index);
+    printf("\tname_index: cp_info #%d ", cf->methods[i].name_index);
     cpIndexReader(cf->constant_pool, cf->methods[i].name_index);
     printf("\n");
-    printf("\tdescriptor_index: cp_info %d ", cf->methods[i].descriptor_index);
+    printf("\tdescriptor_index: cp_info #%d ", cf->methods[i].descriptor_index);
     cpIndexReader(cf->constant_pool, cf->methods[i].descriptor_index);
     printf("\n");
     printf("\tattributes_count: %d\n", cf->methods[i].attributes_count);
@@ -289,18 +289,22 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
         printf("\t\tmax_stack: %d\n", cf->methods[i].attributes[j].att_info.Code.max_stack);
         printf("\t\tmax_locals: %d\n", cf->methods[i].attributes[j].att_info.Code.max_locals);
         printf("\t\tcode_length: %d\n", cf->methods[i].attributes[j].att_info.Code.code_length);
-        printf("\t\tCode:");
+        if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n\t\t\t");
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
-          printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]);
+          printf("%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
         }
         printf("\n");
         printf("\t\texception_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_length);
-        printf("\t\texception_table:\n");
+        if (cf->methods[i].attributes[j].att_info.Code.exception_table_length > 0) {
+          printf("\t\tException Table:\n");
+          printf("\t\t\t i\tstart_pc\tend_pc\thandler_pc\tcatch_type\n");
+        }
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.exception_table_length; k++) {
-          printf("\t\t\tstart_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].start_pc);
-          printf("\t\t\tend_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].end_pc);
-          printf("\t\t\thandler_pc: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc);
-          printf("\t\t\tcatch_type: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
+          printf("\t\t\t[%d]",k);
+          printf("\t%d", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].start_pc);
+          printf("\t\t%d", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].end_pc);
+          printf("\t\t%d", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].handler_pc);
+          printf("\t\t%d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_array[k].catch_type);
         }
         printf("\t\tattributes_count: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes_count);
         for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
@@ -313,23 +317,24 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
           printf("\t\t\tattribute_length: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_length);
 					uint16_t cp_indexao = cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index - 1;
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
-            printf("\t\t\tLineNumberTable:\n");
             printf("\t\t\tline_number_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length);
+            printf("\t\t\tLine Number Table:\n");
+            printf("\t\t\t\t i\tstart_pc\tline_number\n");
 						for(int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
-              printf("\t\t\t\t[%d] line:", w);
-							printf("\tstart_pc: %d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
-							printf("\tline_number: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
+              printf("\t\t\t\t[%d] ", w);
+							printf("\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
+							printf("\t\t%d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
 						}
 					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
-            printf("\t\t\tStackMapTable:\n");
             printf("\t\t\tnumber_of_entries: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries);
             stack_map_frame *smt = cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries;
+            printf("\t\t\tFrames:\n");
             for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
-              printf("\t\t\tframe_type: %d\n", smt[w].frame_type);
+              printf("\t\t\t\tframe_type: %d\n", smt[w].frame_type);
               if (smt[w].frame_type < 64) {
               } else if (smt[w].frame_type >= 64 && smt[w].frame_type <= 127) {
                 verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame.stack;
-                printf("\t\t\t\ttag: %d\n", vti[0].tag);
+                printf("\t\t\t\t\ttag: %d\n", vti[0].tag);
                 if (vti[0].tag == 7) {
                   printf(" cp_info #%d ", vti[0].verification_type.Object_variable_info.cpool_index);
                   cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
@@ -338,28 +343,28 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                 }
                 printf("\n");
               } else if (smt[w].frame_type == 247) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
+                printf("\t\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
                 verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
-                printf("\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[0].tag]);
+                printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
-                  printf(" cpool_index: %d ", vti[0].verification_type.Object_variable_info.cpool_index);
+                  printf(" cpool_index: cp_info #%d ", vti[0].verification_type.Object_variable_info.cpool_index);
                   cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
                   printf(" offset: %d", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
                 printf("\n");
               } else if (smt[w].frame_type >= 248 && smt[w].frame_type <= 250 ) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.chop_frame.offset_delta);
+                printf("\t\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.chop_frame.offset_delta);
               } else if (smt[w].frame_type == 251 ) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_frame_extended.offset_delta);
+                printf("\t\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_frame_extended.offset_delta);
               } else if (smt[w].frame_type >= 252 && smt[w].frame_type <= 254) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.append_frame.offset_delta);
+                printf("\t\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.append_frame.offset_delta);
                 verification_type_info *vti = smt[w].map_frame_type.append_frame.locals;
-                printf("\t\t\t\tlocals:\n");
+                printf("\t\t\t\t\tlocals:\n");
 								for (int y = 0; y < smt[w].frame_type - 251; y++){
-                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[y].tag]);
+                  printf("\t\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[y].tag]);
                   if (vti[y].tag == 7) {
-                    printf(" cpool_index: %d ", vti[y].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: cp_info #%d ", vti[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti[y].verification_type.Object_variable_info.cpool_index);
                   } else if (vti[y].tag == 8) {
                     printf(" offset: %d", vti[y].verification_type.Uninitialized_variable_info.offset);
@@ -367,25 +372,25 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                   printf("\n");
 								}
               } else if (smt[w].frame_type == 255) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.full_frame.offset_delta);
-                printf("\t\t\t\tnumber_of_locals: %d\n", smt[w].map_frame_type.full_frame.number_of_locals);
+                printf("\t\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.full_frame.offset_delta);
+                printf("\t\t\t\t\tnumber_of_locals: %d\n", smt[w].map_frame_type.full_frame.number_of_locals);
                 verification_type_info *vti_loc = smt[w].map_frame_type.full_frame.locals;
                 for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_locals; y++) {
-                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_loc[y].tag]);
+                  printf("\t\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_loc[y].tag]);
                   if (vti_loc[y].tag == 7) {
-                    printf(" cpool_index: %d ", vti_loc[y].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: cp_info #%d ", vti_loc[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti_loc[y].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_loc[y].tag == 8) {
                     printf(" offset: %d", vti_loc[y].verification_type.Uninitialized_variable_info.offset);
                   }
                   printf("\n");
                 }
-                printf("\t\t\t\tnumber_of_stack_items: %d\n", smt[w].map_frame_type.full_frame.number_of_stack_items);
+                printf("\t\t\t\t\tnumber_of_stack_items: %d\n", smt[w].map_frame_type.full_frame.number_of_stack_items);
                 verification_type_info *vti_stk = smt[w].map_frame_type.full_frame.stack;
                 for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_stack_items; y++) {
-                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_stk[y].tag]);
+                  printf("\t\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_stk[y].tag]);
                   if (vti_stk[y].tag == 7) {
-                    printf(" cpool_index: %d ", vti_stk[y].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: cp_info #%d ", vti_stk[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti_stk[y].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_stk[y].tag == 8) {
                     printf(" offset: %d", vti_stk[y].verification_type.Uninitialized_variable_info.offset);
@@ -436,7 +441,9 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
         printf("\n");
 			}
     } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
-      
+      printf("\tsourcefile_index: cp_info #%d ", cf->attributes[i].att_info.SourceFile.sourcefile_index);
+      cpIndexReader(cf->constant_pool, cf->attributes[i].att_info.SourceFile.sourcefile_index);
     }
   }
+  printf("\n");
 }
