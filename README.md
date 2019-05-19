@@ -33,32 +33,45 @@ Por favor leia [TUTORIAL GTEST INSTALL](https://github.com/google/googletest/blo
 Por favor leia [GTEST INFO](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) para mais detalhes sobre o gtest
 
 Tenha certeza que o gtest esteja incluido durante os testes.
+
 ```
+
 @include "gtest/gtest"
+
 ```
 
 ### Compilando e Executando
 
 Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99`:
+
 ```
-~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c -Wall -std=c99
+
+~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c freemem.c -Wall -std=c99 -ggdb3
+
 ```
 
 Como  executar `./main`:
+
 ```
+
 ~dir/sb-jvm-1-2019 user$ ./main
+
 ```
 
 Entre no diretório ```../``` e execute o seguinte comando para compilar e executar:
 
 ```
+
 ~dir/sb-jvm-1-2019 user$ make run
+
 ```
 
 Para apenas compilar
 
 ```
+
 ~dir/sb-jvm-1-2019 user$ make
+
 ```
 
 ## Testes
@@ -85,10 +98,14 @@ O que se esperava do teste em todas as estapas era uma saída de valor correto e
 ## Testes de Coding Style
 
 Durante todo o projeto, após cada aprovaçao nos teste, foram executados os comandos
+
 ```
-cppcheck --enable=warning <file>
-cpplint <file>
+
+cppcheck --enable=warning main.c reader.c printer.c memcheck.c
+valgrind --track-origins=yes --leak-check=full --leak-resolution=high --track-origins=yes ./main
+
 ```
+
 E em seguida feitas as devidas alterações para enquadrar o código nos padrões delimitados se nescessário
 
 ## Built With
