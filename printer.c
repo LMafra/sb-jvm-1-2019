@@ -19,6 +19,8 @@
 #include "printer.h"
 #include "reader.h"
 
+const char *VERIFICATION_TYPE_TAG[9] = {"TOP", "INTEGER", "FLOAT", "DOUBLE", "LONG", "NULL", "UNINITIALIZEDTHIS", "OBJECT", "UNINITIALIZED"};
+
 void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
   switch (cp[cpIndex-1].tag) { 
     case CONSTANT_Class:
@@ -263,7 +265,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   printf("\nMETHODS\n");
   printf("Methods Count: %d\n",cf->methods_count);
   for (int i = 0; i < cf->methods_count; i++) {
-    printf("[%d] Method: ", i+1);
+    printf("[%d] Method: ", i);
     cpIndexReader(cf->constant_pool, cf->methods[i].name_index);
     printf("\n");
     printf("\taccess_flags: %d\n", cf->methods[i].access_flags);
@@ -327,7 +329,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
               if (smt[k].frame_type < 64) {
               } else if (smt[k].frame_type >= 64 && smt[k].frame_type <= 127) {
                 verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame.stack;
-                printf("\t\t\t\ttag: %d\n", vti[0].tag);
+                printf("\t\t\t\ttag: %s\n", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
                   printf("\t\t\t\tcpool_index: %d\n", vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
@@ -336,12 +338,13 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
               } else if (smt[k].frame_type == 247) {
                 printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
                 verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
-                printf("\t\t\t\ttag: %d\n", vti[0].tag);
+                printf("\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
-                  printf("\t\t\t\tcpool_index: %d\n", vti[0].verification_type.Object_variable_info.cpool_index);
+                  printf(" cpool_index: %d", vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
-                  printf("\t\t\t\toffset: %d\n", vti[0].verification_type.Uninitialized_variable_info.offset);
+                  printf(" offset: %d", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
+                printf("\n");
               } else if (smt[k].frame_type >= 248 && smt[k].frame_type <= 250 ) {
                 printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.chop_frame.offset_delta);
               } else if (smt[k].frame_type == 251 ) {
@@ -351,34 +354,37 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                 verification_type_info *vti = smt[k].map_frame_type.append_frame.locals;
                 printf("\t\t\t\tlocals:\n");
 								for (int w = 0; w < smt[k].frame_type - 251; w++){
-                  printf("\t\t\t\t\ttag: %d\n", vti[w].tag);
+                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[w].tag]);
                   if (vti[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d", vti[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti[w].verification_type.Uninitialized_variable_info.offset);
+                    printf(" offset: %d", vti[w].verification_type.Uninitialized_variable_info.offset);
                   }
+                  printf("\n");
 								}
               } else if (smt[k].frame_type == 255) {
                 printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.full_frame.offset_delta);
                 printf("\t\t\t\tnumber_of_locals: %d\n", smt[k].map_frame_type.full_frame.number_of_locals);
                 verification_type_info *vti_loc = smt[k].map_frame_type.full_frame.locals;
                 for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_locals; w++) {
-                  printf("\t\t\t\t\ttag: %d\n", vti_loc[w].tag);
+                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_loc[w].tag]);
                   if (vti_loc[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti_loc[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d", vti_loc[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_loc[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti_loc[w].verification_type.Uninitialized_variable_info.offset);
+                    printf(" offset: %d", vti_loc[w].verification_type.Uninitialized_variable_info.offset);
                   }
+                  printf("\n");
                 }
                 printf("\t\t\t\tnumber_of_stack_items: %d\n", smt[k].map_frame_type.full_frame.number_of_stack_items);
                 verification_type_info *vti_stk = smt[k].map_frame_type.full_frame.stack;
                 for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_stack_items; w++) {
-                  printf("\t\t\t\t\ttag: %d\n", vti_stk[w].tag);
+                  printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_stk[w].tag]);
                   if (vti_stk[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti_stk[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d", vti_stk[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_stk[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti_stk[w].verification_type.Uninitialized_variable_info.offset);
+                    printf(" offset: %d", vti_stk[w].verification_type.Uninitialized_variable_info.offset);
                   }
+                  printf("\n");
                 }
               }
             }
@@ -402,7 +408,7 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
   printf("\nATTRIBUTES\n");
   printf("Attributes Count: %d\n",cf->attributes_count);
   for (int i = 0; i < 1; i++) {
-    printf("[%d] Attribute: ", i+1);
+    printf("[%d] Attribute: ", i);
     cpIndexReader(cf->constant_pool, cf->attributes[i].attribute_name_index);
     printf("\n");
     printf("\tattribute_name_index: cp_info #%d ", cf->attributes[i].attribute_name_index);
