@@ -1,4 +1,4 @@
- /********************************************//**
+/********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti \n
@@ -19,12 +19,14 @@
 #include <stdio.h>
 #include "printer.h"
 #include "reader.h"
+#include "freemem.h"
 
 int main() { /*! Long Detailed description after the member */
   classFile* cf;
 
 	cf = classReader("tests/Array.class");
   classPrinter(cf);
+  freeMemory(cf);
 
   return 0;
 }
