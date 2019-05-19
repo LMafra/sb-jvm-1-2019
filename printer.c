@@ -61,13 +61,9 @@ void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
   }
 }
 
-<<<<<<< HEAD
-void classPrinter( classFile* cf) { /*! L  */
-=======
 void classPrinter( classFile* cf) { /*! Long Detailed description after the member */
   printf("CLASS FILE STRUCTURE\n\n");
 
->>>>>>> be6aa7488baa4b6fb4edf88b2d46d5b456e18c85
   /* General Information */
   printf("CAFEBABE: 0x%0x \n", cf->magic);
   printf("Minor version: %d \n", cf->minor_version);

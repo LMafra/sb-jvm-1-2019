@@ -229,15 +229,6 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
     ai[i].attribute_name_index = read2bytes(file);
     ai[i].attribute_length = read4bytes(file);
     uint16_t cp_index = ai[i].attribute_name_index - 1;
-<<<<<<< HEAD
-    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      printf("Deprecated\n");
-    }
-    else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
-      ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
-      printf("%d\n", ai[i].att_info.SourceFile.sourcefile_index);
-    }
-=======
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
 			ai[i].att_info.BootstrapMethods.bootstrap_methods_length = read2bytes(file);
 			ai[i].att_info.BootstrapMethods.bootstrap_methods_array = (bootstrap_methods *)calloc(ai[i].att_info.BootstrapMethods.bootstrap_methods_length, sizeof(bootstrap_methods));
@@ -250,8 +241,10 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
           ai_bm[j].bootstrap_arguments[k] = read2bytes(file);
         }
 			}
-		}
->>>>>>> be6aa7488baa4b6fb4edf88b2d46d5b456e18c85
+		} else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
+      ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
+      printf("%d\n", ai[i].att_info.SourceFile.sourcefile_index);
+    }
   }
   
 	fclose(file);
