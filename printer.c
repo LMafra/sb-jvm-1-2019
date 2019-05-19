@@ -331,16 +331,19 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                 verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame.stack;
                 printf("\t\t\t\ttag: %s\n", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
-                  printf("\t\t\t\tcpool_index: %d\n", vti[0].verification_type.Object_variable_info.cpool_index);
+                  printf(" cp_info #%d ", vti[0].verification_type.Object_variable_info.cpool_index);
+                  cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
-                  printf("\t\t\t\toffset: %d\n", vti[0].verification_type.Uninitialized_variable_info.offset);
+                  printf(" offset: %d", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
+                printf("\n");
               } else if (smt[k].frame_type == 247) {
                 printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
                 verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
                 printf("\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
-                  printf(" cpool_index: %d", vti[0].verification_type.Object_variable_info.cpool_index);
+                  printf(" cpool_index: %d ", vti[0].verification_type.Object_variable_info.cpool_index);
+                  cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
                   printf(" offset: %d", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
@@ -356,7 +359,8 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
 								for (int w = 0; w < smt[k].frame_type - 251; w++){
                   printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti[w].tag]);
                   if (vti[w].tag == 7) {
-                    printf(" cpool_index: %d", vti[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d ", vti[w].verification_type.Object_variable_info.cpool_index);
+                    cpIndexReader(cf->constant_pool, vti[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti[w].tag == 8) {
                     printf(" offset: %d", vti[w].verification_type.Uninitialized_variable_info.offset);
                   }
@@ -369,7 +373,8 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                 for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_locals; w++) {
                   printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_loc[w].tag]);
                   if (vti_loc[w].tag == 7) {
-                    printf(" cpool_index: %d", vti_loc[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d ", vti_loc[w].verification_type.Object_variable_info.cpool_index);
+                    cpIndexReader(cf->constant_pool, vti_loc[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_loc[w].tag == 8) {
                     printf(" offset: %d", vti_loc[w].verification_type.Uninitialized_variable_info.offset);
                   }
@@ -380,7 +385,8 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
                 for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_stack_items; w++) {
                   printf("\t\t\t\t\ttag: %s", VERIFICATION_TYPE_TAG[vti_stk[w].tag]);
                   if (vti_stk[w].tag == 7) {
-                    printf(" cpool_index: %d", vti_stk[w].verification_type.Object_variable_info.cpool_index);
+                    printf(" cpool_index: %d ", vti_stk[w].verification_type.Object_variable_info.cpool_index);
+                    cpIndexReader(cf->constant_pool, vti_stk[w].verification_type.Object_variable_info.cpool_index);
                   } else if (vti_stk[w].tag == 8) {
                     printf(" offset: %d", vti_stk[w].verification_type.Uninitialized_variable_info.offset);
                   }
