@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdint.h": "c"
+      "stdint.h": "c",
+      "limits": "cpp",
+      "type_traits": "c"
     }
 }

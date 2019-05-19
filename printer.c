@@ -18,6 +18,7 @@
 
 #include "printer.h"
 #include "reader.h"
+#include "instructions.h"
 
 const char *VERIFICATION_TYPE_TAG[9] = {"TOP", "INTEGER", "FLOAT", "DOUBLE", "LONG", "NULL", "UNINITIALIZEDTHIS", "OBJECT", "UNINITIALIZED"};
 
@@ -291,9 +292,19 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
         printf("\t\tmax_stack: %d\n", cf->methods[i].attributes[j].att_info.Code.max_stack);
         printf("\t\tmax_locals: %d\n", cf->methods[i].attributes[j].att_info.Code.max_locals);
         printf("\t\tcode_length: %d\n", cf->methods[i].attributes[j].att_info.Code.code_length);
-        if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n\t\t\t");
+        if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n");
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
-          printf("%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
+          uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
+          printf("\t\t\t%s ", instructions[opcode_index].name);
+          for (int w = 0; w < instructions[opcode_index].arguments; w++) {
+            k++;
+            printf("%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
+            if (instructions[opcode_index].references){
+              k++;
+              printf("cp_info #%d ", cf->methods[i].attributes[j].att_info.Code.code[k]);
+            }
+          }
+          printf("\n");
         }
         printf("\n");
         printf("\t\texception_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_length);

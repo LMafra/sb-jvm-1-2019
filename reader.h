@@ -13,7 +13,6 @@
 * @brief Cabeçalho do leitor do .class. \n 
 * @section DESCRIPTION 
 */
- 
 #ifndef READER_H
 #define READER_H
 

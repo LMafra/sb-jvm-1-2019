@@ -20,9 +20,12 @@
 #include "printer.h"
 #include "reader.h"
 #include "freemem.h"
+#include "instructions.h"
 
 int main() { /*! Long Detailed description after the member */
   classFile* cf;
+
+  initializeInstructions();
 
 	cf = classReader("tests/Array.class");
   classPrinter(cf);
