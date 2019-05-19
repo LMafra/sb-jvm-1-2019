@@ -13,5 +13,13 @@
 * @brief \n
 * @section DESCRIPTION
 */
+#ifndef PRINTER_H
+#define PRINTER_H
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "reader.h"
 
 void freeMemory(classFile* cf);
+
+#endif
