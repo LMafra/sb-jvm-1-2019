@@ -320,64 +320,64 @@ void classPrinter( classFile* cf) { /*! Long Detailed description after the memb
 						}
 					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
             printf("\t\t\tStackMapTable:\n");
-            printf("\t\t\tnumber_of_entries: %d\n", cf->methods[i].attributes[j].att_info.StackMapTable.number_of_entries);
-            stack_map_frame *smt = cf->methods[i].attributes[j].att_info.StackMapTable.entries;
-            for (int k = 0; k < cf->methods[i].attributes[j].att_info.StackMapTable.number_of_entries; k++) {
-              printf("\t\t\tframe_type: %d\n", smt[k].frame_type);
-              if (smt[k].frame_type < 64) {
-              } else if (smt[k].frame_type >= 64 && smt[k].frame_type <= 127) {
-                verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame.stack;
+            printf("\t\t\tnumber_of_entries: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries);
+            stack_map_frame *smt = cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries;
+            for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
+              printf("\t\t\tframe_type: %d\n", smt[w].frame_type);
+              if (smt[w].frame_type < 64) {
+              } else if (smt[w].frame_type >= 64 && smt[w].frame_type <= 127) {
+                verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame.stack;
                 printf("\t\t\t\ttag: %d\n", vti[0].tag);
                 if (vti[0].tag == 7) {
                   printf("\t\t\t\tcpool_index: %d\n", vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
                   printf("\t\t\t\toffset: %d\n", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
-              } else if (smt[k].frame_type == 247) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
-                verification_type_info *vti = smt[k].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
+              } else if (smt[w].frame_type == 247) {
+                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
+                verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
                 printf("\t\t\t\ttag: %d\n", vti[0].tag);
                 if (vti[0].tag == 7) {
                   printf("\t\t\t\tcpool_index: %d\n", vti[0].verification_type.Object_variable_info.cpool_index);
                 } else if (vti[0].tag == 8) {
                   printf("\t\t\t\toffset: %d\n", vti[0].verification_type.Uninitialized_variable_info.offset);
                 }
-              } else if (smt[k].frame_type >= 248 && smt[k].frame_type <= 250 ) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.chop_frame.offset_delta);
-              } else if (smt[k].frame_type == 251 ) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.same_frame_extended.offset_delta);
-              } else if (smt[k].frame_type >= 252 && smt[k].frame_type <= 254) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.append_frame.offset_delta);
-                verification_type_info *vti = smt[k].map_frame_type.append_frame.locals;
+              } else if (smt[w].frame_type >= 248 && smt[w].frame_type <= 250 ) {
+                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.chop_frame.offset_delta);
+              } else if (smt[w].frame_type == 251 ) {
+                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.same_frame_extended.offset_delta);
+              } else if (smt[w].frame_type >= 252 && smt[w].frame_type <= 254) {
+                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.append_frame.offset_delta);
+                verification_type_info *vti = smt[w].map_frame_type.append_frame.locals;
                 printf("\t\t\t\tlocals:\n");
-								for (int w = 0; w < smt[k].frame_type - 251; w++){
-                  printf("\t\t\t\t\ttag: %d\n", vti[w].tag);
-                  if (vti[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti[w].verification_type.Object_variable_info.cpool_index);
-                  } else if (vti[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti[w].verification_type.Uninitialized_variable_info.offset);
+								for (int y = 0; y < smt[w].frame_type - 251; y++){
+                  printf("\t\t\t\t\ttag: %d\n", vti[y].tag);
+                  if (vti[y].tag == 7) {
+                    printf("\t\t\t\t\tcpool_index: %d\n", vti[y].verification_type.Object_variable_info.cpool_index);
+                  } else if (vti[y].tag == 8) {
+                    printf("\t\t\t\t\toffset: %d\n", vti[y].verification_type.Uninitialized_variable_info.offset);
                   }
 								}
-              } else if (smt[k].frame_type == 255) {
-                printf("\t\t\t\toffset_delta: %d\n", smt[k].map_frame_type.full_frame.offset_delta);
-                printf("\t\t\t\tnumber_of_locals: %d\n", smt[k].map_frame_type.full_frame.number_of_locals);
-                verification_type_info *vti_loc = smt[k].map_frame_type.full_frame.locals;
-                for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_locals; w++) {
-                  printf("\t\t\t\t\ttag: %d\n", vti_loc[w].tag);
-                  if (vti_loc[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti_loc[w].verification_type.Object_variable_info.cpool_index);
-                  } else if (vti_loc[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti_loc[w].verification_type.Uninitialized_variable_info.offset);
+              } else if (smt[w].frame_type == 255) {
+                printf("\t\t\t\toffset_delta: %d\n", smt[w].map_frame_type.full_frame.offset_delta);
+                printf("\t\t\t\tnumber_of_locals: %d\n", smt[w].map_frame_type.full_frame.number_of_locals);
+                verification_type_info *vti_loc = smt[w].map_frame_type.full_frame.locals;
+                for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_locals; y++) {
+                  printf("\t\t\t\t\ttag: %d\n", vti_loc[y].tag);
+                  if (vti_loc[y].tag == 7) {
+                    printf("\t\t\t\t\tcpool_index: %d\n", vti_loc[y].verification_type.Object_variable_info.cpool_index);
+                  } else if (vti_loc[y].tag == 8) {
+                    printf("\t\t\t\t\toffset: %d\n", vti_loc[y].verification_type.Uninitialized_variable_info.offset);
                   }
                 }
-                printf("\t\t\t\tnumber_of_stack_items: %d\n", smt[k].map_frame_type.full_frame.number_of_stack_items);
-                verification_type_info *vti_stk = smt[k].map_frame_type.full_frame.stack;
-                for (int w = 0; w < smt[k].map_frame_type.full_frame.number_of_stack_items; w++) {
-                  printf("\t\t\t\t\ttag: %d\n", vti_stk[w].tag);
-                  if (vti_stk[w].tag == 7) {
-                    printf("\t\t\t\t\tcpool_index: %d\n", vti_stk[w].verification_type.Object_variable_info.cpool_index);
-                  } else if (vti_stk[w].tag == 8) {
-                    printf("\t\t\t\t\toffset: %d\n", vti_stk[w].verification_type.Uninitialized_variable_info.offset);
+                printf("\t\t\t\tnumber_of_stack_items: %d\n", smt[w].map_frame_type.full_frame.number_of_stack_items);
+                verification_type_info *vti_stk = smt[w].map_frame_type.full_frame.stack;
+                for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_stack_items; y++) {
+                  printf("\t\t\t\t\ttag: %d\n", vti_stk[y].tag);
+                  if (vti_stk[y].tag == 7) {
+                    printf("\t\t\t\t\tcpool_index: %d\n", vti_stk[y].verification_type.Object_variable_info.cpool_index);
+                  } else if (vti_stk[y].tag == 8) {
+                    printf("\t\t\t\t\toffset: %d\n", vti_stk[y].verification_type.Uninitialized_variable_info.offset);
                   }
                 }
               }

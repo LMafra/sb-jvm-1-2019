@@ -28,18 +28,32 @@ void freeMemory(classFile* cf) {
     for(int j = 0; j < cf->methods[i].attributes_count; j++) {
       uint16_t cp_index = cf->methods[i].attributes[j].attribute_name_index - 1;
 			if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Code")) {
-				for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
+				free(cf->methods[i].attributes[j].att_info.Code.code);
+        free(cf->methods[i].attributes[j].att_info.Code.exception_table_array);
+        for (int k = 0; k < cf->methods[i].attributes[j].att_info.Code.attributes_count; k++){
 					uint16_t cp_indexao = cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index - 1;
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
 						free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array);
+          } else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
+            for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
+              if (cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type >= 64 && cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type <= 127) {
+                free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].map_frame_type.same_locals_1_stack_item_frame.stack);
+              } else if (cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type == 247) {
+                free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].map_frame_type.same_locals_1_stack_item_frame_extended.stack);
+              } else if (cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type >= 252 && cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type <= 254) {
+								free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].map_frame_type.append_frame.locals);
+              } else if (cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type == 255) {
+                free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].map_frame_type.full_frame.locals);
+                free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].map_frame_type.full_frame.stack);
+              }
+            }
+            free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries);
           }
 				}
+        free(cf->methods[i].attributes[j].att_info.Code.attributes);
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
         free(cf->methods[i].attributes[j].att_info.Exceptions.exception_index_table);
       }
-      free(cf->methods[i].attributes[j].att_info.Code.code);
-      free(cf->methods[i].attributes[j].att_info.Code.exception_table_array);
-      free(cf->methods[i].attributes[j].att_info.Code.attributes);
     }
     free(cf->methods[i].attributes);
   }
