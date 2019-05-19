@@ -149,8 +149,6 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
       uint16_t cp_index = fi_ai[j].attribute_name_index - 1;
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         fi_ai[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-        printf("Deprecated\n");
       } else {
 				for (int w = 0; w < fi_ai[j].attribute_length; w++){
 					read1byte(file);
@@ -215,8 +213,6 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
         for (int k = 0; k < mi_ai[j].att_info.Exceptions.number_of_exceptions; k++) {
           mi_ai[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
         }
-      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-				printf("Deprecated\n");
       } else {
 				for (int w = 0; w < mi_ai[j].attribute_length; w++){
 					read1byte(file);
@@ -233,6 +229,7 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
     ai[i].attribute_name_index = read2bytes(file);
     ai[i].attribute_length = read4bytes(file);
     uint16_t cp_index = ai[i].attribute_name_index - 1;
+<<<<<<< HEAD
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
       printf("Deprecated\n");
     }
@@ -240,6 +237,21 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
       ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
       printf("%d\n", ai[i].att_info.SourceFile.sourcefile_index);
     }
+=======
+    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
+			ai[i].att_info.BootstrapMethods.bootstrap_methods_length = read2bytes(file);
+			ai[i].att_info.BootstrapMethods.bootstrap_methods_array = (bootstrap_methods *)calloc(ai[i].att_info.BootstrapMethods.bootstrap_methods_length, sizeof(bootstrap_methods));
+			bootstrap_methods *ai_bm = ai[i].att_info.BootstrapMethods.bootstrap_methods_array;
+			for (int j = 0; j < ai[i].att_info.BootstrapMethods.bootstrap_methods_length; j++){
+				ai_bm[j].bootstrap_method_ref = read2bytes(file);
+				ai_bm[j].num_bootstrap_arguments = read2bytes(file);
+				ai_bm[j].bootstrap_arguments = (uint16_t*) calloc(ai_bm[j].num_bootstrap_arguments, sizeof(uint16_t));
+        for (int k = 0; k < ai_bm[j].num_bootstrap_arguments; k++) {
+          ai_bm[j].bootstrap_arguments[k] = read2bytes(file);
+        }
+			}
+		}
+>>>>>>> be6aa7488baa4b6fb4edf88b2d46d5b456e18c85
   }
   
 	fclose(file);
