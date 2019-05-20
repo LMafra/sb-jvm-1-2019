@@ -22,12 +22,16 @@
 #include "freemem.h"
 #include "instructions.h"
 
-int main() { /*! funcao princial que executa o codigo. Inici */
+int main(int argc, char **argv) { /*! funcao princial que executa o codigo. Inici */
   classFile* cf;
 
   initializeInstructions();
 
-	cf = classReader("tests/Array.class");
+  if(argc != 2){
+    printf("You must pass the name of the file as an argument!");
+    return 0;
+  }
+	cf = classReader(argv[1]);
   classPrinter(cf);
   freeMemory(cf);
 
