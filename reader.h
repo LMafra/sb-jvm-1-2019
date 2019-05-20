@@ -51,80 +51,80 @@ typedef struct cp_info {
       uint16_t name_index;            /*!< \brief Um item valido da tabela constant_pool */
     } Class;                          /*!< Class
                                       Detailed description after the member
-                                      \brief ALO */                       
+                                      \brief um index valido da constant_pool . */                       
     struct {  
-      uint16_t class_index;           /*!< Detailed description after the member1 */
-      uint16_t name_and_type_index;   /*!< Detailed description after the member2 */
-    } Fieldref;                       /*!< \brief ALO */
+      uint16_t class_index;           /*!< represanta a classe ou a interface */
+      uint16_t name_and_type_index;   /*!< indica nome e descritor do field ou method */
+    } Fieldref;                       /*!< \brief  */
 
     struct {   
-      uint16_t class_index;           /*!< Detailed description after the member */
-      uint16_t name_and_type_index;   /*!< Detailed description after the member */
+      uint16_t class_index;           /*!< represanta a classe ou a interface */
+      uint16_t name_and_type_index;   /*!< indica nome e descritor do field ou method */
     } Methodref;                      /*!< Methodref 
                                       Detailed description after the member
-                                      \brief ALO */
+                                      \brief  */
     struct {  
-      uint16_t class_index;           /*!< Detailed description after the member */
-      uint16_t name_and_type_index;   /*!< Detailed description after the member */
+      uint16_t class_index;           /*!< represanta a classe ou a interface */
+      uint16_t name_and_type_index;   /*!< indica nome e descritor do field ou method */
     } InterfaceMethodref;             /*!< \struct InterfaceMethodref
                                       Detailed description after the member
                                       \brief ALO*/
     struct {  
-      uint16_t string_index;          /*!< Detailed description after the member */
+      uint16_t string_index;          /*!< representa a sequencia de unicode em que a string sera inicializada */
     } String;                         /*! \struct String 
                                       Detailed description after the member
-                                      \brief ALO */
+                                      \brief representa objetos contantes do tipo string */
     struct {  
-      uint32_t bytes;                 /*!< Detailed description after the member */
+      uint32_t bytes;                 /*!< representa o valor do int*/
     } Integer;                        /*! \struct Integer
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representa numericos de 4-bytes */
     struct {  
-      uint32_t bytes;                 /*!< Detailed description after the member */
+      uint32_t bytes;                 /*!< representa o valor do float em formato IEEE 754 */
     } Float;                          /*! \struct Float 
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representa numericos de 4-bytes */
     struct {  
-      uint32_t high_bytes;            /*!< \var Detailed description after the member */
-      uint32_t low_bytes;             /*!< \var Detailed description after the member */
+      uint32_t high_bytes;            /*!< \var representa uma parte do long e soma-se ao low_byte para representa-lo */
+      uint32_t low_bytes;             /*!< \var Detailed representa uma parte do long e soma-se ao high_byte para representa-lo */
     } Long;                           /*! \struct Long Detailed
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representa numericos de 8-bytes*/
     struct { 
-      uint32_t high_bytes;            /*!< Detailed description after the member */
-      uint32_t low_bytes;             /*!< Detailed description after the member */
+      uint32_t high_bytes;            /*!< representa uma parte do double e soma-se ao low_byte para representalo */
+      uint32_t low_bytes;             /*!< representa uma parte do double e soma-se ao low_byte para representalor */
     } Double;                         /*! \struct Double
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representa numericos de 8-bytes*/
     struct {  
-      uint16_t name_index;            /*!< Detailed description after the member */
-      uint16_t descriptor_index;      /*!< Detailed description after the member */
+      uint16_t name_index;            /*!< Um item valido da tabela constant_pool */
+      uint16_t descriptor_index;      /*!< um descritor de field ou method valido */
     } NameAndType;                    /*! \struct NameAndType
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief usando para representar um field ou method sem indicar uma classe ou interface*/
     struct {  
-      uint16_t length;                /*!< Detailed description after the member */
-      uint8_t* bytes;                 /*!< Detailed description after the member */
+      uint16_t length;                /*!< o tamanho do array de byte */
+      uint8_t* bytes;                 /*!< os bytes da string */
     } Utf8;                           /*! \struct Utf8
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representar valores constantes de string*/
     struct { 
-      uint8_t reference_kind;         /*!< Detailed description after the member */
-      uint16_t reference_index;       /*!< Detailed description after the member */
+      uint8_t reference_kind;         /*!< o tipo do methodhanlder */
+      uint16_t reference_index;       /*!< endtrada da constant_pool */
     } MethodHandle;                   /*! \struct MethodHandle
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief */
     struct {  
-      uint16_t descriptor_index;      /*!< Detailed description after the member */
+      uint16_t descriptor_index;      /*!< representa o descritor do metodo */
     } MethodType;                     /*! \struct MethodType
                                       Detailed description after the member
-                                      \brief ALO*/
+                                      \brief representa um tipo de metodo*/
     struct {  
-      uint16_t bootstrap_method_attr_index;  /*!< Detailed description after the member */
-      uint16_t name_and_type_index;          /*!< Detailed description after the member */
+      uint16_t bootstrap_method_attr_index;  /*!< item valido da tabela de boostrap */
+      uint16_t name_and_type_index;          /*!< representa o nome e o tipo do descritor */
     } InvokeDynamic;                         /*!< \struct InvokeDynamic
                                              Detailed description after the member
-                                             \brief ALO*/            
+                                             \brief usado para indicar o metodo de boostrap*/            
   } info; /*!< \brief Tipo de dado retornado pela union*/
 } cp_info;
 
@@ -181,6 +181,13 @@ typedef struct VerificationTypeInfo{
   }verification_type;
 } verification_type_info;
 
+/*! \brief Usado pela StackMapTable 
+*   
+*
+*  especifica o bytecode offset que aplica, 
+* e o tipo de verificacao das variaveis locais e pilha de operandos.
+* 
+*/
 typedef struct StackMapFrame{
     uint8_t frame_type; 
     union {   

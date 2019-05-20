@@ -20,6 +20,6 @@
 #include <stdio.h>
 #include "reader.h"
 
-void freeMemory(classFile* cf);
+void freeMemory(classFile* cf); /*!< \brief Funcao para liberar a memoria */
 
 #endif

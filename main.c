@@ -22,7 +22,8 @@
 #include "freemem.h"
 #include "instructions.h"
 
-int main() { /*! funcao princial que executa o codigo. Inici */
+int main() { /*! funcao princial que executa o codigo. Inicializa as instrucoes,
+le o arquivo, imprime e libera a memoria requisitada durante este processo.  */
   classFile* cf;
 
   initializeInstructions();

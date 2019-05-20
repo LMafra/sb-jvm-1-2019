@@ -69,7 +69,7 @@ void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
   }
 }
 
-void classPrinter( classFile* cf) { /*! Long Detailed description after the member */
+void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo class descrito pela documentacao da JVM. */
   printf("CLASS FILE STRUCTURE\n\n");
 
   /* General Information */

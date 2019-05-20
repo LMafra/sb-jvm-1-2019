@@ -10,7 +10,7 @@
 
 /**
 * @file
-* @brief  \n
+* @brief Instrucoes assembly
 * @section DESCRIPTION
 * 
 */

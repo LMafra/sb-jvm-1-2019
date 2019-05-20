@@ -24,19 +24,10 @@
 
 Essas instruções farão com que você tenha uma cópia deste projeto em sua máquina local para fins de desenvolvimento e teste.
 
-### Pré-requisitos
-
-Para roda os devidos teste nesse software você precisa ter instalado em sua máquina o googletest, uma biblioteca de testes unitários para a linguagem de programação C/C++.
-
-Por favor leia [TUTORIAL GTEST INSTALL](https://github.com/google/googletest/blob/master/googletest/README.md) para mais detalhes sobre como instalar o gtest
-
-Por favor leia [GTEST INFO](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) para mais detalhes sobre o gtest
-
-Tenha certeza que o gtest esteja incluido durante os testes.
-
 ```
 
-@include "gtest/gtest"
+~dir/ user$ git clone https://github.com/LMafra/sb-jvm-1-2019.git
+~dir/ user$ cd sb-jvm-1-2019
 
 ```
 
@@ -46,7 +37,7 @@ Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99`:
 
 ```
 
-~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c freemem.c -Wall -std=c99 -ggdb3
+~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c instructions.c freemem.c -Wall -std=c99 -ggdb3
 
 ```
 
@@ -58,42 +49,10 @@ Como  executar `./main`:
 
 ```
 
-Entre no diretório ```../``` e execute o seguinte comando para compilar e executar:
-
-```
-
-~dir/sb-jvm-1-2019 user$ make run
-
-```
-
-Para apenas compilar
-
-```
-
-~dir/sb-jvm-1-2019 user$ make
-
-```
-
 ## Testes
 
-Todos os testes foram feitos com comparação binaria, não fatal (não interrompe o teste após detecção do erro), fornecida pelo googletest como pode ser observado no arquivo de testes [teste_file](https://github.com/BrunoSNT)
+Todos os testes foram feitos com classes fornecidas pelo professor ou baixadas da internet para fins de testes.
 
-Fatal assertion          | Nonfatal assertion       | Verifies
------------------------- | ------------------------ | --------------
-`ASSERT_EQ(val1, val2);` | `EXPECT_EQ(val1, val2);` | `val1 == val2`
-
-Os testes foram realizados em etapas previamente determidadas:
-
-* teste de conversão de caractere - função converte()
-* teste de conversão de strings - função avalia()
-* teste de unidade na avaliação/conversao romano-arabico
-* teste de dezena na avaliação/conversao romano-arabico
-* teste de centena na avaliação/conversao romano-arabico
-* teste de milhar na avaliação/conversao romano-arabico
-* teste de avaliação/conversao geral romano-arabico
-* teste de tratamento de erros na avaliação-conversao romano-arabico
-
-O que se esperava do teste em todas as estapas era uma saída de valor correto em algarismos arabicos dada determinada entrada em algarismo romanos. Em caso de entradas inválidas a função deveria retornar -1.
 
 ## Testes de Coding Style
 
@@ -110,8 +69,7 @@ E em seguida feitas as devidas alterações para enquadrar o código nos padrõe
 
 ## Built With
 
-* [Google Test](https://github.com/google/googletest) - Test framework
-* [CPPLint](https://github.com/cpplint/cpplint) - Coding Style Guide
+* [Valgrind](http://www.valgrind.org/) - Dymanic Code Analysis Tool
 * [CPPCheck](cppcheck.sourceforge.net) - Static Code Analysis Tool
 * [VSCode](https://code.visualstudio.com) - Code Editor
 
