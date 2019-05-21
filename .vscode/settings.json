@@ -2,6 +2,7 @@
     "files.associations": {
       "stdint.h": "c",
       "limits": "cpp",
-      "type_traits": "c"
+      "type_traits": "c",
+      "instructions.h": "c"
     }
 }

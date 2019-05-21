@@ -28,7 +28,7 @@ int main(int argc, char **argv) { /*! funcao princial que executa o codigo. Inic
   initializeInstructions();
 
   if(argc != 2){
-    printf("You must pass the name of the file as an argument!");
+    printf("You must pass the name of the file as an argument!\n");
     return 0;
   }
 	cf = classReader(argv[1]);

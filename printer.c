@@ -25,6 +25,7 @@ const char *VERIFICATION_TYPE_TAG[9] = {"TOP", "INTEGER", "FLOAT", "DOUBLE", "LO
 int goHorse = 0;
 
 void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
+  uint64_t long_value, double_value;
   switch (cp[cpIndex-1].tag) { 
     case CONSTANT_Class:
       cpIndexReader(cp, cp[cpIndex-1].info.Class.name_index);
@@ -44,6 +45,20 @@ void cpIndexReader(cp_info *cp, uint16_t cpIndex) {
     case CONSTANT_String:
       cpIndexReader(cp, cp[cpIndex-1].info.String.string_index);
       break;	
+    case CONSTANT_Integer:
+      printf("%d ", cp[cpIndex-1].info.Integer.bytes);
+      break;
+    case CONSTANT_Float:
+      printf("%f ", *(float *)&cp[cpIndex-1].info.Float.bytes);
+      break;
+    case CONSTANT_Long:
+      long_value = ((uint64_t)cp[cpIndex-1].info.Long.high_bytes << 32) | cp[cpIndex-1].info.Long.low_bytes;
+      printf("%ld ", (long)long_value);
+      break;
+    case CONSTANT_Double:
+      double_value = ((uint64_t)cp[cpIndex-1].info.Double.high_bytes << 32) | cp[cpIndex-1].info.Double.low_bytes;
+      printf("%f ", *(double *)&double_value);
+      break;
     case CONSTANT_NameAndType:
       cpIndexReader(cp, cp[cpIndex-1].info.NameAndType.name_index);
       if (!goHorse) {
@@ -123,6 +138,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
   printf("Constant Pool Count: %d \n", cf->constant_pool_count);
   uint8_t tag;
   for (int i = 0; i < cf->constant_pool_count - 1; i++) {
+    uint64_t long_value, double_value;
     tag = cf->constant_pool[i].tag;
     switch (tag) {
       case CONSTANT_Class:
@@ -170,17 +186,22 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
 				break;
 			case CONSTANT_Float:
         printf("[%d] CONSTANT_Float_info\n", i+1);
-        printf("\tbytes: %d", cf->constant_pool[i].info.Float.bytes);
+        printf("\tbytes: 0x%08x\n", cf->constant_pool[i].info.Float.bytes);
+        printf("\tfloat: %f", *(float *)&cf->constant_pool[i].info.Float.bytes);
 				break;
 			case CONSTANT_Long:
         printf("[%d] CONSTANT_Long_info\n", i+1);
         printf("\thigh_bytes: %d\n", cf->constant_pool[i].info.Long.high_bytes);
-        printf("\tlow_bytes: %d", cf->constant_pool[i].info.Long.low_bytes);
+        printf("\tlow_bytes: %d\n", cf->constant_pool[i].info.Long.low_bytes);
+        long_value = ((uint64_t)cf->constant_pool[i].info.Long.high_bytes << 32) | cf->constant_pool[i].info.Long.low_bytes;
+        printf("\nlong: %ld", (long)long_value);
 				break;
 			case CONSTANT_Double:
         printf("[%d] CONSTANT_Double_info\n", i+1);
         printf("\thigh_bytes: %d\n", cf->constant_pool[i].info.Double.high_bytes);
-        printf("\tlow_bytes: %d", cf->constant_pool[i].info.Double.low_bytes);
+        printf("\tlow_bytes: %d\n", cf->constant_pool[i].info.Double.low_bytes);
+        double_value = ((uint64_t)cf->constant_pool[i].info.Double.high_bytes << 32) | cf->constant_pool[i].info.Double.low_bytes;
+        printf("\ndouble: %f", *(double *)&double_value);
 				break;
 			case CONSTANT_NameAndType:
         printf("[%d] CONSTANT_NameAndType_info\n", i+1);
@@ -189,7 +210,6 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         printf("\n");
         printf("\tdescriptor_index: %d ", cf->constant_pool[i].info.NameAndType.descriptor_index);
         cpIndexReader(cf->constant_pool, cf->constant_pool[i].info.NameAndType.descriptor_index);
-        printf("\n");
 				break;
 			case CONSTANT_Utf8:
         printf("[%d] CONSTANT_Utf8_info\n", i+1);
@@ -298,45 +318,93 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         printf("\t\tmax_locals: %d\n", cf->methods[i].attributes[j].att_info.Code.max_locals);
         printf("\t\tcode_length: %d\n", cf->methods[i].attributes[j].att_info.Code.code_length);
         if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n");
+        uint16_t pc = 0;
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
-          // printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]);
+          // printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]); //para debug
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
-          printf("\t\t\t%s ", instructions[opcode_index].name);
-          if (instructions[opcode_index].arguments == 2) {
-            if (!strcmp((char*)instructions[opcode_index].name, "goto")){
+          printf("\t\t\t%d", pc);
+          printf("\t%s ", instructions[opcode_index].name);
+          if (instructions[opcode_index].arguments == 4) {
+
+          } else if (instructions[opcode_index].arguments == 2) {
+            if (instructions[opcode_index].key == inst_goto){
               k++;
               int16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
               k++;
               int16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
               int16_t arg_res = (arg1 << 8) | arg2;
+              printf("%d ", pc + arg_res);
+              if (arg_res > 0) printf("+");
               printf("%d ", arg_res);
+            } else if (instructions[opcode_index].key == iinc) {
+              k++;
+              printf("%d by ", cf->methods[i].attributes[j].att_info.Code.code[k]);
+              k++;
+              printf("%d", cf->methods[i].attributes[j].att_info.Code.code[k]);
             } else {
               k++;
               uint16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
               k++;
               uint16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
               uint16_t arg_res = (arg1 << 8) | arg2;
+              if ((instructions[opcode_index].key >= 153 && instructions[opcode_index].key <= 166) || 
+                  (instructions[opcode_index].key >= 198 && instructions[opcode_index].key <= 199) ) {
+                printf("%d +", pc + arg_res);
+              } else if (instructions[opcode_index].reference) {
+                printf("#");
+              }
               printf("%d ", arg_res);
-              if (instructions[opcode_index].references) {
-                cpIndexReader(cf->constant_pool, arg_res);
+              if (instructions[opcode_index].reference) {
                 goHorse = 1;
+                cpIndexReader(cf->constant_pool, arg_res);
               }
             }
-          } else if ((instructions[opcode_index].arguments == 1)) {
-            k++;
-            printf("%d", cf->methods[i].attributes[j].att_info.Code.code[k]);
+          } else if (instructions[opcode_index].arguments == 1) {
+            if (instructions[opcode_index].key == bipush) {
+              k++;
+              int8_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              printf("%d", arg1);
+            } else {
+              k++;
+              uint8_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              if (instructions[opcode_index].key == ldc) printf("#");
+              printf("%d ", arg1);
+              if (instructions[opcode_index].key == newarray) {
+                switch (cf->methods[i].attributes[j].att_info.Code.code[k]) {
+                  case T_BOOLEAN:
+                    printf("bool");
+                    break;
+                  case T_CHAR:
+                    printf("char");
+                    break;
+                  case T_FLOAT:
+                    printf("float");
+                    break;
+                  case T_DOUBLE:
+                    printf("double");
+                    break;
+                  case T_BYTE:
+                    printf("byte");
+                    break;
+                  case T_SHORT:
+                    printf("short");
+                    break;
+                  case T_INT:
+                    printf("int");
+                    break;
+                  case T_LONG:
+                    printf("long");
+                    break;
+                  default:
+                    break;
+                }
+              } else if (instructions[opcode_index].key == ldc) {
+                cpIndexReader(cf->constant_pool, arg1);
+              }
+            }
           }
+          pc += 1 + instructions[opcode_index].arguments;
           printf("\n");
-
-          // for (int w = 0; w < instructions[opcode_index].arguments; w++) {
-          //   k++;
-          //   uint8_t opcode_arg = cf->methods[i].attributes[j].att_info.Code.code[k];
-          //   printf("%d ", opcode_arg);
-          //   if (instructions[opcode_index].references){
-          //     cpIndexReader(cf->constant_pool, opcode_arg);
-          //   } 
-          // }
-          // printf("\n");
         }
         printf("\n");
         printf("\t\texception_table_length: %d\n", cf->methods[i].attributes[j].att_info.Code.exception_table_length);

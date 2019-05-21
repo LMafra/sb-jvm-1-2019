@@ -296,7 +296,7 @@ typedef struct method_info{
  * Dados de multibyte sao armazenados em ordem big-endian, 
  * onde o high-byte vem primeiro.
  */
-typedef struct classFile {           
+typedef struct ClassFile {           
   uint32_t magic;                     /*!< \brief Magic fornece o 'numero magico' que intentifica
                                           o formato classfile e tem valor 0xCAFEBABE */
   uint16_t minor_version;             /*!< \brief Minor version do classfile denotado como 'm' em M.m */

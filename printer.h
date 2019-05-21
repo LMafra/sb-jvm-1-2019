@@ -37,6 +37,17 @@
 #define ACC_ANNOTATION  0x2000  /*!< \brief Declaracao: annotation */
 #define ACC_ENUM        0x4000  /*!< \brief Declaracao: enum*/
 
+enum ArrayTypeCodes{
+  T_BOOLEAN = 4,
+  T_CHAR,
+  T_FLOAT,
+  T_DOUBLE,
+  T_BYTE,
+  T_SHORT,
+  T_INT ,
+  T_LONG,
+} arraytype_codes;
+
 /* Functions */
 void classPrinter( classFile* cf); /*!< \brief Detailed description after the member */
 
