@@ -44,10 +44,10 @@
 *  cp_info varia de acordo com o byte lido em sua tag
 * 
 */
-typedef struct cp_info {                    
+typedef struct CPInfo {                    
   uint8_t tag;                        /*!< \brief Valor de um byte que indica o tipo de entrada*/
-  union{
-    struct{ 
+  union {
+    struct Class{ 
       uint16_t name_index;            /*!< \brief Um item valido da tabela constant_pool */
     } Class;                          /*!< Class
                                       Detailed description after the member
@@ -123,8 +123,8 @@ typedef struct cp_info {
       uint16_t bootstrap_method_attr_index;  /*!< item valido da tabela de boostrap */
       uint16_t name_and_type_index;          /*!< representa o nome e o tipo do descritor */
     } InvokeDynamic;                         /*!< \struct InvokeDynamic
-                                             Detailed description after the member
-                                             \brief usado para indicar o metodo de boostrap*/            
+                                              Detailed description after the member
+                                              \brief usado para indicar o metodo de boostrap*/            
   } info; /*!< \brief Tipo de dado retornado pela union*/
 } cp_info;
 

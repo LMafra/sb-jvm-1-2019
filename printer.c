@@ -325,92 +325,83 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           printf("\t%s ", instructions[opcode_index].name);
           if (instructions[opcode_index].arguments == 4) {
             k++;
-            uint32_t branchbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
             k++;
-            uint32_t branchbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint32_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[k];
             k++;
-            uint32_t branchbyte3 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint32_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[k];
             k++;
-            uint32_t branchbyte4 = cf->methods[i].attributes[j].att_info.Code.code[k];
-            int32_t branchbyte = (branchbyte1 << 24) | (branchbyte2 << 16)| (branchbyte3 << 8) | branchbyte4;
-            printf("%d ", pc + branchbyte);
-            if (branchbyte > 0) printf("+");
-            printf("%d ", branchbyte);
-          } else if (instructions[opcode_index].arguments == 2) {
-            if (instructions[opcode_index].key == inst_goto){
-              k++;
-              uint16_t branchbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              k++;
-              uint16_t branchbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              int16_t branchbyte = (branchbyte1 << 8) | branchbyte2;
-              printf("%d ", pc + branchbyte);
-              if (branchbyte > 0) printf("+");
-              printf("%d ", branchbyte);
-            } else if (instructions[opcode_index].key == iinc) {
-              k++;
-              printf("%d by ", cf->methods[i].attributes[j].att_info.Code.code[k]);
-              k++;
-              printf("%d", cf->methods[i].attributes[j].att_info.Code.code[k]);
+            uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint32_t result = (operand1 << 24) | (operand2 << 16)| (operand3 << 8) | operand4;
+            if (instructions[opcode_index].key == goto_w) {
+              printf("%d ", pc + (int32_t)result);
+              if ((int32_t)result > 0) printf("+");
+              printf("%d ", (int32_t)result);
             } else {
-              k++;
-              uint16_t indexbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              k++;
-              uint16_t indexbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              uint16_t arg_res = (indexbyte1 << 8) | indexbyte2;
-              if ((instructions[opcode_index].key >= 153 && instructions[opcode_index].key <= 166) || 
-                  (instructions[opcode_index].key >= 198 && instructions[opcode_index].key <= 199) ) {
-                printf("%d +", pc + arg_res);
-              } else if (instructions[opcode_index].reference) {
-                printf("#");
-              }
-              printf("%d ", arg_res);
-              if (instructions[opcode_index].reference) {
-                goHorse = 1;
-                cpIndexReader(cf->constant_pool, arg_res);
-              }
+              printf("%d", result);
+            }
+          } else if (instructions[opcode_index].arguments == 2) {
+            k++;
+            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            k++;
+            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint16_t result = (operand1 << 8) | operand2;
+            if (instructions[opcode_index].key == inst_goto){
+              printf("%d ", pc + (int16_t)result);
+              if ((int16_t)result > 0) printf("+");
+              printf("%d", (int16_t)result);
+            } else if (instructions[opcode_index].key == iinc) {
+              printf("%d by %d", operand1, operand2);
+            } else if ((instructions[opcode_index].key >= 153 && instructions[opcode_index].key <= 166) || (instructions[opcode_index].key >= 198 && instructions[opcode_index].key <= 199)){
+              printf("%d +%d", pc + result, result);
+            } else if (instructions[opcode_index].reference) {
+              printf("#%d ", result);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, result);
+            } else {
+              printf("%d", result);
             }
           } else if (instructions[opcode_index].arguments == 1) {
+            k++;
+            uint8_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
             if (instructions[opcode_index].key == bipush) {
-              k++;
-              int8_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              printf("%d", arg1);
-            } else {
-              k++;
-              uint8_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              if (instructions[opcode_index].key == ldc) printf("#");
-              printf("%d ", arg1);
-              if (instructions[opcode_index].key == newarray) {
-                switch (cf->methods[i].attributes[j].att_info.Code.code[k]) {
-                  case T_BOOLEAN:
-                    printf("bool");
-                    break;
-                  case T_CHAR:
-                    printf("char");
-                    break;
-                  case T_FLOAT:
-                    printf("float");
-                    break;
-                  case T_DOUBLE:
-                    printf("double");
-                    break;
-                  case T_BYTE:
-                    printf("byte");
-                    break;
-                  case T_SHORT:
-                    printf("short");
-                    break;
-                  case T_INT:
-                    printf("int");
-                    break;
-                  case T_LONG:
-                    printf("long");
-                    break;
-                  default:
-                    break;
-                }
-              } else if (instructions[opcode_index].key == ldc) {
-                cpIndexReader(cf->constant_pool, arg1);
+              printf("%d", (int8_t)operand1);
+            } else if (instructions[opcode_index].key == newarray) {
+              printf("%d ", operand1);
+              switch (operand1) {
+                case T_BOOLEAN:
+                  printf("bool");
+                  break;
+                case T_CHAR:
+                  printf("char");
+                  break;
+                case T_FLOAT:
+                  printf("float");
+                  break;
+                case T_DOUBLE:
+                  printf("double");
+                  break;
+                case T_BYTE:
+                  printf("byte");
+                  break;
+                case T_SHORT:
+                  printf("short");
+                  break;
+                case T_INT:
+                  printf("int");
+                  break;
+                case T_LONG:
+                  printf("long");
+                  break;
+                default:
+                  break;
               }
+            } else if (instructions[opcode_index].reference) {
+              printf("#%d ", operand1);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, operand1);
+            } else {
+              printf("%d", operand1);
             }
           }
           pc += 1 + instructions[opcode_index].arguments;

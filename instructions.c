@@ -565,7 +565,7 @@ void initializeInstructions() {
   instructions[108].reference = 0;
 
   strcpy(instructions[109].name, "ldiv");
-  instructions[109].key = ldiv;
+  instructions[109].key = inst_ldiv;
   instructions[109].arguments = 0;
   instructions[109].reference = 0;
 
@@ -855,7 +855,7 @@ void initializeInstructions() {
   instructions[166].reference = 0;
 
   strcpy(instructions[167].name, "goto");
-  instructions[167].key = goto;
+  instructions[167].key = inst_goto;
   instructions[167].arguments = 2;
   instructions[167].reference = 0;
 
@@ -907,7 +907,7 @@ void initializeInstructions() {
   instructions[176].reference = 0;
 
   strcpy(instructions[177].name, "return");
-  instructions[177].key = return;
+  instructions[177].key = inst_return;
   instructions[177].arguments = 0;
   instructions[177].reference = 0;
 
@@ -957,7 +957,7 @@ void initializeInstructions() {
   instructions[186].reference = 1;
 
   strcpy(instructions[187].name, "new");
-  instructions[187].key = new;
+  instructions[187].key = inst_new;
   instructions[187].arguments = 2;
   instructions[187].reference = 1;
 
@@ -1030,17 +1030,4 @@ void initializeInstructions() {
   instructions[201].key = jsr_w;
   instructions[201].arguments = 4;
   instructions[201].reference = 0;
-
-  // reservados
-  strcpy(instructions[202].name, "breakpoint");
-  instructions[200].key = breakpoint;
-  instructions[200].arguments = 0;
-
-  strcpy(instructions[254].name, "impdep1");
-  instructions[254].key = impdep1;
-  instructions[254].arguments = 0;
-
-  strcpy(instructions[255].name, "impdep2");
-  instructions[255].key = impdep2;
-  instructions[255].arguments = 0;
 }

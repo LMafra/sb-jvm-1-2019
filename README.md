@@ -33,7 +33,7 @@ Essas instruções farão com que você tenha uma cópia deste projeto em sua m�
 
 ### Compilando e Executando
 
-Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99`:
+Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99 -ggdb3`:
 
 ```
 
@@ -61,7 +61,7 @@ Durante todo o projeto, após cada aprovaçao nos teste, foram executados os com
 ```
 
 cppcheck --enable=warning main.c reader.c printer.c memcheck.c
-valgrind --track-origins=yes --leak-check=full --leak-resolution=high --track-origins=yes ./main
+valgrind --leak-check=full --leak-resolution=high --track-origins=yes ./main
 
 ```
 
