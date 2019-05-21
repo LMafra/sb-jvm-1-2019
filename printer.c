@@ -320,22 +320,32 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         if (cf->methods[i].attributes[j].att_info.Code.code_length > 0) printf("\t\tCode:\n");
         uint16_t pc = 0;
         for(int k = 0; k < cf->methods[i].attributes[j].att_info.Code.code_length; k++) {
-          // printf(" %d", cf->methods[i].attributes[j].att_info.Code.code[k]); //para debug
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
           printf("\t\t\t%d", pc);
           printf("\t%s ", instructions[opcode_index].name);
           if (instructions[opcode_index].arguments == 4) {
-
+            k++;
+            uint32_t branchbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            k++;
+            uint32_t branchbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            k++;
+            uint32_t branchbyte3 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            k++;
+            uint32_t branchbyte4 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            int32_t branchbyte = (branchbyte1 << 24) | (branchbyte2 << 16)| (branchbyte3 << 8) | branchbyte4;
+            printf("%d ", pc + branchbyte);
+            if (branchbyte > 0) printf("+");
+            printf("%d ", branchbyte);
           } else if (instructions[opcode_index].arguments == 2) {
             if (instructions[opcode_index].key == inst_goto){
               k++;
-              int16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              uint16_t branchbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
               k++;
-              int16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              int16_t arg_res = (arg1 << 8) | arg2;
-              printf("%d ", pc + arg_res);
-              if (arg_res > 0) printf("+");
-              printf("%d ", arg_res);
+              uint16_t branchbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              int16_t branchbyte = (branchbyte1 << 8) | branchbyte2;
+              printf("%d ", pc + branchbyte);
+              if (branchbyte > 0) printf("+");
+              printf("%d ", branchbyte);
             } else if (instructions[opcode_index].key == iinc) {
               k++;
               printf("%d by ", cf->methods[i].attributes[j].att_info.Code.code[k]);
@@ -343,10 +353,10 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
               printf("%d", cf->methods[i].attributes[j].att_info.Code.code[k]);
             } else {
               k++;
-              uint16_t arg1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              uint16_t indexbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k];
               k++;
-              uint16_t arg2 = cf->methods[i].attributes[j].att_info.Code.code[k];
-              uint16_t arg_res = (arg1 << 8) | arg2;
+              uint16_t indexbyte2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+              uint16_t arg_res = (indexbyte1 << 8) | indexbyte2;
               if ((instructions[opcode_index].key >= 153 && instructions[opcode_index].key <= 166) || 
                   (instructions[opcode_index].key >= 198 && instructions[opcode_index].key <= 199) ) {
                 printf("%d +", pc + arg_res);
