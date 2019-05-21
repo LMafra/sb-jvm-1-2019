@@ -860,104 +860,104 @@ void initializeInstructions() {
   instructions[167].reference = 0;
 
   strcpy(instructions[168].name, "jsr");
-  instructions[168].key = 2;
+  instructions[168].key = jsr;
   instructions[168].arguments = 2;
   instructions[168].reference = 0;
 
   strcpy(instructions[169].name, "ret");
-  instructions[169].key = 1;
+  instructions[169].key = ret;
   instructions[169].arguments = 1;
   instructions[169].reference = 0;
 
   strcpy(instructions[170].name, "tableswitch");
   // instrução tem tamanho variável
-  instructions[170].key = 34;
+  instructions[170].key = tableswitch;
   instructions[170].arguments = 34;
   instructions[170].reference = 0;
 
   strcpy(instructions[171].name, "lookupswitch");
   // instrução tem tamanho variável
-  instructions[171].key = 26;
+  instructions[171].key = lookupswitch;
   instructions[171].arguments = 26;
   instructions[171].reference = 0;
 
   strcpy(instructions[172].name, "ireturn");
-  instructions[172].key = 0;
+  instructions[172].key = ireturn;
   instructions[172].arguments = 0;
   instructions[172].reference = 0;
 
   strcpy(instructions[173].name, "lreturn");
-  instructions[173].key = 0;
+  instructions[173].key = lreturn;
   instructions[173].arguments = 0;
   instructions[173].reference = 0;
 
   strcpy(instructions[174].name, "freturn");
-  instructions[174].key = 0;
+  instructions[174].key = freturn;
   instructions[174].arguments = 0;
   instructions[174].reference = 0;
 
   strcpy(instructions[175].name, "dreturn");
-  instructions[175].key = 0;
+  instructions[175].key = dreturn;
   instructions[175].arguments = 0;
   instructions[175].reference = 0;
 
   strcpy(instructions[176].name, "areturn");
-  instructions[176].key = 0;
+  instructions[176].key = areturn;
   instructions[176].arguments = 0;
   instructions[176].reference = 0;
 
   strcpy(instructions[177].name, "return");
-  instructions[177].key = 0;
+  instructions[177].key = inst_return;
   instructions[177].arguments = 0;
   instructions[177].reference = 0;
 
   strcpy(instructions[178].name, "getstatic");
-  instructions[178].key = 2;
+  instructions[178].key = getstatic;
   instructions[178].arguments = 2;
   instructions[178].reference = 1;
 
   strcpy(instructions[179].name, "putstatic");
-  instructions[179].key = 2;
+  instructions[179].key = putstatic;
   instructions[179].arguments = 2;
   instructions[179].reference = 1;
 
   strcpy(instructions[180].name, "getfield");
-  instructions[180].key = 2;
+  instructions[180].key = getfield;
   instructions[180].arguments = 2;
   instructions[180].reference = 1;
 
   strcpy(instructions[181].name, "putfield");
-  instructions[181].key = 2;
+  instructions[181].key = putfield;
   instructions[181].arguments = 2;
   instructions[181].reference = 1;
 
   strcpy(instructions[182].name, "invokevirtual");
-  instructions[182].key = 2;
+  instructions[182].key = invokevirtual;
   instructions[182].arguments = 2;
   instructions[182].reference = 1;
 
   strcpy(instructions[183].name, "invokespecial");
-  instructions[183].key = 2;
+  instructions[183].key = invokespecial;
   instructions[183].arguments = 2;
   instructions[183].reference = 1;
 
   strcpy(instructions[184].name, "invokestatic");
-  instructions[184].key = 2;
+  instructions[184].key = invokestatic;
   instructions[184].arguments = 2;
   instructions[184].reference = 1;
 
   strcpy(instructions[185].name, "invokeinterface");
-  instructions[185].key = 4;
+  instructions[185].key = invokeinterface;
   instructions[185].arguments = 4;
   instructions[185].reference = 1;
 
   strcpy(instructions[186].name, "invokedynamic");
-  instructions[186].key = 4;
+  instructions[186].key = invokedynamic;
   instructions[186].arguments = 4;
   instructions[186].reference = 1;
 
   strcpy(instructions[187].name, "new");
-  instructions[187].key = 2;
+  instructions[187].key = inst_new;
   instructions[187].arguments = 2;
   instructions[187].reference = 1;
 
@@ -967,67 +967,67 @@ void initializeInstructions() {
   instructions[188].reference = 0;
 
   strcpy(instructions[189].name, "anewarray");
-  instructions[189].key = 2;
+  instructions[189].key = anewarray;
   instructions[189].arguments = 2;
   instructions[189].reference = 1;
 
   strcpy(instructions[190].name, "arraylength");
-  instructions[190].key = 0;
+  instructions[190].key = arraylength;
   instructions[190].arguments = 0;
   instructions[190].reference = 0;
 
   strcpy(instructions[191].name, "athrow");
-  instructions[191].key = 0;
+  instructions[191].key = athrow;
   instructions[191].arguments = 0;
   instructions[191].reference = 0;
 
   strcpy(instructions[192].name, "checkcast");
-  instructions[192].key = 2;
+  instructions[192].key = checkcast;
   instructions[192].arguments = 2;
   instructions[192].reference = 1;
 
   strcpy(instructions[193].name, "instanceof");
-  instructions[193].key = 2;
+  instructions[193].key = instanceof;
   instructions[193].arguments = 2;
   instructions[193].reference = 1;
 
   strcpy(instructions[194].name, "monitorenter");
-  instructions[194].key = 0;
+  instructions[194].key = monitorenter;
   instructions[194].arguments = 0;
   instructions[194].reference = 0;
 
   strcpy(instructions[195].name, "monitorexit");
-  instructions[195].key = 0;
+  instructions[195].key = monitorexit;
   instructions[195].arguments = 0;
   instructions[195].reference = 0;
 
   strcpy(instructions[196].name, "wide");
-  instructions[196].key = 3;
+  instructions[196].key = wide;
   instructions[196].arguments = 3;
   instructions[196].reference = 0;
 
   strcpy(instructions[197].name, "multianewarray");
-  instructions[197].key = 3;
+  instructions[197].key = multianewarray;
   instructions[197].arguments = 3;
   instructions[197].reference = 1;
 
   strcpy(instructions[198].name, "ifnull");
-  instructions[198].key = 2;
+  instructions[198].key = ifnull;
   instructions[198].arguments = 2;
   instructions[198].reference = 0;
 
   strcpy(instructions[199].name, "ifnonnull");
-  instructions[199].key = 2;
+  instructions[199].key = ifnonnull;
   instructions[199].arguments = 2;
   instructions[199].reference = 0;
 
   strcpy(instructions[200].name, "goto_w");
-  instructions[200].key = 4;
+  instructions[200].key = goto_w;
   instructions[200].arguments = 4;
   instructions[200].reference = 0;
 
   strcpy(instructions[201].name, "jsr_w");
-  instructions[201].key = 4;
+  instructions[201].key = jsr_w;
   instructions[201].arguments = 4;
   instructions[201].reference = 0;
 
