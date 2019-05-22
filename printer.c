@@ -324,27 +324,21 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           printf("\t\t\t%d", pc);
           printf("\t%s ", instructions[opcode_index].name);
           if (instructions[opcode_index].arguments == 4) {
-            k++;
-            uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-            k++;
-            uint32_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[k];
-            k++;
-            uint32_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[k];
-            k++;
-            uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint32_t result = (operand1 << 24) | (operand2 << 16)| (operand3 << 8) | operand4;
-            if (instructions[opcode_index].key == goto_w) {
+            if (instructions[opcode_index].key == goto_w || instructions[opcode_index].key == jsr_w) {
               printf("%d ", pc + (int32_t)result);
               if ((int32_t)result > 0) printf("+");
-              printf("%d ", (int32_t)result);
+              printf("%d", (int32_t)result);
             } else {
               printf("%d", result);
             }
           } else if (instructions[opcode_index].arguments == 2) {
-            k++;
-            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
-            k++;
-            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint16_t result = (operand1 << 8) | operand2;
             if (instructions[opcode_index].key == inst_goto){
               printf("%d ", pc + (int16_t)result);
@@ -352,7 +346,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
               printf("%d", (int16_t)result);
             } else if (instructions[opcode_index].key == iinc) {
               printf("%d by %d", operand1, operand2);
-            } else if ((instructions[opcode_index].key >= 153 && instructions[opcode_index].key <= 166) || (instructions[opcode_index].key >= 198 && instructions[opcode_index].key <= 199)){
+            } else if ((instructions[opcode_index].key >= ifeq && instructions[opcode_index].key <= if_acmpne) || (instructions[opcode_index].key == ifnull) || (instructions[opcode_index].key == ifnonnull)) {
               printf("%d +%d", pc + result, result);
             } else if (instructions[opcode_index].reference) {
               printf("#%d ", result);
@@ -362,8 +356,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
               printf("%d", result);
             }
           } else if (instructions[opcode_index].arguments == 1) {
-            k++;
-            uint8_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[k];
+            uint8_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             if (instructions[opcode_index].key == bipush) {
               printf("%d", (int8_t)operand1);
             } else if (instructions[opcode_index].key == newarray) {
