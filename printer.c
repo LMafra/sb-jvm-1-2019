@@ -525,13 +525,13 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             printf("\t\t\tFrames:\n");
             uint32_t offset = 0;
             for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
-              printf("\t\t\t\t");
+              printf("\t\t\t[%d] ", w);
               if (smt[w].frame_type < 64) {
                 printf("SAME (%d)", smt[w].frame_type);
               } else if (smt[w].frame_type >= 64 && smt[w].frame_type <= 127) {
                 printf("SAME LOCALS (%d)\n", smt[w].frame_type);
                 verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame.stack;
-                printf("\t\t\t\t\t%d \n", vti[0].tag);
+                printf("\t\t\t\t%d \n", vti[0].tag);
                 if (vti[0].tag == 7) {
                   printf(" cp_info #%u ", vti[0].verification_type.Object_variable_info.cpool_index);
                   cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
@@ -544,7 +544,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
                 offset += smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta;
                 printf("Offset: %d (+%d)\n", offset, smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.offset_delta);
                 verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame_extended.stack;
-                printf("\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti[0].tag]);
+                printf("\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti[0].tag]);
                 if (vti[0].tag == 7) {
                   printf("cp_info #%u ", vti[0].verification_type.Object_variable_info.cpool_index);
                   cpIndexReader(cf->constant_pool, vti[0].verification_type.Object_variable_info.cpool_index);
@@ -565,9 +565,9 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
                 offset += smt[w].map_frame_type.append_frame.offset_delta;
                 printf("Offset: %d (+%d)\n", offset, smt[w].map_frame_type.append_frame.offset_delta);
                 verification_type_info *vti = smt[w].map_frame_type.append_frame.locals;
-                printf("\t\t\t\t\tlocals:\n");
+                printf("\t\t\t\tlocals:\n");
 								for (int y = 0; y < smt[w].frame_type - 251; y++) {
-                  printf("\t\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti[y].tag]);
+                  printf("\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti[y].tag]);
                   if (vti[y].tag == 7) {
                     printf("cp_info #%u ", vti[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti[y].verification_type.Object_variable_info.cpool_index);
@@ -580,11 +580,11 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
                 printf("FULL (%d), ", smt[w].frame_type);
                 offset += smt[w].map_frame_type.full_frame.offset_delta;
                 printf("Offset: %d (+%d)\n", offset, smt[w].map_frame_type.full_frame.offset_delta);
-                printf("\t\t\t\t\tnumber_of_locals: %d\n", smt[w].map_frame_type.full_frame.number_of_locals);
-                printf("\t\t\t\t\tLocals:\n");
+                printf("\t\t\t\tnumber_of_locals: %d\n", smt[w].map_frame_type.full_frame.number_of_locals);
+                printf("\t\t\t\tLocals:\n");
                 verification_type_info *vti_loc = smt[w].map_frame_type.full_frame.locals;
                 for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_locals; y++) {
-                  printf("\t\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti_loc[y].tag]);
+                  printf("\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti_loc[y].tag]);
                   if (vti_loc[y].tag == 7) {
                     printf("cp_info #%u ", vti_loc[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti_loc[y].verification_type.Object_variable_info.cpool_index);
@@ -593,10 +593,10 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
                   }
                   printf("\n");
                 }
-                printf("\t\t\t\t\tnumber_of_stack_items: %d\n", smt[w].map_frame_type.full_frame.number_of_stack_items);
+                printf("\t\t\t\tnumber_of_stack_items: %d\n", smt[w].map_frame_type.full_frame.number_of_stack_items);
                 verification_type_info *vti_stk = smt[w].map_frame_type.full_frame.stack;
                 for (int y = 0; y < smt[w].map_frame_type.full_frame.number_of_stack_items; y++) {
-                  printf("\t\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti_stk[y].tag]);
+                  printf("\t\t\t\t\t%s ", VERIFICATION_TYPE_TAG[vti_stk[y].tag]);
                   if (vti_stk[y].tag == 7) {
                     printf("cp_info #%u ", vti_stk[y].verification_type.Object_variable_info.cpool_index);
                     cpIndexReader(cf->constant_pool, vti_stk[y].verification_type.Object_variable_info.cpool_index);
