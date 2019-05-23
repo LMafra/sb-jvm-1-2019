@@ -26,15 +26,13 @@
 
 /* Definitions */
 #define ACC_PUBLIC      0x0001  /*!< \brief Declaracao: publico; pode ser acessada de fora do pacote. */
-#define ACC_PRIVADO     0x0002  /*!< \brief Declaracao: privado; usavel apenas dentro da classe. */
+#define ACC_PRIVATE     0x0002  /*!< \brief Declaracao: privado; usavel apenas dentro da classe. */
 #define ACC_PROTECTED   0x0004  /*!< \brief Declaracao: protected; usavel pela classe e subclasses. */
 #define ACC_STATIC      0x0008  /*!< \brief Declaracao: statico. */
 #define ACC_FINAL       0x0010  /*!< \brief Declaracao: final; after the member */
-#define ACC_SUPER       0x0020  /*!< \brief Declaracao: superclass */
-#define ACC_INTERFACE   0x0200  /*!< \brief Declaracao: interface */
-#define ACC_ABSTRACT    0x0400  /*!< \brief Declaracao: classe abstrata */
+#define ACC_VOLATILE    0x0040  /*!< \brief Declaracao: classe abstrata */
+#define ACC_TRANSIENT   0x0080  /*!< \brief Declaracao: classe abstrata */
 #define ACC_SYNTHETIC   0x1000  /*!< \brief Declaracao: synthetic */  
-#define ACC_ANNOTATION  0x2000  /*!< \brief Declaracao: annotation */
 #define ACC_ENUM        0x4000  /*!< \brief Declaracao: enum*/
 
 enum ArrayTypeCodes{

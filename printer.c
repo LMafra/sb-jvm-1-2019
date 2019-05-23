@@ -93,35 +93,17 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
   printf("Major version: %d \n", cf->major_version);
   printf("Constant Pool Count: %d \n", cf->constant_pool_count);
 	printf("Access Flags: 0x%0x ", cf->access_flags);
-  switch (cf->access_flags) {
-    case ACC_PUBLIC:
-      printf("[public]\n");
-      break;  
-    case ACC_FINAL:
-      printf("[final]\n");
-      break;  
-    case ACC_SUPER:
-      printf("[super]\n");
-      break;  
-    case ACC_INTERFACE:
-      printf("[interface]\n");
-      break;  
-    case ACC_ABSTRACT:
-      printf("[abstract]\n");
-      break;  
-    case ACC_SYNTHETIC:
-      printf("[synthetic]\n");
-      break;  
-    case ACC_ANNOTATION:
-      printf("[annotation]\n");
-      break;  
-    case ACC_ENUM:
-      printf("[enum]\n");
-      break;  
-    default:
-      printf("\n");
-      break;
-  }
+  if (cf->access_flags & ACC_PUBLIC) printf("[public] ");
+  if (cf->access_flags & ACC_PRIVATE) printf("[private] ");
+  if (cf->access_flags & ACC_PROTECTED) printf("[protected] ");
+  if (cf->access_flags & ACC_STATIC) printf("[static] ");
+  if (cf->access_flags & ACC_FINAL) printf("[final] ");
+  if (cf->access_flags & ACC_VOLATILE) printf("[volatile] ");
+  if (cf->access_flags & ACC_TRANSIENT) printf("[transient] ");
+  if (cf->access_flags & ACC_SYNTHETIC) printf("[synthetic] ");
+  if (cf->access_flags & ACC_ENUM) printf("[enum] ");
+  printf("\n");
+
   printf("This Class: cp_info #%u ", cf->this_class);
   cpIndexReader(cf->constant_pool, cf->this_class);
   printf("\n");
@@ -325,26 +307,23 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           printf("\t%s ", instructions[opcode_index].name);
           if (instructions[opcode_index].key == tableswitch) {
             // calcula padding para que proximo endereço seja multiplo de 4 bytes
-            uint32_t bytes_padding = (4 - (opcode_index % 4)) % 4; // ultimo módulo garante que que resultado é de 0-3
-            instructions[opcode_index].arguments += bytes_padding;
+            uint32_t bytes_padding = (4 - (pc % 4)) % 4; // ultimo módulo garante que que resultado é de 0-3
             uint32_t defaultbyte = cf->methods[i].attributes[j].att_info.Code.code[k += bytes_padding];
-            for (int w = 0; w < 4; w++) defaultbyte = (defaultbyte << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            for (int w = 0; w < 3; w++) defaultbyte = (defaultbyte << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint32_t low = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            for (int w = 0; w < 4; w++) low = (low << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            for (int w = 0; w < 3; w++) low = (low << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint32_t high = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            for (int w = 0; w < 4; w++) high = (high << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
-            instructions[opcode_index].arguments += 12;
+            for (int w = 0; w < 3; w++) high = (high << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
             printf("%d to %d\n", (int32_t)low, (int32_t)high);
-            
             int32_t jump_offsets = (int32_t)high - (int32_t)low + 1;
             uint32_t offset;
             for (int w = 0; w < jump_offsets; w++) {
               offset = cf->methods[i].attributes[j].att_info.Code.code[++k];
-              for (int y = 0; y < 4; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
-              printf("\t\t\t\t%d %s%d\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
-              instructions[opcode_index].arguments += 4;
+              for (int y = 0; y < 3; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+              printf("\t\t\t\t\t%d: %d (%s%d)\n", w, pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
             }
-            printf("\t\t\t\tdefault: %d %s%d", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
+            printf("\t\t\t\t  default: %d (%s%d)", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
+            instructions[opcode_index].arguments = k - pc;
           } else if (instructions[opcode_index].key == lookupswitch) {
             uint32_t bytes_padding = (4 - (opcode_index % 4)) % 4;
             instructions[opcode_index].arguments += bytes_padding;
@@ -363,11 +342,11 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
               printf("\t\t\t\t%d: ",(int32_t)match);
               offset = cf->methods[i].attributes[j].att_info.Code.code[++k];
               for (int y = 0; y < 4; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
-              printf("%d %s%d\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
+              printf("%d (%s%d)\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
 
               instructions[opcode_index].arguments += 8;
             }
-            printf("\t\t\t\tdefault: %d %s%d", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
+            printf("\t\t\t\tdefault: %d (%s%d)", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
           } else if (instructions[opcode_index].key == wide) {
               uint8_t opcode = cf->methods[i].attributes[j].att_info.Code.code[++k];
               uint16_t indexbyte1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
@@ -427,7 +406,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint16_t result = (operand1 << 8) | operand2;
             if (instructions[opcode_index].key == jsr || instructions[opcode_index].key == inst_goto || (instructions[opcode_index].key >= ifeq && instructions[opcode_index].key <= if_acmpne) || (instructions[opcode_index].key == ifnull) || (instructions[opcode_index].key == ifnonnull)) {
-              printf("%d %s%d", pc + (int16_t)result, (int16_t)result>0 ? "+" : "", (int16_t)result);
+              printf("%d (%s%d)", pc + (int16_t)result, (int16_t)result>0 ? "+" : "", (int16_t)result);
             } else if (instructions[opcode_index].key == iinc) {
               printf("%d by %d", operand1, (int16_t)operand2);
             } else if (instructions[opcode_index].reference) {
@@ -460,7 +439,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint32_t result = (operand1 << 24) | (operand2 << 16) | (operand3 << 8) | operand4;
             if (instructions[opcode_index].key == jsr_w || instructions[opcode_index].key == goto_w) {
-              printf("%d %s%d", pc + (int32_t)result, (int32_t)result>0 ? "+" : "", (int32_t)result);
+              printf("%d (%s%d)", pc + (int32_t)result, (int32_t)result>0 ? "+" : "", (int32_t)result);
             } else if (instructions[opcode_index].key == invokedynamic) {
               result = (operand1 << 8) | operand2;
               printf("#%u ", result);
@@ -506,7 +485,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
             printf("\t\t\tline_number_table_length: %u\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length);
             printf("\t\t\tLine Number Table:\n");
-            printf("\t\t\t\t i\tstart_pc\tline_number\n");
+            printf("\t\t\t\tnr.\tstart_pc\tline_number\n");
 						for(int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_length; w++) {
               printf("\t\t\t\t[%d] ", w);
 							printf("\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
