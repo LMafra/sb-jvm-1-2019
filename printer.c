@@ -90,7 +90,13 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
   /* General Information */
   printf("CAFEBABE: 0x%0x \n", cf->magic);
   printf("Minor version: %d \n", cf->minor_version);
-  printf("Major version: %d \n", cf->major_version);
+  printf("Major version: %d", cf->major_version);
+  if (cf->major_version == 52) {
+    printf(" [1.8]\n");
+  } else {
+    printf("\nVersion is not supported! This JVM implementation works only for Java 1.8.\n");
+    exit(1);
+  }
   printf("Constant Pool Count: %d \n", cf->constant_pool_count);
 	printf("Access Flags: 0x%0x ", cf->access_flags);
   if (cf->access_flags & ACC_PUBLIC) printf("[public] ");
@@ -169,7 +175,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
 			case CONSTANT_Float:
         printf("[%d] CONSTANT_Float_info\n", i+1);
         printf("\tbytes: 0x%08x\n", cf->constant_pool[i].info.Float.bytes);
-        printf("\tfloat: %f", *(float *)&cf->constant_pool[i].info.Float.bytes);
+        printf("\tfloat: %.2f", *(float *)&cf->constant_pool[i].info.Float.bytes);
 				break;
 			case CONSTANT_Long:
         printf("[%d] CONSTANT_Long_info\n", i+1);
@@ -183,7 +189,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         printf("\thigh_bytes: %u\n", cf->constant_pool[i].info.Double.high_bytes);
         printf("\tlow_bytes: %u\n", cf->constant_pool[i].info.Double.low_bytes);
         double_value = ((uint64_t)cf->constant_pool[i].info.Double.high_bytes << 32) | cf->constant_pool[i].info.Double.low_bytes;
-        printf("\ndouble: %f", *(double *)&double_value);
+        printf("\ndouble: %.2f", *(double *)&double_value);
 				break;
 			case CONSTANT_NameAndType:
         printf("[%d] CONSTANT_NameAndType_info\n", i+1);
