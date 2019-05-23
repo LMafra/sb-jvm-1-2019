@@ -60,7 +60,7 @@ Durante todo o projeto, após cada aprovaçao nos teste, foram executados os com
 
 ```
 
-cppcheck --enable=warning main.c reader.c printer.c memcheck.c
+cppcheck --enable=warning main.c reader.c printer.c memcheck.c instructions.c
 valgrind --leak-check=full --leak-resolution=high --track-origins=yes ./main
 
 ```

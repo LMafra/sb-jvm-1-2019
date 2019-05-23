@@ -1003,7 +1003,7 @@ void initializeInstructions() {
 
   strcpy(instructions[196].name, "wide");
   instructions[196].key = wide;
-  instructions[196].arguments = 3;
+  instructions[196].arguments = 5;
   instructions[196].reference = 0;
 
   strcpy(instructions[197].name, "multianewarray");
