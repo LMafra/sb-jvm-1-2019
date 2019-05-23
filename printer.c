@@ -283,6 +283,8 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         printf("\n");
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("\t\tDeprecated\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Synthetic")) {
+        printf("\t\tSynthetic\n");
       }
     }
   }
@@ -598,6 +600,8 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         }
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
         printf("\t\tDeprecated\n");
+      } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Synthetic")) {
+        printf("\t\tSynthetic\n");
       }
     }
   }
