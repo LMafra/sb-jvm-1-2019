@@ -878,7 +878,7 @@ void initializeInstructions() {
   strcpy(instructions[171].name, "lookupswitch");
   // instrução tem tamanho lookupswitchl
   instructions[171].key = lookupswitch;
-  instructions[171].arguments = 26;
+  instructions[171].arguments = 0;
   instructions[171].reference = 0;
 
   strcpy(instructions[172].name, "ireturn");

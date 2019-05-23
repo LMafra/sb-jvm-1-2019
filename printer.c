@@ -323,7 +323,39 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
           printf("\t\t\t%d", pc);
           printf("\t%s ", instructions[opcode_index].name);
-          if (instructions[opcode_index].key == wide) {
+          if (instructions[opcode_index].key == lookupswitch) {
+            // calcula padding para que proximo endereço seja multiplo de 4 bytes
+            uint32_t bytes_padding = (4 - (opcode_index % 4)) % 4; // ultimo módulo garante que que resultado é de 0-3
+            instructions[opcode_index].arguments += bytes_padding;
+            uint32_t defaultbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k += bytes_padding];
+            uint32_t defaultbyte2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t defaultbyte3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t defaultbyte4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            int32_t defaultbyte = (defaultbyte1 << 24) | (defaultbyte2 << 16) | (defaultbyte3 << 8) | defaultbyte4;
+
+            uint32_t npairs1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t npairs2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t npairs3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t npairs4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            int32_t npairs = (npairs1 << 24) | (npairs2 << 16) | (npairs3 << 8) | npairs4;
+            printf("\n\t\t\t\t%d\n", npairs);
+
+            instructions[opcode_index].arguments += 8;
+
+            uint32_t match, offset;
+            for (int w = 0; w < npairs; w++) {
+              match = cf->methods[i].attributes[j].att_info.Code.code[++k];
+              // pega os 4 proximos bytes, alinhando eles
+              for (int y = 0; y < 4; y++) match = (match << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+              printf("\t\t\t\t\t%d: ",(int32_t)match);
+              offset = cf->methods[i].attributes[j].att_info.Code.code[++k];
+              for (int y = 0; y < 4; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+              printf("%d %s%d\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
+
+              instructions[opcode_index].arguments += 8;
+            }
+            printf("\t\t\t\tdefault: %d %s%d", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
+          } else if (instructions[opcode_index].key == wide) {
               uint8_t opcode = cf->methods[i].attributes[j].att_info.Code.code[++k];
               uint16_t indexbyte1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
               uint16_t indexbyte2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
@@ -382,9 +414,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint16_t result = (operand1 << 8) | operand2;
             if (instructions[opcode_index].key == jsr || instructions[opcode_index].key == inst_goto || (instructions[opcode_index].key >= ifeq && instructions[opcode_index].key <= if_acmpne) || (instructions[opcode_index].key == ifnull) || (instructions[opcode_index].key == ifnonnull)) {
-              printf("%d ", pc + (int16_t)result);
-              if ((int16_t)result > 0) printf("+");
-              printf("%d", (int16_t)result);
+              printf("%d %s%d", pc + (int16_t)result, (int16_t)result>0 ? "+" : "", (int16_t)result);
             } else if (instructions[opcode_index].key == iinc) {
               printf("%d by %d", operand1, (int16_t)operand2);
             } else if (instructions[opcode_index].reference) {
@@ -405,10 +435,10 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
               printf("#%u ", result);
               goHorse = 1;
               cpIndexReader(cf->constant_pool, result);
-              printf("%d", operand3);
+              printf("%u", operand3);
             } else {
-              printf("%d ", result);
-              printf("%d", operand3);
+              printf("%u ", result);
+              printf("%u", operand3);
             }
           } else if (instructions[opcode_index].arguments == 4) {
             uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
@@ -417,9 +447,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             uint32_t result = (operand1 << 24) | (operand2 << 16) | (operand3 << 8) | operand4;
             if (instructions[opcode_index].key == jsr_w || instructions[opcode_index].key == goto_w) {
-              printf("%d ", pc + (int32_t)result);
-              if ((int32_t)result > 0) printf("+");
-              printf("%d", (int32_t)result);
+              printf("%d %s%d", pc + (int32_t)result, (int32_t)result>0 ? "+" : "", (int32_t)result);
             } else if (instructions[opcode_index].key == invokedynamic) {
               result = (operand1 << 8) | operand2;
               printf("#%u ", result);
