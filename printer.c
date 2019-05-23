@@ -323,39 +323,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
           printf("\t\t\t%d", pc);
           printf("\t%s ", instructions[opcode_index].name);
-          if (instructions[opcode_index].arguments == 4) {
-            uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t result = (operand1 << 24) | (operand2 << 16)| (operand3 << 8) | operand4;
-            if (instructions[opcode_index].key == goto_w || instructions[opcode_index].key == jsr_w) {
-              printf("%d ", pc + (int32_t)result);
-              if ((int32_t)result > 0) printf("+");
-              printf("%d", (int32_t)result);
-            } else {
-              printf("%d", result);
-            }
-          } else if (instructions[opcode_index].arguments == 2) {
-            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint16_t result = (operand1 << 8) | operand2;
-            if (instructions[opcode_index].key == inst_goto){
-              printf("%d ", pc + (int16_t)result);
-              if ((int16_t)result > 0) printf("+");
-              printf("%d", (int16_t)result);
-            } else if (instructions[opcode_index].key == iinc) {
-              printf("%d by %d", operand1, operand2);
-            } else if ((instructions[opcode_index].key >= ifeq && instructions[opcode_index].key <= if_acmpne) || (instructions[opcode_index].key == ifnull) || (instructions[opcode_index].key == ifnonnull)) {
-              printf("%d +%d", pc + result, result);
-            } else if (instructions[opcode_index].reference) {
-              printf("#%d ", result);
-              goHorse = 1;
-              cpIndexReader(cf->constant_pool, result);
-            } else {
-              printf("%d", result);
-            }
-          } else if (instructions[opcode_index].arguments == 1) {
+          if (instructions[opcode_index].arguments == 1) {
             uint8_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
             if (instructions[opcode_index].key == bipush) {
               printf("%d", (int8_t)operand1);
@@ -396,7 +364,62 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             } else {
               printf("%d", operand1);
             }
-          }
+          } else if (instructions[opcode_index].arguments == 2) {
+            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t result = (operand1 << 8) | operand2;
+            if (instructions[opcode_index].key == jsr || instructions[opcode_index].key == inst_goto || (instructions[opcode_index].key >= ifeq && instructions[opcode_index].key <= if_acmpne) || (instructions[opcode_index].key == ifnull) || (instructions[opcode_index].key == ifnonnull)) {
+              printf("%d ", pc + (int16_t)result);
+              if ((int16_t)result > 0) printf("+");
+              printf("%d", (int16_t)result);
+            } else if (instructions[opcode_index].key == iinc) {
+              printf("%d by %d", operand1, (int16_t)operand2);
+            } else if (instructions[opcode_index].reference) {
+              printf("#%d ", result);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, result);
+            } else {
+              printf("%d", result);
+            }
+          } else if (instructions[opcode_index].arguments == 3) {
+            uint16_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint16_t result = (operand1 << 8) | operand2;
+            if (instructions[opcode_index].key == multianewarray) {
+              printf("#%d ", result);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, result);
+              printf("%d", operand3);
+            } else {
+              printf("%d ", result);
+              printf("%d", operand3);
+            }
+          } else if (instructions[opcode_index].arguments == 4) {
+            uint32_t operand1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t operand4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t result = (operand1 << 24) | (operand2 << 16) | (operand3 << 8) | operand4;
+            if (instructions[opcode_index].key == jsr_w || instructions[opcode_index].key == goto_w) {
+              printf("%d ", pc + (int32_t)result);
+              if ((int32_t)result > 0) printf("+");
+              printf("%d", (int32_t)result);
+            } else if (instructions[opcode_index].key == invokedynamic) {
+              result = (operand1 << 8) | operand2;
+              printf("#%d ", result);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, result);
+            } else if (instructions[opcode_index].key == invokeinterface) {
+              result = (operand1 << 8) | operand2;
+              printf("#%d ", result);
+              goHorse = 1;
+              cpIndexReader(cf->constant_pool, result);
+              printf("%d", operand3);
+            }else {
+              printf("%d", result);
+            }
+          } 
           pc += 1 + instructions[opcode_index].arguments;
           printf("\n");
         }
