@@ -33,7 +33,7 @@ Essas instruções farão com que você tenha uma cópia deste projeto em sua m�
 
 ### Compilando e Executando
 
-Como compilar `gcc -o main main.c reader.c printer.c -Wall -std=c99 -ggdb3`:
+Como compilar `gcc -o main main.c reader.c printer.c instructions.c freemem.c -Wall -std=c99 -ggdb3`:
 
 ```
 
