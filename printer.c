@@ -323,31 +323,44 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           uint8_t opcode_index = cf->methods[i].attributes[j].att_info.Code.code[k];
           printf("\t\t\t%d", pc);
           printf("\t%s ", instructions[opcode_index].name);
-          if (instructions[opcode_index].key == lookupswitch) {
+          if (instructions[opcode_index].key == tableswitch) {
             // calcula padding para que proximo endereço seja multiplo de 4 bytes
             uint32_t bytes_padding = (4 - (opcode_index % 4)) % 4; // ultimo módulo garante que que resultado é de 0-3
             instructions[opcode_index].arguments += bytes_padding;
-            uint32_t defaultbyte1 = cf->methods[i].attributes[j].att_info.Code.code[k += bytes_padding];
-            uint32_t defaultbyte2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t defaultbyte3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t defaultbyte4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            int32_t defaultbyte = (defaultbyte1 << 24) | (defaultbyte2 << 16) | (defaultbyte3 << 8) | defaultbyte4;
-
-            uint32_t npairs1 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t npairs2 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t npairs3 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            uint32_t npairs4 = cf->methods[i].attributes[j].att_info.Code.code[++k];
-            int32_t npairs = (npairs1 << 24) | (npairs2 << 16) | (npairs3 << 8) | npairs4;
-            printf("\n\t\t\t\t%d\n", npairs);
-
+            uint32_t defaultbyte = cf->methods[i].attributes[j].att_info.Code.code[k += bytes_padding];
+            for (int w = 0; w < 4; w++) defaultbyte = (defaultbyte << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t low = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            for (int w = 0; w < 4; w++) low = (low << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t high = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            for (int w = 0; w < 4; w++) high = (high << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            instructions[opcode_index].arguments += 12;
+            printf("%d to %d\n", (int32_t)low, (int32_t)high);
+            
+            int32_t jump_offsets = (int32_t)high - (int32_t)low + 1;
+            uint32_t offset;
+            for (int w = 0; w < jump_offsets; w++) {
+              offset = cf->methods[i].attributes[j].att_info.Code.code[++k];
+              for (int y = 0; y < 4; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+              printf("\t\t\t\t%d %s%d\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
+              instructions[opcode_index].arguments += 4;
+            }
+            printf("\t\t\t\tdefault: %d %s%d", pc + (int32_t)defaultbyte, (int32_t)defaultbyte>0 ? "+" : "", (int32_t)defaultbyte);
+          } else if (instructions[opcode_index].key == lookupswitch) {
+            uint32_t bytes_padding = (4 - (opcode_index % 4)) % 4;
+            instructions[opcode_index].arguments += bytes_padding;
+            uint32_t defaultbyte = cf->methods[i].attributes[j].att_info.Code.code[k += bytes_padding];
+            for (int w = 0; w < 4; w++) defaultbyte = (defaultbyte << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
+            uint32_t npairs = cf->methods[i].attributes[j].att_info.Code.code[++k];
+            for (int w = 0; w < 4; w++) npairs = (npairs << 8) | cf->methods[i].attributes[j].att_info.Code.code[++k];
             instructions[opcode_index].arguments += 8;
+            printf("%d:\n", (int32_t)npairs);
 
             uint32_t match, offset;
             for (int w = 0; w < npairs; w++) {
               match = cf->methods[i].attributes[j].att_info.Code.code[++k];
               // pega os 4 proximos bytes, alinhando eles
               for (int y = 0; y < 4; y++) match = (match << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
-              printf("\t\t\t\t\t%d: ",(int32_t)match);
+              printf("\t\t\t\t%d: ",(int32_t)match);
               offset = cf->methods[i].attributes[j].att_info.Code.code[++k];
               for (int y = 0; y < 4; y++) offset = (offset << 4) | cf->methods[i].attributes[j].att_info.Code.code[++k];
               printf("%d %s%d\n", pc + (int32_t)offset, (int32_t)offset>0 ? "+" : "", (int32_t)offset); //trivial
