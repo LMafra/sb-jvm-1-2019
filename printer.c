@@ -519,6 +519,18 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
 							printf("\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc);
 							printf("\t\t%d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number);
 						}
+					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LocalVariableTable")) {
+            printf("\t\t\tlocal_variable_table_length: %u\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_length);
+            printf("\t\t\tLocal Variable Table:\n");
+            printf("\t\t\t\tnr.\tstart_pc\tlength\tname_index\tdescriptor_index\tindex\n");
+						for(int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_length; w++) {
+              printf("\t\t\t\t[%d] ", w);
+							printf("\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].start_pc);
+							printf("\t\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].length);
+							printf("\t\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].name_index);
+							printf("\t\t%d", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].descriptor_index);
+							printf("\t\t%d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].index);
+						}
 					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {  
             printf("\t\t\tnumber_of_entries: %d\n", cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries);
             stack_map_frame *smt = cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries;

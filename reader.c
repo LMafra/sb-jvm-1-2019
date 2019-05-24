@@ -199,6 +199,16 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].start_pc = read2bytes(file);
 							mi_ai[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array[w].line_number = read2bytes(file);
 						}
+					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LocalVariableTable")) {
+						mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_length = read2bytes(file);
+						mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array = (local_variable_table*)calloc(mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_length, sizeof(local_variable_table));
+						for(int w = 0; w < mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_length; w++) {
+							mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].start_pc = read2bytes(file);
+							mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].length = read2bytes(file);
+							mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].name_index = read2bytes(file);
+							mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].descriptor_index = read2bytes(file);
+							mi_ai[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array[w].index = read2bytes(file);
+						}
 					} else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
             mi_ai[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries = read2bytes(file);
             mi_ai[j].att_info.Code.attributes[k].att_info.StackMapTable.entries = (stack_map_frame *)calloc(mi_ai[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries, sizeof(stack_map_frame));
