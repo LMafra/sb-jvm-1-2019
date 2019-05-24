@@ -539,7 +539,7 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
             for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
               printf("\t\t\t[%d] ", w);
               if (smt[w].frame_type < 64) {
-                printf("SAME (%d)", smt[w].frame_type);
+                printf("SAME (%d)\n", smt[w].frame_type);
               } else if (smt[w].frame_type >= 64 && smt[w].frame_type <= 127) {
                 printf("SAME LOCALS (%d)\n", smt[w].frame_type);
                 verification_type_info *vti = smt[w].map_frame_type.same_locals_1_stack_item_frame.stack;
