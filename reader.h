@@ -224,7 +224,7 @@ typedef struct StackMapFrame{
         uint16_t offset_delta;
         verification_type_info *locals; /* frame_type - 251 */
       } append_frame;
-      struct MapFrameTypeStruct {
+      struct FullFrame {
         /* 255 */
         uint16_t offset_delta;
         uint16_t number_of_locals;
