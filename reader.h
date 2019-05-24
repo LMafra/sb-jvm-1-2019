@@ -140,6 +140,13 @@ typedef struct LineNumberTable {
   uint16_t line_number;
 } line_number_table;
 
+typedef struct InnerClasses{
+  uint16_t inner_class_info_index;
+  uint16_t outer_class_info_index;
+  uint16_t inner_name_index;
+  uint16_t inner_class_access_flags;
+}inner_classes;
+
 typedef struct BootstrapMethods {
   uint16_t bootstrap_method_ref;
   uint16_t num_bootstrap_arguments;
@@ -255,7 +262,11 @@ typedef struct attribute_info {
     struct LineNumberTable{
       uint16_t line_number_table_length;
       line_number_table *line_number_table_array;
-    } LineNumberTable; 
+    } LineNumberTable;
+    struct InnerClasses{
+      uint16_t number_of_classes;
+      inner_classes *classes_array;
+    } InnerClasses;
     struct BootstrapMethods{
       uint16_t bootstrap_methods_length;
       bootstrap_methods* bootstrap_methods_array;
@@ -264,7 +275,7 @@ typedef struct attribute_info {
       uint16_t number_of_entries;
       stack_map_frame *entries;
     } StackMapTable;
-  } att_info;      /*!< Detailed description after the member */
+  } att_info;     /*!< Detailed description after the member */
 } attribute_info;
 
 /*! Detailed description after the member \brief ALO */
