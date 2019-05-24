@@ -128,19 +128,27 @@ typedef struct CPInfo {
   } info; /*!< \brief Tipo de dado retornado pela union*/
 } cp_info;
 
-typedef struct ExceptionTable{
+typedef struct ExceptionTableStruct {
   uint16_t start_pc;
   uint16_t end_pc;
   uint16_t handler_pc;
   uint16_t catch_type;
 } exception_table;
 
-typedef struct LineNumberTable {
+typedef struct LineNumberTableStruct {
   uint16_t start_pc;
   uint16_t line_number;
 } line_number_table;
 
-typedef struct BootstrapMethods {
+typedef struct LocalVariableTableStruct {
+  uint16_t start_pc;
+  uint16_t length;
+  uint16_t name_index;
+  uint16_t descriptor_index;
+  uint16_t index;
+} local_variable_table;
+
+typedef struct BootstrapMethodsStruct {
   uint16_t bootstrap_method_ref;
   uint16_t num_bootstrap_arguments;
   uint16_t* bootstrap_arguments;
@@ -216,7 +224,7 @@ typedef struct StackMapFrame{
         uint16_t offset_delta;
         verification_type_info *locals; /* frame_type - 251 */
       } append_frame;
-      struct MapFrameType{
+      struct MapFrameTypeStruct {
         /* 255 */
         uint16_t offset_delta;
         uint16_t number_of_locals;
@@ -255,7 +263,11 @@ typedef struct attribute_info {
     struct LineNumberTable{
       uint16_t line_number_table_length;
       line_number_table *line_number_table_array;
-    } LineNumberTable; 
+    } LineNumberTable;
+    struct LocalVariableTable{
+      uint16_t local_variable_table_length;
+      local_variable_table *local_variable_table_array;
+    } LocalVariableTable;
     struct BootstrapMethods{
       uint16_t bootstrap_methods_length;
       bootstrap_methods* bootstrap_methods_array;
