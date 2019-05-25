@@ -147,10 +147,8 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
       uint16_t cp_index = fi_ai[j].attribute_name_index - 1;
       if (strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "ConstantValue")) {
         fi_ai[j].att_info.ConstantValue.constantvalue_index = read1byte(file);
-      } else {
-				for (int w = 0; w < fi_ai[j].attribute_length; w++){
-					read1byte(file);
-				}
+      } else { // le o espaço de um atributo não implementado
+				for (int w = 0; w < fi_ai[j].attribute_length; w++) read1byte(file);
 			}
     }
   }
@@ -279,10 +277,8 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
                 }
               }
             }
-          } else {
-						for (int w = 0; w < mi_ai[j].att_info.Code.attributes[k].attribute_length; w++){
-							read1byte(file);
-						}
+          } else { // le o espaço de um atributo não implementado
+						for (int w = 0; w < mi_ai[j].att_info.Code.attributes[k].attribute_length; w++) read1byte(file);
 					}
 				}
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Exceptions")) {
@@ -291,10 +287,8 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
         for (int k = 0; k < mi_ai[j].att_info.Exceptions.number_of_exceptions; k++) {
           mi_ai[j].att_info.Exceptions.exception_index_table[k] = read2bytes(file);
         }
-      } else {
-				for (int w = 0; w < mi_ai[j].attribute_length; w++){
-					read1byte(file);
-				}
+      } else { // le o espaço de um atributo não implementado
+				for (int w = 0; w < mi_ai[j].attribute_length; w++) read1byte(file);
 			}
     }
   }
@@ -321,6 +315,8 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 			}
 		} else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
       ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
+    } else { // le o espaço de um atributo não implementado
+      for (int w = 0; w < ai[i].attribute_length; w++) read1byte(file);
     }
   }
   

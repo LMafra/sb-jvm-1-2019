@@ -280,9 +280,9 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         cpIndexReader(cf->constant_pool, cf->fields[i].attributes[j].att_info.ConstantValue.constantvalue_index);
         printf("\n");
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-        printf("\t\tDeprecated\n");
+        printf("\t\tDEPRECATED\n");
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Synthetic")) {
-        printf("\t\tSynthetic\n");
+        printf("\t\tSYNTHETIC\n");
       }
     }
   }
@@ -631,9 +631,9 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
           printf("\n");
         }
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-        printf("\t\tDeprecated\n");
+        printf("\t\tDEPRECATED\n");
       } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Synthetic")) {
-        printf("\t\tSynthetic\n");
+        printf("\t\tSYNTHETIC\n");
       }
     }
   }
@@ -651,7 +651,9 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
     printf("\tattribute_length: %u\n", cf->attributes[i].attribute_length);
     uint16_t cp_index = cf->attributes[i].attribute_name_index - 1;
     if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Deprecated")) {
-      printf("\t\tDeprecated\n");
+      printf("\t\tDEPRECATED\n");
+    } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "Synthetic")) {
+      printf("\t\tSYNTHETIC\n");
     } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "BootstrapMethods")) {
       printf("\t\tbootstrap_methods_length: %u\n", cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length);
       printf("\t\tBootstrap Methods:\n");
