@@ -311,6 +311,16 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 			}
 		} else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "SourceFile")) {
       ai[i].att_info.SourceFile.sourcefile_index = read2bytes(file);
+    } else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "InnerClasses")) {
+      ai[i].att_info.InnerClasses.number_of_classes = read2bytes(file);
+      ai[i].att_info.InnerClasses.classes_array = (inner_classes *)calloc(ai[i].att_info.InnerClasses.number_of_classes, sizeof(inner_classes));
+      inner_classes *ai_ic = ai[i].att_info.InnerClasses.classes_array;
+      for(int j = 0; j < ai[i].att_info.InnerClasses.number_of_classes; j++){
+        ai_ic[j].inner_class_info_index = read2bytes(file);
+        ai_ic[j].outer_class_info_index = read2bytes(file);
+        ai_ic[j].inner_name_index = read2bytes(file);
+        ai_ic[j].inner_class_access_flags = read2bytes(file);
+      }
     }
   }
   

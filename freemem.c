@@ -67,6 +67,9 @@ void freeMemory(classFile* cf) {
 			}
     free(cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array);
 		}
+    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "InnerClasses")) {
+      free(cf->attributes[i].att_info.InnerClasses.classes_array);
+    }
   }
   free(cf->attributes);
 
