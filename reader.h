@@ -1,4 +1,4 @@
- /********************************************//**
+/********************************************//**
  * Universidade de Brasilia
  *
  * Bruno Sanguinetti 18/0046063 \n
@@ -148,6 +148,14 @@ typedef struct LocalVariableTableStruct {
   uint16_t index;
 } local_variable_table;
 
+
+typedef struct InnerClassesStruct {
+  uint16_t inner_class_info_index;
+  uint16_t outer_class_info_index;
+  uint16_t inner_name_index;
+  uint16_t inner_class_access_flags;
+} inner_classes;
+
 typedef struct BootstrapMethodsStruct {
   uint16_t bootstrap_method_ref;
   uint16_t num_bootstrap_arguments;
@@ -268,6 +276,10 @@ typedef struct attribute_info {
       uint16_t local_variable_table_length;
       local_variable_table *local_variable_table_array;
     } LocalVariableTable;
+    struct InnerClasses{
+      uint16_t number_of_classes;
+      inner_classes *classes_array;
+    } InnerClasses;
     struct BootstrapMethods{
       uint16_t bootstrap_methods_length;
       bootstrap_methods* bootstrap_methods_array;
@@ -276,7 +288,7 @@ typedef struct attribute_info {
       uint16_t number_of_entries;
       stack_map_frame *entries;
     } StackMapTable;
-  } att_info;      /*!< Detailed description after the member */
+  } att_info;     /*!< Detailed description after the member */
 } attribute_info;
 
 /*! Detailed description after the member \brief ALO */
