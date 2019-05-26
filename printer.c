@@ -679,6 +679,17 @@ void classPrinter( classFile* cf) { /*! Funcao responavel por ler o arquivo clas
         printf("\t\t\touter_class_info_index: %d\n", cf->attributes[i].att_info.InnerClasses.classes_array[j].outer_class_info_index);
         printf("\t\t\tinner_name_index: %d\n", cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_name_index);
         printf("\t\t\tinner_class_access_flags: %d\n", cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags);
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_PUBLIC) printf("[public] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_PRIVATE) printf("[private] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_PROTECTED) printf("[protected] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_STATIC) printf("[static] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_FINAL) printf("[final] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_INTERFACE) printf("[interface] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_ABSTRACT) printf("[abstract] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_TRANSIENT) printf("[transient] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_SYNTHETIC) printf("[synthetic] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_ANNOTATION) printf("[annotation] ");
+        if (cf->attributes[i].att_info.InnerClasses.classes_array[j].inner_class_access_flags & ACC_ENUM) printf("[enum] ");
         printf("\n");
 			}
     }
