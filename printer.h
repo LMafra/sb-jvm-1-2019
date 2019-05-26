@@ -34,6 +34,9 @@
 #define ACC_TRANSIENT   0x0080  /*!< \brief Declaracao: classe abstrata */
 #define ACC_SYNTHETIC   0x1000  /*!< \brief Declaracao: synthetic */  
 #define ACC_ENUM        0x4000  /*!< \brief Declaracao: enum*/
+#define ACC_INTERFACE   0X0200  /*!< \brief Declaracao: interface*/
+#define ACC_ABSTRACT    0X0400  /*!< \brief Declaracao: abstato*/
+#define ACC_ANNOTATION  0X2000  /*!< \brief Declaracao: anotação*/
 
 enum ArrayTypeCodes{
   T_BOOLEAN = 4,
