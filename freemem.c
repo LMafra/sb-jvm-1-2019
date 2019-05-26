@@ -34,6 +34,8 @@ void freeMemory(classFile* cf) {
 					uint16_t cp_indexao = cf->methods[i].attributes[j].att_info.Code.attributes[k].attribute_name_index - 1;
 					if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LineNumberTable")) {
 						free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LineNumberTable.line_number_table_array);
+          } else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "LocalVariableTable")) {
+            free(cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.LocalVariableTable.local_variable_table_array);
           } else if (!strcmp((char*)cf->constant_pool[cp_indexao].info.Utf8.bytes, "StackMapTable")) {
             for (int w = 0; w < cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.number_of_entries; w++) {
               if (cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type >= 64 && cf->methods[i].attributes[j].att_info.Code.attributes[k].att_info.StackMapTable.entries[w].frame_type <= 127) {
@@ -65,9 +67,8 @@ void freeMemory(classFile* cf) {
 			for (int j = 0; j < cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_length; j++){
 				free(cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array[j].bootstrap_arguments);
 			}
-    free(cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array);
-		}
-    if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "InnerClasses")) {
+      free(cf->attributes[i].att_info.BootstrapMethods.bootstrap_methods_array);
+		} else if (!strcmp((char*)cf->constant_pool[cp_index].info.Utf8.bytes, "InnerClasses")) {
       free(cf->attributes[i].att_info.InnerClasses.classes_array);
     }
   }
