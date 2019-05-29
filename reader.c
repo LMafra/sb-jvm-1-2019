@@ -43,6 +43,11 @@ carregados em memoria por alocamento da estrutura abstrata cf. */
 	cf->minor_version = read2bytes(file);
 	cf->major_version = read2bytes(file);
 
+  if(cf->major_version > 52) {
+    printf(".class with invalid version. Terminated.");
+    exit(0);
+  }
+
 	/* constant pool */
 	cf->constant_pool_count = read2bytes(file);
 	cf->constant_pool = (cp_info* ) calloc((cf->constant_pool_count-1), sizeof(cp_info));
