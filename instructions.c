@@ -20,6 +20,13 @@
 opcode instructions[300];
 
 void initializeInstructions() {
+
+  /**
+   * @brief Não faz nada, só incrementa pc.
+   * param 
+   * @return void
+   */
+
   strcpy(instructions[nop].name, "nop");
   instructions[nop].key = nop;
   instructions[nop].arguments = 0;
