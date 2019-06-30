@@ -30,6 +30,20 @@ AreaMetodos areaMetodos;
 
 int primeira = FALSE;
 
+void validaNomeClasseArquivo(ClassFile* classFileLido, char* caminhoClasse) {
+	if(strcmp(caminhoClasse, retornaNomeClass(classFileLido)) != 0) {
+		printf("Nome da classe e o nome do arquivo sao diferentes\n");
+		exit(0);
+	}
+}
+
+void validaVersaoJava(ClassFile* classFileLido) {
+	if(classFileLido->majorVersion > 52) {
+		printf("A implementacao so suporta ate Java 8\n");
+		exit(0);
+	}	
+}
+
 ///
 /// Carrega o arquivo .class na memoria e adiciona a classe na area de metodos.
 ///
@@ -60,6 +74,9 @@ int32_t carregaClasseParaMemoria(char* caminhoClasse) {
   }
 
   areaMetodos.arrayClasses[areaMetodos.numClasses - 1] = inicializaLeitor(caminhoDestino);
+
+  validaVersaoJava(areaMetodos.arrayClasses[areaMetodos.numClasses - 1]);
+  validaNomeClasseArquivo(areaMetodos.arrayClasses[areaMetodos.numClasses - 1], caminhoClasse);
 
   if(areaMetodos.arrayClasses[areaMetodos.numClasses -1] == NULL){
     printf("Erro ao carregar classe!\n");
