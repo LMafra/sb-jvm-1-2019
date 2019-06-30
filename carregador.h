@@ -30,5 +30,8 @@ void carregaClasse(char*);
 char* retornaNomeClass(ClassFile*);
 ClassFile* buscaClassPorIndice(int);
 char* retornaNome(ClassFile*, uint16_t);
+void validaClassFile(ClassFile*, char*);
+void validaVersaoJava(ClassFile*);
+void validaNomeClasseArquivo(ClassFile*, char*);
 
 #endif
