@@ -40,27 +40,30 @@
 void printaClassFile(ClassFile* classFile) {
 
     // GENERAL INFORMATION
-    printTopo();
-    printBlank();
-    printf("\t*\t\tGENERAL INFORMATION\t\t*\n");
-    printBlank();
-    printBase();
-    printf("\t\tMagic:                 0x%08X\n", classFile->magic);
-    printf("\t\tMinor Version:         %d\n", classFile->minorVersion);
-    printf("\t\tMajor Version:         ");
+    // printTopo();
+    // printBlank();
+    // printf("\t*\t\tGENERAL INFORMATION\t\t*\n");
+    printf("CLASS FILE STRUCTURE\n\n");
+    // printBlank();
+    // printBase();
+    /* General Information */
+    printf("CAFEBABE: 0x%0x \n", classFile->magic);
+    // printf("Magic version: 0x%08X\n", classFile->magic);
+    printf("Minor Version: %d\n", classFile->minorVersion);
+    printf("Major Version: ");
     imprimeMajorVersion(classFile->majorVersion);
-    printf("\t\tConstant Pool Count:   %d\n", classFile->constantPoolCount);
-    printf("\t\tAccess Flags:          0x%04X\n", classFile->accessFlags);
-    printf("\t\tThis Class:            cp_info_#%d  ", classFile->thisClass);
+    printf("Constant Pool Count: %d\n", classFile->constantPoolCount);
+    printf("Access Flags: 0x%04X\n", classFile->accessFlags);
+    printf("This Class: cp_info_#%d  ", classFile->thisClass);
     imprimeStringPool(classFile->constantPool, classFile->thisClass-1);
     printf("\n");
-    printf("\t\tSuper Class:           cp_info_#%d  ", classFile->superClass);
+    printf("Super Class: cp_info_#%d  ", classFile->superClass);
     imprimeStringPool(classFile->constantPool, classFile->superClass-1);
     printf("\n");
-    printf("\t\tInterfaces Count:      %d\n", classFile->interfacesCount);
-    printf("\t\tFields Countd:         %d\n", classFile->fieldsCount);
-    printf("\t\tMethods Count:         %d\n", classFile->methodsCount);
-    printf("\t\tAttributes Count:      %d\n", classFile->attributesCount);
+    printf("Interfaces Count: %d\n", classFile->interfacesCount);
+    printf("Fields Countd: %d\n", classFile->fieldsCount);
+    printf("Methods Count: %d\n", classFile->methodsCount);
+    printf("Attributes Count: %d\n", classFile->attributesCount);
 
     // CONSTANT POOL
     printTopo();
@@ -491,52 +494,52 @@ void printAccessFlag(uint16_t accessFlags){
 
     switch(accessFlags){
         case 0x0001:
-            printf("Public\n");
+            printf("[Public]\n");
         break;
         case 0x0009:
-            printf("Public Static\n");
+            printf("[Public Static]\n");
         break;
         case 0x0041:
-            printf("Public Volatile\n");
+            printf("[Public Volatile]\n");
         break;
         case 0x00019:
-            printf("Public Static Final\n");
+            printf("[Public Static Final]\n");
         break;
         case 0x0002:
-            printf("Private\n");
+            printf("[Private]\n");
         break;
         case 0x000A:
-            printf("Private Static\n");
+            printf("[Private Static]\n");
         break;
         case 0x0042:
-            printf("Private Volatile\n");
+            printf("[Private Volatile]\n");
         break;
         case 0x0001A:
-            printf("Private Static Final\n");
+            printf("[Private Static Final]\n");
         break;
         case 0x0004:
-            printf("Protected\n");
+            printf("[Protected]\n");
         break;
         case 0x000C:
-            printf("Protected Static\n");
+            printf("[Protected Static]\n");
         break;
         case 0x0044:
-            printf("Protected Volatile\n");
+            printf("[Protected Volatile]\n");
         break;
         case 0x0001C:
-            printf("Protected Static Final\n");
+            printf("[Protected Static Final]\n");
         break;
         case 0x0008:
-            printf("Static\n");
+            printf("[Static]\n");
         break;
         case 0x0010:
-            printf("Final\n");
+            printf("[Final]\n");
         break;
         case 0x0040:
-            printf("Volatile\n");
+            printf("[Volatile]\n");
         break;
         case 0x0080:
-            printf("Transient\n");
+            printf("[Transient]\n");
         break;
 
     }
@@ -875,9 +878,6 @@ void imprimeMajorVersion(uint16_t minor){
             break;
         case 52:
             printf("52 [1.8]\n");
-            break;
-        case 53:
-            printf("53 [1.9]\n");
             break;
         default:
             printf("%u\n", minor);

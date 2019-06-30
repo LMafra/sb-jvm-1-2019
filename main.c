@@ -59,10 +59,11 @@ int main(int argc, char* argv[]) {
   leParamsEntrada(argc, argv);
   carregaClasseParaMemoria("java/lang/Object");
   carregaClasseParaMemoria(caminhoArquivo);
+  exibeArrayClasses();
   preparaMetodoMain();
   empilhaMetodo(metodoMain, classeMain);
   executaFrameCorrente();
-  exibeArrayClasses();
+  // exibeArrayClasses();
   free(caminhoArquivo);
   return 0;
 }
