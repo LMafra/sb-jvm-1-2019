@@ -3,15 +3,14 @@
 ///		@class metodo.c "metodo.c"
 ///		@headerfile carregador.h "carregador.h"
 ///
-///		@date 28/06/17.
-///		@copyright Copyright © 2017 GrupoSB. All rights reserved.
+///		@date 28/06/19.
 ///
 ///		@authors
-///		Allisson Barros         12/0055619\n
-///		Daniel Luz              13/0007714\n
-///		Luiz Fernando Vieira    13/0013757\n
-///		Mariana Pannunzio       12/0018276\n
-///		Mateus Denucci          12/0053080
+///	    Bruno Sanguinetti 18/0046063 \n
+///	    Gabriel Vasconcelos 16/0120781 \n
+///	    Leonardo de Almeida 15/0135491 \n
+///	    Lucas Mafra 12/0126443 \n
+///	    Wladimir Gramacho 15/0058718 \n
 ///
 ///		@brief
 ///		Define as funcoes que implementam a execucao de um 
