@@ -29,6 +29,14 @@ AreaMetodos areaMetodos;
 
 int primeira = FALSE;
 
+/**
+ * Valida o nome do arquivo e o nome da classe.
+ * A execucao da JVM so deve continuar se forem iguais.
+ * 
+ * @param ClassFile* contendo o .class lido
+ * @param char* contendo o nome do arquivo .class
+ * @return void
+ */
 void validaNomeClasseArquivo(ClassFile* classFileLido, char* caminhoClasse) {
 	if(strcmp(caminhoClasse, retornaNomeClass(classFileLido)) != 0) {
 		printf("Nome da classe e o nome do arquivo sao diferentes\n");
@@ -36,11 +44,32 @@ void validaNomeClasseArquivo(ClassFile* classFileLido, char* caminhoClasse) {
 	}
 }
 
+/**
+ * Valida a versao do java lido no arquivo .class
+ * Essa implementacao da JVM so suporta ate Java 8
+ * @param ClassFile* contendo o nome do arquivo .class
+ * @return void
+ */
 void validaVersaoJava(ClassFile* classFileLido) {
 	if(classFileLido->majorVersion > 52) {
 		printf("A implementacao so suporta ate Java 8\n");
 		exit(0);
 	}	
+}
+
+/**
+ * Funcao que verifica se o .class carregado e ou nao a classe Object
+ * Se for, skipa validacao, se nao, valida chama as funcoes que validam
+ * consistencia da versao do Java e nome da classe no arquivo
+  * @param ClassFile* contendo o .class lido
+ * @param char* contendo o nome do arquivo .class
+ * @return void
+ */
+void validaClassFile(ClassFile* classFileLido, char* caminhoClasse) {
+	if(strcmp(caminhoClasse, "java/lang/Object") != 0) {
+		validaVersaoJava(classFileLido);
+		validaNomeClasseArquivo(classFileLido, caminhoClasse);
+	}
 }
 
 ///
@@ -74,8 +103,7 @@ int32_t carregaClasseParaMemoria(char* caminhoClasse) {
 
   areaMetodos.arrayClasses[areaMetodos.numClasses - 1] = inicializaLeitor(caminhoDestino);
 
-  validaVersaoJava(areaMetodos.arrayClasses[areaMetodos.numClasses - 1]);
-  validaNomeClasseArquivo(areaMetodos.arrayClasses[areaMetodos.numClasses - 1], caminhoClasse);
+  validaClassFile(areaMetodos.arrayClasses[areaMetodos.numClasses - 1], caminhoClasse);
 
   if(areaMetodos.arrayClasses[areaMetodos.numClasses -1] == NULL){
     printf("Erro ao carregar classe!\n");
