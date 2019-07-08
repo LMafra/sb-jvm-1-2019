@@ -134,16 +134,16 @@ void inicializaPrimeiraVez() {
 char* retornaNomeClass(ClassFile* classe){
 	uint16_t thisClass = classe->thisClass;
 	uint16_t nameIndex = (classe->constantPool[thisClass - 1]).info.Class.nameIndex;
-	uint16_t indice = classe->constantPool[nameIndex - 1].info.Utf8.length;
-	char* retorno = (char*) malloc(indice + 1);
+	uint16_t tamanhoNome = classe->constantPool[nameIndex - 1].info.Utf8.length;
+	char* nomeClass = (char*) malloc(tamanhoNome + 1);
 
   int i;
-	for (i = 0; i < indice; i++) {
-		retorno[i] = (char) (classe->constantPool[nameIndex - 1]).info.Utf8.bytes[i];
+	for (i = 0; i < tamanhoNome; i++) {
+		nomeClass[i] = (char) (classe->constantPool[nameIndex - 1]).info.Utf8.bytes[i];
 	}
 
-	retorno[i] = '\0';
-	return retorno;
+	nomeClass[i] = '\0';
+	return nomeClass;
 }
 
 ///
