@@ -42,7 +42,7 @@ MethodInfo* metodoMain;
 ClassFile* classeMain;
 char* caminhoArquivo;
 int exibeClassFile;
-int printaParaArquivo;
+// int printaParaArquivo;
 
 void leParamsEntrada();
 void preparaMetodoMain();
@@ -63,7 +63,6 @@ int main(int argc, char* argv[]) {
   preparaMetodoMain();
   empilhaMetodo(metodoMain, classeMain);
   executaFrameCorrente();
-  // exibeArrayClasses();
   free(caminhoArquivo);
   return 0;
 }
@@ -85,10 +84,11 @@ void leParamsEntrada(int argc, char* argv[]) {
     strcpy(caminhoArquivo, argv[1]);
     if(*argv[2] == '1') {
       exibeClassFile = 1;
-    } else if(*argv[2] == '2') {
-      exibeClassFile = 1;
-      printaParaArquivo = 1;
     }
+    // else if(*argv[2] == '2') {
+    //   exibeClassFile = 1;
+    //   // printaParaArquivo = 1;
+    // }
   }
 }
 
@@ -117,14 +117,14 @@ void preparaMetodoMain() {
 void exibeArrayClasses() {
   if (exibeClassFile) {
     FILE *saved;
-    if (printaParaArquivo) {
-      saved = freopen("log.txt", "w+", stdout);
-    }
+    // if (printaParaArquivo) {
+      // saved = freopen("log.txt", "w+", stdout);
+    // }
     for (int i = 1; i < areaMetodos.numClasses; i++) {
       printaClassFile(areaMetodos.arrayClasses[i]);
     }
-    if (printaParaArquivo) {
-      fclose(saved);
-    }
+    // if (printaParaArquivo) {
+      // fclose(saved);
+    // }
   }
 }

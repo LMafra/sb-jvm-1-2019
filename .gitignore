@@ -2,3 +2,4 @@ main
 *.o
 .vscode/
 .idea/
+*.txt
