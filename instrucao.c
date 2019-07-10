@@ -696,7 +696,7 @@ void iload() {
   char* tipo = "I";
   tipoGlobal = tipo;
 	int32_t indice = (int32_t) frameCorrente->code[frameCorrente->pc + 1];
-	int32_t argumento = frameCorrente->fields[indice];
+	int32_t argumento = frameCorrente->localVariables[indice];
 	pushOp(argumento);
 	atualizaPc();
 }
@@ -716,8 +716,8 @@ void lload() {
   int32_t parteAlta;
   int32_t parteBaixa;
   indice = frameCorrente->code[frameCorrente->pc + 1];
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -737,7 +737,7 @@ void fload() {
   int32_t indice;
   int32_t valor;
   indice = frameCorrente->code[frameCorrente->pc + 1];
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -757,8 +757,8 @@ void dload() {
   char* tipo = "D";
   tipoGlobal = tipo;
   indice = frameCorrente->code[frameCorrente->pc + 1];
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -776,7 +776,7 @@ void aload() {
     int32_t indice;
     int32_t valor;
     indice = frameCorrente->code[frameCorrente->pc + 1];
-    valor = frameCorrente->fields[indice];
+    valor = frameCorrente->localVariables[indice];
     pushOp(valor);
     atualizaPc();
 }
@@ -793,7 +793,7 @@ void iload_0() {
 	char* tipo = "I";
   tipoGlobal = tipo;
   int32_t valor;
-  valor = frameCorrente->fields[0];
+  valor = frameCorrente->localVariables[0];
   pushOp(valor);
 	atualizaPc();
 }
@@ -810,7 +810,7 @@ void iload_1() {
 	char* tipo = "I";
   tipoGlobal = tipo;
   int32_t valor;
-  valor = frameCorrente->fields[1];
+  valor = frameCorrente->localVariables[1];
   pushOp(valor);
   atualizaPc();
 }
@@ -827,7 +827,7 @@ void iload_2() {
 	char* tipo = "I";
   tipoGlobal = tipo;
   int32_t valor;
-  valor = frameCorrente->fields[2];
+  valor = frameCorrente->localVariables[2];
   pushOp(valor);
   atualizaPc();
 }
@@ -844,7 +844,7 @@ void iload_3() {
   int32_t valor;
   char* tipo = "I";
   tipoGlobal = tipo;
-  valor = frameCorrente->fields[3];
+  valor = frameCorrente->localVariables[3];
   pushOp(valor);
   atualizaPc();
 }
@@ -864,8 +864,8 @@ void lload_0() {
   int32_t parteAlta;
   int32_t parteBaixa;
   indice = 0;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
 	atualizaPc();
@@ -886,8 +886,8 @@ void lload_1() {
   char* tipo = "L";
   tipoGlobal = tipo;
   indice = 1;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -908,8 +908,8 @@ void lload_2() {
   int32_t parteAlta;
   int32_t parteBaixa;
   indice = 2;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -930,8 +930,8 @@ void lload_3() {
   int32_t parteAlta;
   int32_t parteBaixa;
   indice = 3;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -951,7 +951,7 @@ void fload_0() {
   int32_t indice;
   int32_t valor;
   indice = 0;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -970,7 +970,7 @@ void fload_1() {
   int32_t indice;
   int32_t valor;
   indice = 1;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -989,7 +989,7 @@ void fload_2() {
   int32_t indice;
   int32_t valor;
   indice = 2;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -1008,7 +1008,7 @@ void fload_3() {
   int32_t indice;
   int32_t valor;
   indice = 3;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -1028,8 +1028,8 @@ void dload_0() {
   int32_t parteAlta;
   int32_t parteBaixa;
   indice = 0;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -1050,8 +1050,8 @@ void dload_1() {
   char* tipo = "D";
   tipoGlobal = tipo;
   indice = 1;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -1072,8 +1072,8 @@ void dload_2() {
   char* tipo = "D";
   tipoGlobal = tipo;
   indice = 2;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -1094,8 +1094,8 @@ void dload_3() {
   char* tipo = "D";
   tipoGlobal = tipo;
   indice = 3;
-  parteAlta = frameCorrente->fields[indice + 0];
-  parteBaixa = frameCorrente->fields[indice + 1];
+  parteAlta = frameCorrente->localVariables[indice + 0];
+  parteBaixa = frameCorrente->localVariables[indice + 1];
   pushOp(parteAlta);
   pushOp(parteBaixa);
   atualizaPc();
@@ -1111,7 +1111,7 @@ void dload_3() {
 /// @return @c void
 /// @see pushOp atualizaPc
 void aload_0() {
-	pushOp(frameCorrente->fields[0]);
+	pushOp(frameCorrente->localVariables[0]);
 	atualizaPc();
 }
 
@@ -1127,7 +1127,7 @@ void aload_0() {
 void aload_1() {
   int32_t indice, valor;
   indice = 1;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -1144,7 +1144,7 @@ void aload_1() {
 void aload_2() {
   int32_t indice, valor;
   indice = 2;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -1162,7 +1162,7 @@ void aload_3() {
   int32_t indice;
   int32_t valor;
   indice = 3;
-  valor = frameCorrente->fields[indice];
+  valor = frameCorrente->localVariables[indice];
   pushOp(valor);
   atualizaPc();
 }
@@ -1317,7 +1317,7 @@ void istore() {
   int32_t valor;
   indice = frameCorrente->code[frameCorrente->pc + 1];
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 
@@ -1335,8 +1335,8 @@ void lstore() {
   indice = frameCorrente->code[frameCorrente->pc + 1];
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice ] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice ] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 ///
@@ -1352,7 +1352,7 @@ void fstore() {
   int32_t valor;
   indice = frameCorrente->code[frameCorrente->pc + 1];
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 ///
@@ -1369,8 +1369,8 @@ void dstore() {
   indice = frameCorrente->code[frameCorrente->pc + 1];
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice ] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice ] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 ///
@@ -1386,7 +1386,7 @@ void astore() {
   int32_t valor;
   indice = frameCorrente->code[frameCorrente->pc + 1];
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 ///
@@ -1402,7 +1402,7 @@ void istore_0() {
   int32_t valor;
   indice = 0;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 ///
@@ -1418,7 +1418,7 @@ void istore_1() {
   uint32_t valor;
 	indice = 1;
   valor = popOp();
-  frameCorrente->fields[1] = valor;
+  frameCorrente->localVariables[1] = valor;
   atualizaPc();
 }
 ///
@@ -1434,7 +1434,7 @@ void istore_2() {
   int32_t valor;
   indice = 2;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 ///
@@ -1450,7 +1450,7 @@ void istore_3() {
   int32_t valor;
   indice = 3;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 ///
@@ -1467,8 +1467,8 @@ void lstore_0() {
   indice = 0;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 ///
@@ -1485,8 +1485,8 @@ void lstore_1() {
   indice = 1;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 ///
@@ -1503,8 +1503,8 @@ void lstore_2() {
   indice = 2;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 ///
@@ -1521,8 +1521,8 @@ void lstore_3() {
   indice = 3;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 
@@ -1539,7 +1539,7 @@ void fstore_0() {
   int32_t valor;
   indice = 0;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 
@@ -1557,7 +1557,7 @@ void fstore_1() {
   int32_t valor;
   indice = 1;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 
@@ -1574,7 +1574,7 @@ void fstore_2() {
   int32_t valor;
   indice = 2;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 
@@ -1591,7 +1591,7 @@ void fstore_3() {
   int32_t valor;
   indice = 3;
   valor = popOp();
-  frameCorrente->fields[indice] = valor;
+  frameCorrente->localVariables[indice] = valor;
   atualizaPc();
 }
 
@@ -1609,8 +1609,8 @@ void dstore_0() {
   indice = 0;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 
@@ -1628,8 +1628,8 @@ void dstore_1() {
   indice = 1;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 
@@ -1648,8 +1648,8 @@ void dstore_2() {
   indice = 2;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 
@@ -1667,8 +1667,8 @@ void dstore_3() {
   indice = 3;
   parteBaixa = popOp();
   parteAlta = popOp();
-  frameCorrente->fields[indice] = parteAlta;
-  frameCorrente->fields[indice + 1] = parteBaixa;
+  frameCorrente->localVariables[indice] = parteAlta;
+  frameCorrente->localVariables[indice + 1] = parteBaixa;
   atualizaPc();
 }
 
@@ -1685,7 +1685,7 @@ void astore_0() {
     int32_t valor;
     indice = 0;
     valor = popOp();
-    frameCorrente->fields[indice] = valor;
+    frameCorrente->localVariables[indice] = valor;
     atualizaPc();
 }
 ///
@@ -1701,7 +1701,7 @@ void astore_1() {
     int32_t valor;
     indice = 1;
     valor = popOp();
-    frameCorrente->fields[indice] = valor;
+    frameCorrente->localVariables[indice] = valor;
     atualizaPc();
 }
 ///
@@ -1717,7 +1717,7 @@ void astore_2() {
     int32_t valor;
     indice = 2;
     valor = popOp();
-    frameCorrente->fields[indice] = valor;
+    frameCorrente->localVariables[indice] = valor;
     atualizaPc();
 }
 ///
@@ -1733,7 +1733,7 @@ void astore_3() {
     int32_t valor;
     indice = 3;
     valor = popOp();
-    frameCorrente->fields[indice] = valor;
+    frameCorrente->localVariables[indice] = valor;
     atualizaPc();
 }
 ///
@@ -3026,10 +3026,10 @@ void lxor() {
 /// @see atualizaPc
 void iinc() {
 	int8_t indice = frameCorrente->code[frameCorrente->pc + 1];
-	int32_t valor = frameCorrente->fields[indice];
+	int32_t valor = frameCorrente->localVariables[indice];
 	int8_t byte = frameCorrente->code[frameCorrente->pc + 2];
 
-	frameCorrente->fields[indice] = byte + valor;
+	frameCorrente->localVariables[indice] = byte + valor;
 	atualizaPc();
 }
 ///
@@ -4260,7 +4260,6 @@ void _return() {
 }
 
 ///
-/// Recupera um atributo static
 ///
 /// @param Nenhum
 /// @return @c void
@@ -4522,7 +4521,7 @@ void invokevirtual() {
 	empilhaMetodo(metodoInvocado, classe);
 
 	for(int32_t i = 0; i <= numeroParametros; i++) {
-    frameCorrente->fields[i] = fields[numeroParametros - i];
+    frameCorrente->localVariables[i] = fields[numeroParametros - i];
 	}
 
 	executaFrameCorrente();
@@ -4569,7 +4568,7 @@ void invokespecial() {
 	empilhaMetodo(metodoInvocado, classe);
 
 	for(int32_t i = 0; i <= numeroParametros; i++) {
-			frameCorrente->fields[i] = fields[numeroParametros - i];
+			frameCorrente->localVariables[i] = fields[numeroParametros - i];
 	}
 
 	executaFrameCorrente();
@@ -4651,7 +4650,7 @@ void invokestatic() {
 	empilhaMetodo(metodoInvocado, classe);
 
 	for(int32_t i = 0; i < numeroParametros; i++) {
-			frameCorrente->fields[i] = fields[numeroParametros - i - 1];
+			frameCorrente->localVariables[i] = fields[numeroParametros - i - 1];
 	}
 
 	executaFrameCorrente();
@@ -4698,7 +4697,7 @@ void invokeinterface() {
 	empilhaMetodo(metodoInvocado, classe);
 
 	for(int32_t i = 0; i < numeroParametros; i++) {
-			frameCorrente->fields[i] = fields[numeroParametros - i - 1];
+			frameCorrente->localVariables[i] = fields[numeroParametros - i - 1];
 	}
 
 	executaFrameCorrente();

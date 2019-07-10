@@ -63,7 +63,7 @@ void pushFrame(ClassFile* classe, CodeAttribute* codeAttribute, StackFrame* stac
 	topo->refFrame->maxLocals = codeAttribute->maxLocals;
 	topo->refFrame->codeLength = codeAttribute->codeLength;
 	topo->refFrame->code = codeAttribute->code;
-	topo->refFrame->fields = calloc(sizeof(uint32_t), topo->refFrame->maxLocals);
+	topo->refFrame->localVariables = calloc(sizeof(uint32_t), topo->refFrame->maxLocals);
   topo->refFrame->pilhaOp = calloc(1, sizeof(PilhaOp));
   topo->refFrame->pilhaOp->operandos = calloc(topo->refFrame->maxStack, sizeof(uint32_t));
   topo->refFrame->pilhaOp->depth = 0;
@@ -98,7 +98,7 @@ void popFrame() {
 
   free(topo->refFrame->pilhaOp->operandos);
   free(topo->refFrame->pilhaOp);
-  free(topo->refFrame->fields);
+  free(topo->refFrame->localVariables);
 	free(topo->refFrame);
 	free(topo);
 

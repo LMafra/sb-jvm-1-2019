@@ -80,7 +80,7 @@ void empilhaMetodo(MethodInfo* metodo, ClassFile* classe) {
 /// @see popFrame
 void executaFrameCorrente() {
 	printf("Executando o .class...\n\n\n");
-	
+	// printf("%s\n", retornaNomeClass(frameCorrente->classe));
 	while(frameCorrente->pc < frameCorrente->codeLength) {
     	if(frameCorrente == NULL) {
 			break;

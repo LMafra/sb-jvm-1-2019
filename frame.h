@@ -29,7 +29,7 @@ typedef struct PilhaOp {
 } PilhaOp;
 
 typedef struct Frame {
-	int32_t* fields;
+	int32_t* localVariables;
 	CpInfo* constantPool;
 	ClassFile* classe;
 	uint16_t maxStack;
