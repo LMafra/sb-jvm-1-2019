@@ -42,7 +42,6 @@ MethodInfo* metodoMain;
 ClassFile* classeMain;
 char* caminhoArquivo;
 int exibeClassFile;
-// int printaParaArquivo;
 
 void leParamsEntrada();
 void preparaMetodoMain();
@@ -85,10 +84,6 @@ void leParamsEntrada(int argc, char* argv[]) {
     if(*argv[2] == '1') {
       exibeClassFile = 1;
     }
-    // else if(*argv[2] == '2') {
-    //   exibeClassFile = 1;
-    //   // printaParaArquivo = 1;
-    // }
   }
 }
 
@@ -123,8 +118,5 @@ void exibeArrayClasses() {
     for (int i = 1; i < areaMetodos.numClasses; i++) {
       printaClassFile(areaMetodos.arrayClasses[i]);
     }
-    // if (printaParaArquivo) {
-      // fclose(saved);
-    // }
   }
 }
