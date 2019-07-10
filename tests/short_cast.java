@@ -1,23 +1,26 @@
 /*
- * Compile assim: javac long_cast.java -target 1.2 -source 1.2
+ * Compile assim: javac short_cast.java -target 1.2 -source 1.2
  */
-public class long_cast{
+public class short_cast{
 	public static void main(String args[]){
-		long a=0xEFFFFFFF;
+		int a=0xFF;
 		/*l2d*/
-		short b=(short)a;
+		long b= a;
 		/*l2f*/
 		float c=(float)a;
 		/*l2i*/
 		int d=(int)a;
+		double e = (double)a;
+		int f = (int)b;
 		
 		System.out.println(a);
 		System.out.println(b);
 		System.out.println(c);
 		System.out.println(d);
+		System.out.println(e);
+		System.out.println(f);
 		
-		a = -a;
-		//b=(double)a;
+		// b=(double)a;
 		/*l2f*/
 		c=(float)a;
 		/*l2i*/

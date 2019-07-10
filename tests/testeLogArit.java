@@ -1,6 +1,5 @@
 /*
 Saida
-
 Passou >
 Passou <
 Passou ==
@@ -25,9 +24,6 @@ Passou <
 Passou ==
 Passou <=
 Passou !(<=)
-
-
-
 */
 
 class testeLogArit{

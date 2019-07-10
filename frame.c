@@ -83,7 +83,7 @@ void popFrame() {
 		frameCorrente = topo->next->refFrame;
 
   	if(flagRet == 1) {
-  		pushOp(retorno);
+      pushOp(retorno);
   	} else if(flagRet == 2) {
   		pushOp(retAlta);
   		pushOp(retBaixa);

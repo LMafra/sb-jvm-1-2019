@@ -4725,9 +4725,11 @@ void _new() {
   aux = retornaIndiceDaClassePorNome(nomeClasse);
 
   if(aux == -1) {
-    char opcao;
-    printf("\n\n--- ERRO ---\n\nNome da classe invalido, nao condiz com o nome do arquivo .class\n\n");
-    exit(0);
+    char name[50] = "tests/";
+    strcat(name, nomeClasse);
+    strcat(name, ".class");
+    carregaClasseParaMemoria(name);
+    aux = retornaIndiceDaClassePorNome(nomeClasse);
   } 
   	classe = buscaClassPorIndice(aux);
 	objeto = criaObjeto(classe);

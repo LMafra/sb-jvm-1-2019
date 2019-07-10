@@ -97,7 +97,7 @@ void preparaMetodoMain() {
   classeMain = buscaClassPorIndice(1);
   metodoMain = buscaMetodoMain(classeMain);
   if (metodoMain == NULL) {
-    printf("O arquivo \".class\" informado nao possui metodo Main!");
+    printf("O arquivo \".class\" informado nao possui metodo Main!\n");
     exit(0);
   }
 }

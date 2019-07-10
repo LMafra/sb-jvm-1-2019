@@ -55,8 +55,6 @@ MethodInfo* buscaMetodoMain(ClassFile* classFile) {
 			}
 		}
 	}
-
-	printf("Método main não encontrado.");
 	return NULL;
 }
 
@@ -79,7 +77,7 @@ void empilhaMetodo(MethodInfo* metodo, ClassFile* classe) {
 /// @return void
 /// @see popFrame
 void executaFrameCorrente() {
-	printf("Executando o .class...\n\n\n");
+	// printf("Executando o .class...\n\n\n");
 	// printf("%s\n", retornaNomeClass(frameCorrente->classe));
 	while(frameCorrente->pc < frameCorrente->codeLength) {
     	if(frameCorrente == NULL) {
