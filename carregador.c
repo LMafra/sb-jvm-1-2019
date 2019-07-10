@@ -38,7 +38,10 @@ int primeira = FALSE;
  * @return void
  */
 void validaNomeClasseArquivo(ClassFile* classFileLido, char* caminhoClasse) {
-	if(strcmp(caminhoClasse, retornaNomeClass(classFileLido)) != 0) {
+	char* className = strrchr(caminhoClasse, '/') + 1;
+	className[strlen(className) - 6] = '\0';
+
+	if(strcmp(className, retornaNomeClass(classFileLido)) != 0) {
 		printf("Nome da classe e o nome do arquivo sao diferentes\n");
 		exit(0);
 	}
