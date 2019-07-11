@@ -1,0 +1,60 @@
+\hypertarget{structCpInfo}{}\section{Cp\+Info Struct Reference}
+\label{structCpInfo}\index{Cp\+Info@{Cp\+Info}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structCpInfo_ac20d96c33f871bde2e903708a215a2dc}\label{structCpInfo_ac20d96c33f871bde2e903708a215a2dc}} 
+uint8\+\_\+t {\bfseries tag}
+\item 
+\mbox{\Hypertarget{structCpInfo_a67bf62f1bfb88277813bff0a1524a854}\label{structCpInfo_a67bf62f1bfb88277813bff0a1524a854}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries nameIndex}\\
+\>\} {\bfseries Class}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries classIndex}\\
+\>\>uint16\_t {\bfseries nameAndTypeIndex}\\
+\>\} {\bfseries Fieldref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries classIndex}\\
+\>\>uint16\_t {\bfseries nameAndTypeIndex}\\
+\>\} {\bfseries Methodref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries classIndex}\\
+\>\>uint16\_t {\bfseries nameAndTypeIndex}\\
+\>\} {\bfseries InterfaceMethodref}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries stringIndex}\\
+\>\} {\bfseries String}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries bytes}\\
+\>\} {\bfseries Integer}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries bytes}\\
+\>\} {\bfseries Float}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries highBytes}\\
+\>\>uint32\_t {\bfseries lowBytes}\\
+\>\} {\bfseries Long}\\
+\>struct \{\\
+\>\>uint32\_t {\bfseries highBytes}\\
+\>\>uint32\_t {\bfseries lowBytes}\\
+\>\} {\bfseries Double}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries nameIndex}\\
+\>\>uint16\_t {\bfseries descriptorIndex}\\
+\>\} {\bfseries NameAndType}\\
+\>struct \{\\
+\>\>uint16\_t {\bfseries length}\\
+\>\>uint8\_t $\ast$ {\bfseries bytes}\\
+\>\} {\bfseries Utf8}\\
+\} {\bfseries info}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{leitor_8h}{leitor.\+h}\end{DoxyCompactItemize}

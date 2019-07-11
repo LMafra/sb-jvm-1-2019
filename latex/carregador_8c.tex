@@ -1,0 +1,202 @@
+\hypertarget{carregador_8c}{}\section{carregador.\+c File Reference}
+\label{carregador_8c}\index{carregador.\+c@{carregador.\+c}}
+
+
+Carrega, inicializa e aloca um \hyperlink{structClassFile}{Class\+File} e associa com a estrutura do \hyperlink{structAreaMetodos}{Area\+Metodos}.  
+
+
+{\ttfamily \#include \char`\"{}carregador.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for carregador.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{carregador_8c_aa93f0eb578d23995850d61f7d61c55c1}\label{carregador_8c_aa93f0eb578d23995850d61f7d61c55c1}} 
+\#define {\bfseries F\+A\+L\+SE}~0
+\item 
+\mbox{\Hypertarget{carregador_8c_aa8cecfc5c5c054d2875c03e77b7be15d}\label{carregador_8c_aa8cecfc5c5c054d2875c03e77b7be15d}} 
+\#define {\bfseries T\+R\+UE}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{carregador_8c_a63bb151e862226cbf006d6b1fa345b8b}{valida\+Nome\+Classe\+Arquivo} (\hyperlink{structClassFile}{Class\+File} $\ast$class\+File\+Lido, char $\ast$caminho\+Classe)
+\item 
+void \hyperlink{carregador_8c_ae550e684ba0b0a11753fd24e1512f7be}{valida\+Versao\+Java} (\hyperlink{structClassFile}{Class\+File} $\ast$class\+File\+Lido)
+\item 
+void \hyperlink{carregador_8c_a0010614c11b7e7a4bd8aad07ce816546}{valida\+Class\+File} (\hyperlink{structClassFile}{Class\+File} $\ast$class\+File\+Lido, char $\ast$caminho\+Classe)
+\item 
+int32\+\_\+t \hyperlink{carregador_8c_aa8226828a719a729baa6de54497dbd06}{carrega\+Classe\+Para\+Memoria} (char $\ast$caminho\+Classe)
+\item 
+void \hyperlink{carregador_8c_ad79fe3f83657a5542b2278537ccfbdd1}{inicializa\+Primeira\+Vez} ()
+\item 
+char $\ast$ \hyperlink{carregador_8c_a9c9a3135d3a02d275706a00116816824}{retorna\+Nome\+Class} (\hyperlink{structClassFile}{Class\+File} $\ast$classe)
+\item 
+\hyperlink{structClassFile}{Class\+File} $\ast$ \hyperlink{carregador_8c_a5791c228ebcf57d6eb24ba9618eae973}{busca\+Class\+Por\+Indice} (int indice)
+\item 
+char $\ast$ \hyperlink{carregador_8c_aac550604e02bb2506492757b974c6856}{retorna\+Nome} (\hyperlink{structClassFile}{Class\+File} $\ast$classe, uint16\+\_\+t indice\+Nome)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{carregador_8c_ac2492b2ee633ac35c62b2632b337c557}\label{carregador_8c_ac2492b2ee633ac35c62b2632b337c557}} 
+\hyperlink{structAreaMetodos}{Area\+Metodos} {\bfseries area\+Metodos}
+\item 
+\mbox{\Hypertarget{carregador_8c_a5b93f1b26aba4ad5cbecbf642d6f9944}\label{carregador_8c_a5b93f1b26aba4ad5cbecbf642d6f9944}} 
+int {\bfseries primeira} = F\+A\+L\+SE
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Carrega, inicializa e aloca um \hyperlink{structClassFile}{Class\+File} e associa com a estrutura do \hyperlink{structAreaMetodos}{Area\+Metodos}. 
+
+\begin{DoxyAuthor}{Authors}
+Bruno Sanguinetti 18/0046063 ~\newline
+Gabriel Vasconcelos 16/0120781 ~\newline
+Leonardo de Almeida 15/0135491 ~\newline
+Lucas Mafra 12/0126443 ~\newline
+Wladimir Gramacho 15/0058718 ~\newline
+ 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28/06/2019 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{carregador_8c_a5791c228ebcf57d6eb24ba9618eae973}\label{carregador_8c_a5791c228ebcf57d6eb24ba9618eae973}} 
+\index{carregador.\+c@{carregador.\+c}!busca\+Class\+Por\+Indice@{busca\+Class\+Por\+Indice}}
+\index{busca\+Class\+Por\+Indice@{busca\+Class\+Por\+Indice}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{busca\+Class\+Por\+Indice()}{buscaClassPorIndice()}}
+{\footnotesize\ttfamily \hyperlink{structClassFile}{Class\+File}$\ast$ busca\+Class\+Por\+Indice (\begin{DoxyParamCaption}\item[{int}]{indice }\end{DoxyParamCaption})}
+
+Caso o indice passado seja um numero menor que o numero de classes salvas na area de metodos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & Indice da classe no array de area de metodos que se deseja saber. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily Class\+File$\ast$} retorna um ponteiro para a classe apontada por esse indice no array da area de metodos. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_aa8226828a719a729baa6de54497dbd06}\label{carregador_8c_aa8226828a719a729baa6de54497dbd06}} 
+\index{carregador.\+c@{carregador.\+c}!carrega\+Classe\+Para\+Memoria@{carrega\+Classe\+Para\+Memoria}}
+\index{carrega\+Classe\+Para\+Memoria@{carrega\+Classe\+Para\+Memoria}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{carrega\+Classe\+Para\+Memoria()}{carregaClasseParaMemoria()}}
+{\footnotesize\ttfamily int32\+\_\+t carrega\+Classe\+Para\+Memoria (\begin{DoxyParamCaption}\item[{char $\ast$}]{caminho\+Classe }\end{DoxyParamCaption})}
+
+Carrega o arquivo .class na memoria e adiciona a classe na area de metodos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em char$\ast$} & Contem o caminho para a classe a ser lida. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily int32\+\_\+t} Retorna o numero de classes em area de metodos -\/ 1 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{carregador_8c_ad79fe3f83657a5542b2278537ccfbdd1}{inicializa\+Primeira\+Vez} \hyperlink{leitor_8h_a658f67ed6a3ca72248e7cc0eaba67ba5}{inicializa\+Leitor} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{carregador_8c_ad79fe3f83657a5542b2278537ccfbdd1}\label{carregador_8c_ad79fe3f83657a5542b2278537ccfbdd1}} 
+\index{carregador.\+c@{carregador.\+c}!inicializa\+Primeira\+Vez@{inicializa\+Primeira\+Vez}}
+\index{inicializa\+Primeira\+Vez@{inicializa\+Primeira\+Vez}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{inicializa\+Primeira\+Vez()}{inicializaPrimeiraVez()}}
+{\footnotesize\ttfamily void inicializa\+Primeira\+Vez (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Incializa o valor de area\+Metodos.\+num\+Classes com 0 caso seja a primeira classe a ser lida. Seta uma variavel global para indicar que a primeira classe ja foi lida.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Nao} & possui parametros \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily void} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_aac550604e02bb2506492757b974c6856}\label{carregador_8c_aac550604e02bb2506492757b974c6856}} 
+\index{carregador.\+c@{carregador.\+c}!retorna\+Nome@{retorna\+Nome}}
+\index{retorna\+Nome@{retorna\+Nome}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{retorna\+Nome()}{retornaNome()}}
+{\footnotesize\ttfamily char$\ast$ retorna\+Nome (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{classe,  }\item[{uint16\+\_\+t}]{indice\+Nome }\end{DoxyParamCaption})}
+
+Retorna o nome da classe desejada com base no classfile e no indice do nome.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Class\+File$\ast$} & Classe que se deseja saber o nome. \\
+\hline
+{\em uint16\+\_\+t} & Indce da classe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily char$\ast$} Retorna o nome da classe desejada com base no classfile e no indice do nome. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_a9c9a3135d3a02d275706a00116816824}\label{carregador_8c_a9c9a3135d3a02d275706a00116816824}} 
+\index{carregador.\+c@{carregador.\+c}!retorna\+Nome\+Class@{retorna\+Nome\+Class}}
+\index{retorna\+Nome\+Class@{retorna\+Nome\+Class}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{retorna\+Nome\+Class()}{retornaNomeClass()}}
+{\footnotesize\ttfamily char$\ast$ retorna\+Nome\+Class (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{classe }\end{DoxyParamCaption})}
+
+Retorna o nome da classe desejada.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Class\+File$\ast$} & Classe que se deseja saber o nome. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily char$\ast$} Nome da classe desejada 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_a0010614c11b7e7a4bd8aad07ce816546}\label{carregador_8c_a0010614c11b7e7a4bd8aad07ce816546}} 
+\index{carregador.\+c@{carregador.\+c}!valida\+Class\+File@{valida\+Class\+File}}
+\index{valida\+Class\+File@{valida\+Class\+File}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{valida\+Class\+File()}{validaClassFile()}}
+{\footnotesize\ttfamily void valida\+Class\+File (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File\+Lido,  }\item[{char $\ast$}]{caminho\+Classe }\end{DoxyParamCaption})}
+
+Funcao que verifica se o .class carregado e ou nao a classe Object Se for, skipa validacao, se nao, valida chama as funcoes que validam consistencia da versao do Java e nome da classe no arquivo 
+\begin{DoxyParams}{Parameters}
+{\em Class\+File$\ast$} & contendo o .class lido \\
+\hline
+{\em char$\ast$} & contendo o nome do arquivo .class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_a63bb151e862226cbf006d6b1fa345b8b}\label{carregador_8c_a63bb151e862226cbf006d6b1fa345b8b}} 
+\index{carregador.\+c@{carregador.\+c}!valida\+Nome\+Classe\+Arquivo@{valida\+Nome\+Classe\+Arquivo}}
+\index{valida\+Nome\+Classe\+Arquivo@{valida\+Nome\+Classe\+Arquivo}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{valida\+Nome\+Classe\+Arquivo()}{validaNomeClasseArquivo()}}
+{\footnotesize\ttfamily void valida\+Nome\+Classe\+Arquivo (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File\+Lido,  }\item[{char $\ast$}]{caminho\+Classe }\end{DoxyParamCaption})}
+
+Valida o nome do arquivo e o nome da classe. A execucao da J\+VM so deve continuar se forem iguais.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Class\+File$\ast$} & contendo o .class lido \\
+\hline
+{\em char$\ast$} & contendo o nome do arquivo .class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{carregador_8c_ae550e684ba0b0a11753fd24e1512f7be}\label{carregador_8c_ae550e684ba0b0a11753fd24e1512f7be}} 
+\index{carregador.\+c@{carregador.\+c}!valida\+Versao\+Java@{valida\+Versao\+Java}}
+\index{valida\+Versao\+Java@{valida\+Versao\+Java}!carregador.\+c@{carregador.\+c}}
+\subsubsection{\texorpdfstring{valida\+Versao\+Java()}{validaVersaoJava()}}
+{\footnotesize\ttfamily void valida\+Versao\+Java (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File\+Lido }\end{DoxyParamCaption})}
+
+Valida a versao do java lido no arquivo .class Essa implementacao da J\+VM so suporta ate Java 8 
+\begin{DoxyParams}{Parameters}
+{\em Class\+File$\ast$} & contendo o nome do arquivo .class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
