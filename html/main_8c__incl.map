@@ -1,0 +1,13 @@
+<map id="main.c" name="main.c">
+<area shape="rect" id="node1" title="Arquivo principal que inicia a execucacao da JVM." alt="" coords="114,5,174,31"/>
+<area shape="rect" id="node2" href="$carregador_8h.html" title=" " alt="" coords="119,152,215,177"/>
+<area shape="rect" id="node4" title=" " alt="" coords="44,372,105,397"/>
+<area shape="rect" id="node8" href="$areaMetodos_8h.html" title="Define as estruturas Area de Metodos e Objeto." alt="" coords="198,225,308,251"/>
+<area shape="rect" id="node9" href="$metodo_8h.html" title=" " alt="" coords="144,79,221,104"/>
+<area shape="rect" id="node10" href="$exibidor_8h.html" title=" " alt="" coords="42,225,121,251"/>
+<area shape="rect" id="node11" title=" " alt="" coords="296,79,360,104"/>
+<area shape="rect" id="node3" href="$leitor_8h.html" title=" " alt="" coords="131,299,192,324"/>
+<area shape="rect" id="node5" title=" " alt="" coords="129,372,193,397"/>
+<area shape="rect" id="node6" href="$decodificador_8h.html" title=" " alt="" coords="218,372,329,397"/>
+<area shape="rect" id="node7" title=" " alt="" coords="241,445,306,471"/>
+</map>

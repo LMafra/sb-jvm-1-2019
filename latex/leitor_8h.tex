@@ -1,69 +1,81 @@
 \hypertarget{leitor_8h}{}\section{leitor.\+h File Reference}
-\label{leitor_8h}\index{leitor.\+h@{leitor.\+h}}
+\label{leitor_8h}\index{leitor.h@{leitor.h}}
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}decodificador.\+h\char`\"{}}\newline
 Include dependency graph for leitor.\+h\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{leitor_8h__incl}
+\end{center}
+\end{figure}
 This graph shows which files directly or indirectly include this file\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{leitor_8h__dep__incl}
+\end{center}
+\end{figure}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structCpInfo}{Cp\+Info}
+struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}}
+\begin{DoxyCompactList}\small\item\em A estrutura do cp\+\_\+info ira compor a constant\+\_\+pool do class\+File. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}}
 \item 
-struct \hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}
+struct \mbox{\hyperlink{structCvInfo}{Cv\+Info}}
 \item 
-struct \hyperlink{structCvInfo}{Cv\+Info}
+struct \mbox{\hyperlink{structFieldInfo}{Field\+Info}}
 \item 
-struct \hyperlink{structFieldInfo}{Field\+Info}
+struct \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}
 \item 
-struct \hyperlink{structAttributeInfo}{Attribute\+Info}
+struct \mbox{\hyperlink{structExceptionTable}{Exception\+Table}}
 \item 
-struct \hyperlink{structExceptionTable}{Exception\+Table}
+struct \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}
 \item 
-struct \hyperlink{structCodeAttribute}{Code\+Attribute}
+struct \mbox{\hyperlink{structMethodInfo}{Method\+Info}}
 \item 
-struct \hyperlink{structMethodInfo}{Method\+Info}
-\item 
-struct \hyperlink{structClassFile}{Class\+File}
-\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{structClassFile}{Class\+File}}
+\begin{DoxyCompactList}\small\item\em A estrutura de um class\+File em bytes (8-\/bits). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{leitor_8h_a72b5b534aa409975da610a36f648fa0a}\label{leitor_8h_a72b5b534aa409975da610a36f648fa0a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Class}~7
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a72b5b534aa409975da610a36f648fa0a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Class}}~7
+\begin{DoxyCompactList}\small\item\em constante de Class definida como 7 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a008d43478c2e2973e7413f5d1c48095d}\label{leitor_8h_a008d43478c2e2973e7413f5d1c48095d}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Fieldref}~9
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a008d43478c2e2973e7413f5d1c48095d}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Fieldref}}~9
+\begin{DoxyCompactList}\small\item\em constante de Fieldref definida como 9 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a2a179cf178ea867c6ab1700508c269dd}\label{leitor_8h_a2a179cf178ea867c6ab1700508c269dd}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Methodref}~10
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a2a179cf178ea867c6ab1700508c269dd}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Methodref}}~10
+\begin{DoxyCompactList}\small\item\em constante de Methodref definida como 10 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_ac0e92044d246c6e4d691116f89a70ebb}\label{leitor_8h_ac0e92044d246c6e4d691116f89a70ebb}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Interface\+Methodref}~11
-\item 
+\#define \mbox{\hyperlink{leitor_8h_ac0e92044d246c6e4d691116f89a70ebb}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Interface\+Methodref}}~11
+\begin{DoxyCompactList}\small\item\em constante de Interface\+Methodref definida como 11 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a0a7acbe175de56072a2f0a1a051418e1}\label{leitor_8h_a0a7acbe175de56072a2f0a1a051418e1}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+String}~8
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a0a7acbe175de56072a2f0a1a051418e1}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+String}}~8
+\begin{DoxyCompactList}\small\item\em constante de String como definida 8 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a856a6553a55d721970ca5450eb1ccd2c}\label{leitor_8h_a856a6553a55d721970ca5450eb1ccd2c}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Integer}~3
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a856a6553a55d721970ca5450eb1ccd2c}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Integer}}~3
+\begin{DoxyCompactList}\small\item\em constante de Integer definida como 3 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_ab914627ce5b25c4acfc98f2eacb78473}\label{leitor_8h_ab914627ce5b25c4acfc98f2eacb78473}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Float}~4
-\item 
+\#define \mbox{\hyperlink{leitor_8h_ab914627ce5b25c4acfc98f2eacb78473}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Float}}~4
+\begin{DoxyCompactList}\small\item\em constante de Float definida como 4 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a426ca017b895fc522671a561d460be7a}\label{leitor_8h_a426ca017b895fc522671a561d460be7a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Long}~5
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a426ca017b895fc522671a561d460be7a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Long}}~5
+\begin{DoxyCompactList}\small\item\em constante de Long definida como 5 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}\label{leitor_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Double}~6
-\item 
+\#define \mbox{\hyperlink{leitor_8h_ab49341c3b4ade4bfa1a64be8d2f73ae1}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Double}}~6
+\begin{DoxyCompactList}\small\item\em constante de Double definida como 6 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a5b6ba749976ae61415983ca0b890c91a}\label{leitor_8h_a5b6ba749976ae61415983ca0b890c91a}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Name\+And\+Type}~12
-\item 
+\#define \mbox{\hyperlink{leitor_8h_a5b6ba749976ae61415983ca0b890c91a}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Name\+And\+Type}}~12
+\begin{DoxyCompactList}\small\item\em constante de Name\+And\+Type definida como 12 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_afc46559a7d3f7baf519fc183c2fad2b4}\label{leitor_8h_afc46559a7d3f7baf519fc183c2fad2b4}} 
-\#define {\bfseries C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Utf8}~1
-\item 
+\#define \mbox{\hyperlink{leitor_8h_afc46559a7d3f7baf519fc183c2fad2b4}{C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+Utf8}}~1
+\begin{DoxyCompactList}\small\item\em constante de Utf8 definida como 1 \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a4d34398b879119909a61e7f5d80d7f9a}\label{leitor_8h_a4d34398b879119909a61e7f5d80d7f9a}} 
 \#define {\bfseries N\+U\+M\+\_\+\+I\+N\+S\+T\+R\+U\+C\+AO}~256
 \item 
@@ -184,72 +196,93 @@ struct \hyperlink{structClassFile}{Class\+File}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{leitor_8h_a6898bbbc40514b09ecea5a0aababd1be}\label{leitor_8h_a6898bbbc40514b09ecea5a0aababd1be}} 
-typedef struct \hyperlink{structCpInfo}{Cp\+Info} {\bfseries Cp\+Info}
-\item 
+typedef struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}} \mbox{\hyperlink{leitor_8h_a6898bbbc40514b09ecea5a0aababd1be}{Cp\+Info}}
+\begin{DoxyCompactList}\small\item\em A estrutura do cp\+\_\+info ira compor a constant\+\_\+pool do class\+File. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{leitor_8h_a7abfd7cbf828c7d98811d0a4feae0ee6}\label{leitor_8h_a7abfd7cbf828c7d98811d0a4feae0ee6}} 
-typedef struct \hyperlink{structExceptionsAttribute}{Exceptions\+Attribute} {\bfseries Exceptions\+Attribute}
+typedef struct \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} {\bfseries Exceptions\+Attribute}
 \item 
 \mbox{\Hypertarget{leitor_8h_a6b458e51f7e631d837bebc375806c99a}\label{leitor_8h_a6b458e51f7e631d837bebc375806c99a}} 
-typedef struct \hyperlink{structCvInfo}{Cv\+Info} {\bfseries Cv\+Info}
+typedef struct \mbox{\hyperlink{structCvInfo}{Cv\+Info}} {\bfseries Cv\+Info}
 \item 
 \mbox{\Hypertarget{leitor_8h_aeb986aa95895f36df0534745f678466c}\label{leitor_8h_aeb986aa95895f36df0534745f678466c}} 
-typedef struct \hyperlink{structFieldInfo}{Field\+Info} {\bfseries Field\+Info}
+typedef struct \mbox{\hyperlink{structFieldInfo}{Field\+Info}} {\bfseries Field\+Info}
 \item 
 \mbox{\Hypertarget{leitor_8h_ae111dc3a7128bbe7b306f602c04eeaec}\label{leitor_8h_ae111dc3a7128bbe7b306f602c04eeaec}} 
-typedef struct \hyperlink{structAttributeInfo}{Attribute\+Info} {\bfseries Attribute\+Info}
+typedef struct \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} {\bfseries Attribute\+Info}
 \item 
 \mbox{\Hypertarget{leitor_8h_a24e796ea64f4e52720b89f3336ea5d90}\label{leitor_8h_a24e796ea64f4e52720b89f3336ea5d90}} 
-typedef struct \hyperlink{structExceptionTable}{Exception\+Table} {\bfseries Exception\+Table}
+typedef struct \mbox{\hyperlink{structExceptionTable}{Exception\+Table}} {\bfseries Exception\+Table}
 \item 
 \mbox{\Hypertarget{leitor_8h_a33a73fc4eb288c6fb10a53b37561e34d}\label{leitor_8h_a33a73fc4eb288c6fb10a53b37561e34d}} 
-typedef struct \hyperlink{structCodeAttribute}{Code\+Attribute} {\bfseries Code\+Attribute}
+typedef struct \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} {\bfseries Code\+Attribute}
 \item 
 \mbox{\Hypertarget{leitor_8h_a2b442a0842962df6623bfe654d11b7d3}\label{leitor_8h_a2b442a0842962df6623bfe654d11b7d3}} 
-typedef struct \hyperlink{structMethodInfo}{Method\+Info} {\bfseries Method\+Info}
+typedef struct \mbox{\hyperlink{structMethodInfo}{Method\+Info}} {\bfseries Method\+Info}
 \item 
-\mbox{\Hypertarget{leitor_8h_aa2722eac638126419cda16ab0a201376}\label{leitor_8h_aa2722eac638126419cda16ab0a201376}} 
-typedef struct \hyperlink{structClassFile}{Class\+File} {\bfseries Class\+File}
-\end{DoxyCompactItemize}
+typedef struct \mbox{\hyperlink{structClassFile}{Class\+File}} \mbox{\hyperlink{leitor_8h_aa2722eac638126419cda16ab0a201376}{Class\+File}}
+\begin{DoxyCompactList}\small\item\em A estrutura de um class\+File em bytes (8-\/bits). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structClassFile}{Class\+File} $\ast$ \hyperlink{leitor_8h_a658f67ed6a3ca72248e7cc0eaba67ba5}{inicializa\+Leitor} (char $\ast$)
+\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$ \mbox{\hyperlink{leitor_8h_a658f67ed6a3ca72248e7cc0eaba67ba5}{inicializa\+Leitor}} (char $\ast$)
 \item 
-void \hyperlink{leitor_8h_a6c4f68e13e23b5765be0187a0cd1e1bf}{le\+Class\+File} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_a6c4f68e13e23b5765be0187a0cd1e1bf}{le\+Class\+File}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-int \hyperlink{leitor_8h_aa690fa269e79d6df38f509403e592e76}{cafe\+Babe\+Valido} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+int \mbox{\hyperlink{leitor_8h_aa690fa269e79d6df38f509403e592e76}{cafe\+Babe\+Valido}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_a9b40cc38171f10524e7b5ff37f67a2c2}{le\+Constant\+Pool} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_a9b40cc38171f10524e7b5ff37f67a2c2}{le\+Constant\+Pool}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_a776579b8fdeab9f042ac52193a587269}{le\+Interface\+Info} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_a776579b8fdeab9f042ac52193a587269}{le\+Interface\+Info}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_ac6b98a9881dc2cf0dfc83e3674129536}{le\+Field\+Info} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_ac6b98a9881dc2cf0dfc83e3674129536}{le\+Field\+Info}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_a65640b48b47bed299da6129adf80c472}{le\+Method\+Info} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_a65640b48b47bed299da6129adf80c472}{le\+Method\+Info}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_a545e322073fac16d991309e76b56f075}{le\+Attribute\+Info} (F\+I\+LE $\ast$, \hyperlink{structClassFile}{Class\+File} $\ast$)
+void \mbox{\hyperlink{leitor_8h_a545e322073fac16d991309e76b56f075}{le\+Attribute\+Info}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$)
 \item 
-void \hyperlink{leitor_8h_ab959f4eb63ed8cea6502938660900e2b}{le\+Exc} (F\+I\+LE $\ast$, \hyperlink{structExceptionsAttribute}{Exceptions\+Attribute} $\ast$$\ast$, uint16\+\_\+t, uint32\+\_\+t)
+void \mbox{\hyperlink{leitor_8h_ab959f4eb63ed8cea6502938660900e2b}{le\+Exc}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} $\ast$$\ast$, uint16\+\_\+t, uint32\+\_\+t)
 \item 
-void \hyperlink{leitor_8h_ad16fbcf0c0b1e099da4be9bade95d340}{le\+Code} (F\+I\+LE $\ast$, \hyperlink{structCodeAttribute}{Code\+Attribute} $\ast$$\ast$, uint16\+\_\+t, uint32\+\_\+t)
+void \mbox{\hyperlink{leitor_8h_ad16fbcf0c0b1e099da4be9bade95d340}{le\+Code}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} $\ast$$\ast$, uint16\+\_\+t, uint32\+\_\+t)
 \item 
-uint8\+\_\+t \hyperlink{leitor_8h_a47c4bbbfb7bd971781eecc01b3eac38b}{le1\+Byte} (F\+I\+LE $\ast$)
+uint8\+\_\+t \mbox{\hyperlink{leitor_8h_a47c4bbbfb7bd971781eecc01b3eac38b}{le1\+Byte}} (F\+I\+LE $\ast$)
 \item 
-uint16\+\_\+t \hyperlink{leitor_8h_abcee6c2bbe126aedc6569ad14ec3cc5b}{le2\+Bytes} (F\+I\+LE $\ast$)
+uint16\+\_\+t \mbox{\hyperlink{leitor_8h_abcee6c2bbe126aedc6569ad14ec3cc5b}{le2\+Bytes}} (F\+I\+LE $\ast$)
 \item 
-uint32\+\_\+t \hyperlink{leitor_8h_a22efb9a3b526751b6428b32993ba1485}{le4\+Bytes} (F\+I\+LE $\ast$)
+uint32\+\_\+t \mbox{\hyperlink{leitor_8h_a22efb9a3b526751b6428b32993ba1485}{le4\+Bytes}} (F\+I\+LE $\ast$)
 \item 
-void \hyperlink{leitor_8h_a801f483e0d6f965b0355a3f33ff68e70}{salva\+Instrucoes} (F\+I\+LE $\ast$, \hyperlink{structCodeAttribute}{Code\+Attribute} $\ast$$\ast$)
+void \mbox{\hyperlink{leitor_8h_a801f483e0d6f965b0355a3f33ff68e70}{salva\+Instrucoes}} (F\+I\+LE $\ast$, \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} $\ast$$\ast$)
 \end{DoxyCompactItemize}
 
 
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{leitor_8h_aa2722eac638126419cda16ab0a201376}\label{leitor_8h_aa2722eac638126419cda16ab0a201376}} 
+\index{leitor.h@{leitor.h}!ClassFile@{ClassFile}}
+\index{ClassFile@{ClassFile}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{ClassFile}{ClassFile}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structClassFile}{Class\+File}}  \mbox{\hyperlink{structClassFile}{Class\+File}}}
+
+
+
+A estrutura de um class\+File em bytes (8-\/bits). 
+
+A estrutura de um class\+File baseado em bytes de 8-\/bits. Todos os 16-\/bit, 32-\/bit, e 64-\/bit sao construidos por leituras de dois, quatro, e oito bytes (8bits) consecutivos. Dados de multibyte sao armazenados em ordem big-\/endian, onde o high-\/byte vem primeiro. \mbox{\Hypertarget{leitor_8h_a6898bbbc40514b09ecea5a0aababd1be}\label{leitor_8h_a6898bbbc40514b09ecea5a0aababd1be}} 
+\index{leitor.h@{leitor.h}!CpInfo@{CpInfo}}
+\index{CpInfo@{CpInfo}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{CpInfo}{CpInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}}  \mbox{\hyperlink{structCpInfo}{Cp\+Info}}}
+
+
+
+A estrutura do cp\+\_\+info ira compor a constant\+\_\+pool do class\+File. 
+
+cp\+\_\+info varia de acordo com o byte lido em sua tag 
+
 \subsection{Function Documentation}
 \mbox{\Hypertarget{leitor_8h_aa690fa269e79d6df38f509403e592e76}\label{leitor_8h_aa690fa269e79d6df38f509403e592e76}} 
-\index{leitor.\+h@{leitor.\+h}!cafe\+Babe\+Valido@{cafe\+Babe\+Valido}}
-\index{cafe\+Babe\+Valido@{cafe\+Babe\+Valido}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{cafe\+Babe\+Valido()}{cafeBabeValido()}}
-{\footnotesize\ttfamily int cafe\+Babe\+Valido (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!cafeBabeValido@{cafeBabeValido}}
+\index{cafeBabeValido@{cafeBabeValido}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{cafeBabeValido()}{cafeBabeValido()}}
+{\footnotesize\ttfamily int cafe\+Babe\+Valido (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
 Funcao que avalia se o arquivo aberto eh de fato um classfile e se os bytes de control 0x\+C\+A\+F\+E\+B\+A\+BE estao corretamente no inicio do arquivo.
 
@@ -264,13 +297,13 @@ Funcao que avalia se o arquivo aberto eh de fato um classfile e se os bytes de c
 {\ttfamily int} Resultado da verificacao (valor booleano) 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a658f67ed6a3ca72248e7cc0eaba67ba5}\label{leitor_8h_a658f67ed6a3ca72248e7cc0eaba67ba5}} 
-\index{leitor.\+h@{leitor.\+h}!inicializa\+Leitor@{inicializa\+Leitor}}
-\index{inicializa\+Leitor@{inicializa\+Leitor}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{inicializa\+Leitor()}{inicializaLeitor()}}
-{\footnotesize\ttfamily \hyperlink{structClassFile}{Class\+File}$\ast$ inicializa\+Leitor (\begin{DoxyParamCaption}\item[{char $\ast$}]{caminho\+Classe }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!inicializaLeitor@{inicializaLeitor}}
+\index{inicializaLeitor@{inicializaLeitor}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{inicializaLeitor()}{inicializaLeitor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassFile}{Class\+File}}$\ast$ inicializa\+Leitor (\begin{DoxyParamCaption}\item[{char $\ast$}]{caminho\+Classe }\end{DoxyParamCaption})}
 
 Funcao principal que comeca a leitura de um classfile.
 
@@ -280,15 +313,15 @@ Funcao principal que comeca a leitura de um classfile.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily Class\+File$\ast$} Uma estrutura \hyperlink{structClassFile}{Class\+File} preenchida 
+{\ttfamily Class\+File$\ast$} Uma estrutura \mbox{\hyperlink{structClassFile}{Class\+File}} preenchida 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a8a9afe01d56583162e5d2d4fba0a38aa}{le\+Class\+File} 
+\mbox{\hyperlink{leitor_8c_a8a9afe01d56583162e5d2d4fba0a38aa}{le\+Class\+File}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a47c4bbbfb7bd971781eecc01b3eac38b}\label{leitor_8h_a47c4bbbfb7bd971781eecc01b3eac38b}} 
-\index{leitor.\+h@{leitor.\+h}!le1\+Byte@{le1\+Byte}}
-\index{le1\+Byte@{le1\+Byte}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le1\+Byte()}{le1Byte()}}
+\index{leitor.h@{leitor.h}!le1Byte@{le1Byte}}
+\index{le1Byte@{le1Byte}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{le1Byte()}{le1Byte()}}
 {\footnotesize\ttfamily uint8\+\_\+t le1\+Byte (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
 
 Funcao que le 1 byte e salva numa variavel unsigned de 8bits.
@@ -302,9 +335,9 @@ Funcao que le 1 byte e salva numa variavel unsigned de 8bits.
 {\ttfamily uint8\+\_\+t} O valor lido em um unsigned de 8bits 
 \end{DoxyReturn}
 \mbox{\Hypertarget{leitor_8h_abcee6c2bbe126aedc6569ad14ec3cc5b}\label{leitor_8h_abcee6c2bbe126aedc6569ad14ec3cc5b}} 
-\index{leitor.\+h@{leitor.\+h}!le2\+Bytes@{le2\+Bytes}}
-\index{le2\+Bytes@{le2\+Bytes}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le2\+Bytes()}{le2Bytes()}}
+\index{leitor.h@{leitor.h}!le2Bytes@{le2Bytes}}
+\index{le2Bytes@{le2Bytes}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{le2Bytes()}{le2Bytes()}}
 {\footnotesize\ttfamily uint16\+\_\+t le2\+Bytes (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
 
 Funcao que le 2 byte e salva numa variavel unsigned de 16bits.
@@ -318,9 +351,9 @@ Funcao que le 2 byte e salva numa variavel unsigned de 16bits.
 {\ttfamily uint16\+\_\+t} O valor lido em um unsigned de 16bits 
 \end{DoxyReturn}
 \mbox{\Hypertarget{leitor_8h_a22efb9a3b526751b6428b32993ba1485}\label{leitor_8h_a22efb9a3b526751b6428b32993ba1485}} 
-\index{leitor.\+h@{leitor.\+h}!le4\+Bytes@{le4\+Bytes}}
-\index{le4\+Bytes@{le4\+Bytes}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le4\+Bytes()}{le4Bytes()}}
+\index{leitor.h@{leitor.h}!le4Bytes@{le4Bytes}}
+\index{le4Bytes@{le4Bytes}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{le4Bytes()}{le4Bytes()}}
 {\footnotesize\ttfamily uint32\+\_\+t le4\+Bytes (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
 
 Funcao que le 4 byte e salva numa variavel unsigned de 32bits.
@@ -334,12 +367,12 @@ Funcao que le 4 byte e salva numa variavel unsigned de 32bits.
 {\ttfamily uint32\+\_\+t} O valor lido em um unsigned de 32bits 
 \end{DoxyReturn}
 \mbox{\Hypertarget{leitor_8h_a545e322073fac16d991309e76b56f075}\label{leitor_8h_a545e322073fac16d991309e76b56f075}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Attribute\+Info@{le\+Attribute\+Info}}
-\index{le\+Attribute\+Info@{le\+Attribute\+Info}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Attribute\+Info()}{leAttributeInfo()}}
-{\footnotesize\ttfamily void le\+Attribute\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leAttributeInfo@{leAttributeInfo}}
+\index{leAttributeInfo@{leAttributeInfo}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leAttributeInfo()}{leAttributeInfo()}}
+{\footnotesize\ttfamily void le\+Attribute\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
-Funcao que le os bytes que compoe as Informacoes de Atributos e os armazena nas devidas posicoes da estrutura \hyperlink{structAttributeInfo}{Attribute\+Info}, dentro do \hyperlink{structClassFile}{Class\+File} recebido como parametro.
+Funcao que le os bytes que compoe as Informacoes de Atributos e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}, dentro do \mbox{\hyperlink{structClassFile}{Class\+File}} recebido como parametro.
 
 
 \begin{DoxyParams}{Parameters}
@@ -352,13 +385,13 @@ Funcao que le os bytes que compoe as Informacoes de Atributos e os armazena nas 
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a6c4f68e13e23b5765be0187a0cd1e1bf}\label{leitor_8h_a6c4f68e13e23b5765be0187a0cd1e1bf}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Class\+File@{le\+Class\+File}}
-\index{le\+Class\+File@{le\+Class\+File}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Class\+File()}{leClassFile()}}
-{\footnotesize\ttfamily void le\+Class\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leClassFile@{leClassFile}}
+\index{leClassFile@{leClassFile}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leClassFile()}{leClassFile()}}
+{\footnotesize\ttfamily void le\+Class\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
 Funcao que coordena a leitura do arquivo .class e coordena as chamadas das funcoes que leem cada parte do classfile individualmente e preenchem a estrutura recebida como parametro.
 
@@ -373,21 +406,21 @@ Funcao que coordena a leitura do arquivo .class e coordena as chamadas das funco
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a878e3123a0ef2433fba5355ceba54703}{cafe\+Babe\+Valido} \hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a52487a1b0952e0c2f4bc22db6ac53153}{le\+Constant\+Pool} \hyperlink{leitor_8c_abf67c5dca9a8c23f380c37fa95c9c215}{le\+Interface\+Info} \hyperlink{leitor_8c_a99d0519fab7e0cd8b33a6451649e3d22}{le\+Field\+Info} \hyperlink{leitor_8c_a6d4e3deddb19180bc91b1892a5f8cc28}{le\+Method\+Info} \hyperlink{leitor_8c_adac81aedb40c82f25e42a66979a28d86}{le\+Attribute\+Info} 
+\mbox{\hyperlink{leitor_8c_a878e3123a0ef2433fba5355ceba54703}{cafe\+Babe\+Valido}} \mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a52487a1b0952e0c2f4bc22db6ac53153}{le\+Constant\+Pool}} \mbox{\hyperlink{leitor_8c_abf67c5dca9a8c23f380c37fa95c9c215}{le\+Interface\+Info}} \mbox{\hyperlink{leitor_8c_a99d0519fab7e0cd8b33a6451649e3d22}{le\+Field\+Info}} \mbox{\hyperlink{leitor_8c_a6d4e3deddb19180bc91b1892a5f8cc28}{le\+Method\+Info}} \mbox{\hyperlink{leitor_8c_adac81aedb40c82f25e42a66979a28d86}{le\+Attribute\+Info}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_ad16fbcf0c0b1e099da4be9bade95d340}\label{leitor_8h_ad16fbcf0c0b1e099da4be9bade95d340}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Code@{le\+Code}}
-\index{le\+Code@{le\+Code}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Code()}{leCode()}}
-{\footnotesize\ttfamily void le\+Code (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structCodeAttribute}{Code\+Attribute} $\ast$$\ast$}]{cd\+Atrb,  }\item[{uint16\+\_\+t}]{name\+Index,  }\item[{uint32\+\_\+t}]{attributes\+Count }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leCode@{leCode}}
+\index{leCode@{leCode}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leCode()}{leCode()}}
+{\footnotesize\ttfamily void le\+Code (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} $\ast$$\ast$}]{cd\+Atrb,  }\item[{uint16\+\_\+t}]{name\+Index,  }\item[{uint32\+\_\+t}]{attributes\+Count }\end{DoxyParamCaption})}
 
-Funcao que le o codigo (mnemonicos) de um metodo e os armazena nas devidas posicoes da estrutura \hyperlink{structCodeAttribute}{Code\+Attribute}.
+Funcao que le o codigo (mnemonicos) de um metodo e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}.
 
 
 \begin{DoxyParams}{Parameters}
 {\em F\+I\+L\+E$\ast$} & Descritor do arquivo .class que foi aberto para leitura \\
 \hline
-{\em Code\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \hyperlink{structCodeAttribute}{Code\+Attribute} \\
+{\em Code\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} \\
 \hline
 {\em uint16\+\_\+t} & Name\+Index do metodo cujas instrucoes serao lidas \\
 \hline
@@ -398,15 +431,15 @@ Funcao que le o codigo (mnemonicos) de um metodo e os armazena nas devidas posic
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte} \hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} \hyperlink{leitor_8c_ab80e6e4a3faed37485e9411ddfc3e549}{salva\+Instrucoes} 
+\mbox{\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte}} \mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} \mbox{\hyperlink{leitor_8c_ab80e6e4a3faed37485e9411ddfc3e549}{salva\+Instrucoes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a9b40cc38171f10524e7b5ff37f67a2c2}\label{leitor_8h_a9b40cc38171f10524e7b5ff37f67a2c2}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Constant\+Pool@{le\+Constant\+Pool}}
-\index{le\+Constant\+Pool@{le\+Constant\+Pool}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Constant\+Pool()}{leConstantPool()}}
-{\footnotesize\ttfamily void le\+Constant\+Pool (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leConstantPool@{leConstantPool}}
+\index{leConstantPool@{leConstantPool}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leConstantPool()}{leConstantPool()}}
+{\footnotesize\ttfamily void le\+Constant\+Pool (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
-Funcao que le os bytes que compoe o Constant Pool e os armazena nas devidas posicoes da estrutura \hyperlink{structCpInfo}{Cp\+Info}, dentro do \hyperlink{structClassFile}{Class\+File} recebido como parametro.
+Funcao que le os bytes que compoe o Constant Pool e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structCpInfo}{Cp\+Info}}, dentro do \mbox{\hyperlink{structClassFile}{Class\+File}} recebido como parametro.
 
 
 \begin{DoxyParams}{Parameters}
@@ -419,21 +452,21 @@ Funcao que le os bytes que compoe o Constant Pool e os armazena nas devidas posi
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte} \hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte}} \mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_ab959f4eb63ed8cea6502938660900e2b}\label{leitor_8h_ab959f4eb63ed8cea6502938660900e2b}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Exc@{le\+Exc}}
-\index{le\+Exc@{le\+Exc}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Exc()}{leExc()}}
-{\footnotesize\ttfamily void le\+Exc (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute} $\ast$$\ast$}]{exc\+Atrb,  }\item[{uint16\+\_\+t}]{name\+Index,  }\item[{uint32\+\_\+t}]{attributes\+Count }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leExc@{leExc}}
+\index{leExc@{leExc}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leExc()}{leExc()}}
+{\footnotesize\ttfamily void le\+Exc (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} $\ast$$\ast$}]{exc\+Atrb,  }\item[{uint16\+\_\+t}]{name\+Index,  }\item[{uint32\+\_\+t}]{attributes\+Count }\end{DoxyParamCaption})}
 
-Funcao que le as excecoes (quando definidas) de um metodo da classe e os armazena nas devidas posicoes da estrutura \hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}.
+Funcao que le as excecoes (quando definidas) de um metodo da classe e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}}.
 
 
 \begin{DoxyParams}{Parameters}
 {\em F\+I\+L\+E$\ast$} & Descritor do arquivo .class que foi aberto para leitura \\
 \hline
-{\em Exceptions\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \hyperlink{structExceptionsAttribute}{Exceptions\+Attribute} \\
+{\em Exceptions\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} \\
 \hline
 {\em uint16\+\_\+t} & Name\+Index do metodo cujas excecoes serao lidas \\
 \hline
@@ -444,15 +477,15 @@ Funcao que le as excecoes (quando definidas) de um metodo da classe e os armazen
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_ac6b98a9881dc2cf0dfc83e3674129536}\label{leitor_8h_ac6b98a9881dc2cf0dfc83e3674129536}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Field\+Info@{le\+Field\+Info}}
-\index{le\+Field\+Info@{le\+Field\+Info}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Field\+Info()}{leFieldInfo()}}
-{\footnotesize\ttfamily void le\+Field\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leFieldInfo@{leFieldInfo}}
+\index{leFieldInfo@{leFieldInfo}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leFieldInfo()}{leFieldInfo()}}
+{\footnotesize\ttfamily void le\+Field\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
-Funcao que le os bytes que compoe as Informacoes de Fields e os armazena nas devidas posicoes da estrutura \hyperlink{structFieldInfo}{Field\+Info}, dentro do \hyperlink{structClassFile}{Class\+File} recebido como parametro.
+Funcao que le os bytes que compoe as Informacoes de Fields e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structFieldInfo}{Field\+Info}}, dentro do \mbox{\hyperlink{structClassFile}{Class\+File}} recebido como parametro.
 
 
 \begin{DoxyParams}{Parameters}
@@ -465,15 +498,15 @@ Funcao que le os bytes que compoe as Informacoes de Fields e os armazena nas dev
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a776579b8fdeab9f042ac52193a587269}\label{leitor_8h_a776579b8fdeab9f042ac52193a587269}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Interface\+Info@{le\+Interface\+Info}}
-\index{le\+Interface\+Info@{le\+Interface\+Info}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Interface\+Info()}{leInterfaceInfo()}}
-{\footnotesize\ttfamily void le\+Interface\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leInterfaceInfo@{leInterfaceInfo}}
+\index{leInterfaceInfo@{leInterfaceInfo}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leInterfaceInfo()}{leInterfaceInfo()}}
+{\footnotesize\ttfamily void le\+Interface\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
-Funcao que le os bytes que compoe as Informacoes de Interface e os armazena nas devidas posicoes da estrutura Interface\+Info, dentro do \hyperlink{structClassFile}{Class\+File} recebido como parametro.
+Funcao que le os bytes que compoe as Informacoes de Interface e os armazena nas devidas posicoes da estrutura Interface\+Info, dentro do \mbox{\hyperlink{structClassFile}{Class\+File}} recebido como parametro.
 
 
 \begin{DoxyParams}{Parameters}
@@ -486,15 +519,15 @@ Funcao que le os bytes que compoe as Informacoes de Interface e os armazena nas 
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} 
+\mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a65640b48b47bed299da6129adf80c472}\label{leitor_8h_a65640b48b47bed299da6129adf80c472}} 
-\index{leitor.\+h@{leitor.\+h}!le\+Method\+Info@{le\+Method\+Info}}
-\index{le\+Method\+Info@{le\+Method\+Info}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{le\+Method\+Info()}{leMethodInfo()}}
-{\footnotesize\ttfamily void le\+Method\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!leMethodInfo@{leMethodInfo}}
+\index{leMethodInfo@{leMethodInfo}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{leMethodInfo()}{leMethodInfo()}}
+{\footnotesize\ttfamily void le\+Method\+Info (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
-Funcao que le os bytes que compoe as Informacoes de Metodos e os armazena nas devidas posicoes da estrutura \hyperlink{structMethodInfo}{Method\+Info}, dentro do \hyperlink{structClassFile}{Class\+File} recebido como parametro. Isso tudo incluindo codigo (instrucoes) e excecoes de cada metodo.
+Funcao que le os bytes que compoe as Informacoes de Metodos e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structMethodInfo}{Method\+Info}}, dentro do \mbox{\hyperlink{structClassFile}{Class\+File}} recebido como parametro. Isso tudo incluindo codigo (instrucoes) e excecoes de cada metodo.
 
 
 \begin{DoxyParams}{Parameters}
@@ -507,26 +540,26 @@ Funcao que le os bytes que compoe as Informacoes de Metodos e os armazena nas de
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte} \hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes} \hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes} \hyperlink{leitor_8c_a6d55676267e5cf93c52566d78e1d11e1}{le\+Code} \hyperlink{leitor_8c_a9eb52b74df81ab0e0da46175d591d81f}{le\+Exc} 
+\mbox{\hyperlink{leitor_8c_a2ef408b96bee8729ac29bf490229048f}{le1\+Byte}} \mbox{\hyperlink{leitor_8c_a90fdde4380531bf81ba1284254004eff}{le2\+Bytes}} \mbox{\hyperlink{leitor_8c_a69346e08c479223be1ec2294791b6d78}{le4\+Bytes}} \mbox{\hyperlink{leitor_8c_a6d55676267e5cf93c52566d78e1d11e1}{le\+Code}} \mbox{\hyperlink{leitor_8c_a9eb52b74df81ab0e0da46175d591d81f}{le\+Exc}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{leitor_8h_a801f483e0d6f965b0355a3f33ff68e70}\label{leitor_8h_a801f483e0d6f965b0355a3f33ff68e70}} 
-\index{leitor.\+h@{leitor.\+h}!salva\+Instrucoes@{salva\+Instrucoes}}
-\index{salva\+Instrucoes@{salva\+Instrucoes}!leitor.\+h@{leitor.\+h}}
-\subsubsection{\texorpdfstring{salva\+Instrucoes()}{salvaInstrucoes()}}
-{\footnotesize\ttfamily void salva\+Instrucoes (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\hyperlink{structCodeAttribute}{Code\+Attribute} $\ast$$\ast$}]{cd\+Atrb }\end{DoxyParamCaption})}
+\index{leitor.h@{leitor.h}!salvaInstrucoes@{salvaInstrucoes}}
+\index{salvaInstrucoes@{salvaInstrucoes}!leitor.h@{leitor.h}}
+\subsubsection{\texorpdfstring{salvaInstrucoes()}{salvaInstrucoes()}}
+{\footnotesize\ttfamily void salva\+Instrucoes (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} $\ast$$\ast$}]{cd\+Atrb }\end{DoxyParamCaption})}
 
-Funcao que traduz os bytes de codigo lidos de um metodo e os armazena nas devidas posicoes da estrutura \hyperlink{structCodeAttribute}{Code\+Attribute}.
+Funcao que traduz os bytes de codigo lidos de um metodo e os armazena nas devidas posicoes da estrutura \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}.
 
 
 \begin{DoxyParams}{Parameters}
 {\em F\+I\+L\+E$\ast$} & Descritor do arquivo .class que foi aberto para leitura \\
 \hline
-{\em Code\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \hyperlink{structCodeAttribute}{Code\+Attribute} \\
+{\em Code\+Attribute$\ast$$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{decodificador_8h_a33a5a572beb55160cd59df462a10cdc3}{inicializa\+Decodificador} 
+\mbox{\hyperlink{decodificador_8h_a33a5a572beb55160cd59df462a10cdc3}{inicializa\+Decodificador}} 
 \end{DoxySeeAlso}

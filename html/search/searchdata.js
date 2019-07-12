@@ -4,8 +4,9 @@ var indexSectionsWithContent =
   1: "acdefmopsv",
   2: "acdefilm",
   3: "_abcdefghijlmnprstvw",
-  4: "ao",
-  5: "r"
+  4: "aco",
+  5: "c",
+  6: "r"
 };
 
 var indexSectionNames =
@@ -15,7 +16,8 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "typedefs",
-  5: "pages"
+  5: "defines",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -25,6 +27,7 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Typedefs",
-  5: "Pages"
+  5: "Macros",
+  6: "Pages"
 };
 

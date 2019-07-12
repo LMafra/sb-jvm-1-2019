@@ -1,9 +1,24 @@
 \hypertarget{structClassFile}{}\section{Class\+File Struct Reference}
-\label{structClassFile}\index{Class\+File@{Class\+File}}
+\label{structClassFile}\index{ClassFile@{ClassFile}}
+
+
+A estrutura de um class\+File em bytes (8-\/bits).  
+
+
+
+
+{\ttfamily \#include $<$leitor.\+h$>$}
+
 
 
 Collaboration diagram for Class\+File\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structClassFile__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -20,7 +35,7 @@ uint16\+\_\+t {\bfseries major\+Version}
 uint16\+\_\+t {\bfseries constant\+Pool\+Count}
 \item 
 \mbox{\Hypertarget{structClassFile_a209de5f28c80fb453b37a3f0b320ab9c}\label{structClassFile_a209de5f28c80fb453b37a3f0b320ab9c}} 
-\hyperlink{structCpInfo}{Cp\+Info} $\ast$ {\bfseries constant\+Pool}
+\mbox{\hyperlink{structCpInfo}{Cp\+Info}} $\ast$ {\bfseries constant\+Pool}
 \item 
 \mbox{\Hypertarget{structClassFile_afbb2cd57bb6eb5baa34e83127e928c18}\label{structClassFile_afbb2cd57bb6eb5baa34e83127e928c18}} 
 uint16\+\_\+t {\bfseries access\+Flags}
@@ -41,22 +56,27 @@ uint16\+\_\+t $\ast$ {\bfseries interfaces}
 uint16\+\_\+t {\bfseries fields\+Count}
 \item 
 \mbox{\Hypertarget{structClassFile_add171dc12613ad29ef94f4f18a50f06a}\label{structClassFile_add171dc12613ad29ef94f4f18a50f06a}} 
-\hyperlink{structFieldInfo}{Field\+Info} $\ast$ {\bfseries fields}
+\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$ {\bfseries fields}
 \item 
 \mbox{\Hypertarget{structClassFile_a24d224be2ab473bac3506890c6ff6a4d}\label{structClassFile_a24d224be2ab473bac3506890c6ff6a4d}} 
 uint16\+\_\+t {\bfseries methods\+Count}
 \item 
 \mbox{\Hypertarget{structClassFile_a67e02d50e6807bb97d7d8f265deef9a0}\label{structClassFile_a67e02d50e6807bb97d7d8f265deef9a0}} 
-\hyperlink{structMethodInfo}{Method\+Info} $\ast$ {\bfseries methods}
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ {\bfseries methods}
 \item 
 \mbox{\Hypertarget{structClassFile_ad88c9b8262fbd79d49ad2c163ad45716}\label{structClassFile_ad88c9b8262fbd79d49ad2c163ad45716}} 
 uint16\+\_\+t {\bfseries attributes\+Count}
 \item 
 \mbox{\Hypertarget{structClassFile_ad7db56de00dc682671cb8cfb837d92b7}\label{structClassFile_ad7db56de00dc682671cb8cfb837d92b7}} 
-\hyperlink{structAttributeInfo}{Attribute\+Info} $\ast$ {\bfseries attributes}
+\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$ {\bfseries attributes}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+A estrutura de um class\+File em bytes (8-\/bits). 
+
+A estrutura de um class\+File baseado em bytes de 8-\/bits. Todos os 16-\/bit, 32-\/bit, e 64-\/bit sao construidos por leituras de dois, quatro, e oito bytes (8bits) consecutivos. Dados de multibyte sao armazenados em ordem big-\/endian, onde o high-\/byte vem primeiro. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{leitor_8h}{leitor.\+h}\end{DoxyCompactItemize}
+\mbox{\hyperlink{leitor_8h}{leitor.\+h}}\end{DoxyCompactItemize}

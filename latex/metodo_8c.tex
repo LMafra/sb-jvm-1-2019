@@ -1,5 +1,5 @@
 \hypertarget{metodo_8c}{}\section{metodo.\+c File Reference}
-\label{metodo_8c}\index{metodo.\+c@{metodo.\+c}}
+\label{metodo_8c}\index{metodo.c@{metodo.c}}
 
 
 Arquivo que carrega a area de metodos na memoria para inciar a execucao do programa Java.  
@@ -11,33 +11,39 @@ Arquivo que carrega a area de metodos na memoria para inciar a execucao do progr
 {\ttfamily \#include \char`\"{}area\+Metodos.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 Include dependency graph for metodo.\+c\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metodo_8c__incl}
+\end{center}
+\end{figure}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structMethodInfo}{Method\+Info} $\ast$ \hyperlink{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}{busca\+Metodo\+Main} (\hyperlink{structClassFile}{Class\+File} $\ast$class\+File)
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ \mbox{\hyperlink{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}{busca\+Metodo\+Main}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$class\+File)
 \item 
-void \hyperlink{metodo_8c_abd0ddf4dcb0a8259896fe735c94e23b4}{empilha\+Metodo} (\hyperlink{structMethodInfo}{Method\+Info} $\ast$metodo, \hyperlink{structClassFile}{Class\+File} $\ast$classe)
+void \mbox{\hyperlink{metodo_8c_abd0ddf4dcb0a8259896fe735c94e23b4}{empilha\+Metodo}} (\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$metodo, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$classe)
 \item 
-void \hyperlink{metodo_8c_ae6a6b8342dd5977b74379e5295614ea8}{executa\+Frame\+Corrente} ()
+void \mbox{\hyperlink{metodo_8c_ae6a6b8342dd5977b74379e5295614ea8}{executa\+Frame\+Corrente}} ()
 \item 
-\hyperlink{structObjeto}{Objeto} $\ast$ \hyperlink{metodo_8c_aaf7017f2dbf93120bb68e608bfb31bb3}{cria\+Objeto} (\hyperlink{structClassFile}{Class\+File} $\ast$classe)
+\mbox{\hyperlink{structObjeto}{Objeto}} $\ast$ \mbox{\hyperlink{metodo_8c_aaf7017f2dbf93120bb68e608bfb31bb3}{cria\+Objeto}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$classe)
 \item 
-\hyperlink{structMethodInfo}{Method\+Info} $\ast$ \hyperlink{metodo_8c_abb219a6aa784e80d485f19d7b5aa2938}{busca\+Metodo} (\hyperlink{structClassFile}{Class\+File} $\ast$indice\+Classe, \hyperlink{structClassFile}{Class\+File} $\ast$search\+Classe, uint16\+\_\+t indice)
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ \mbox{\hyperlink{metodo_8c_abb219a6aa784e80d485f19d7b5aa2938}{busca\+Metodo}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$indice\+Classe, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$search\+Classe, uint16\+\_\+t indice)
 \item 
-int32\+\_\+t \hyperlink{metodo_8c_a03e272d2aa04d802c7d322adde9fdf9d}{busca\+Campo} (char $\ast$class\+Name, char $\ast$name, char $\ast$desc)
+int32\+\_\+t \mbox{\hyperlink{metodo_8c_a03e272d2aa04d802c7d322adde9fdf9d}{busca\+Campo}} (char $\ast$class\+Name, char $\ast$name, char $\ast$desc)
 \item 
-\hyperlink{structClassFile}{Class\+File} $\ast$ \hyperlink{metodo_8c_aca90430d6f6d46475fd93231842e6fdd}{retorna\+Classe\+Por\+Nome} (char $\ast$nome\+Classe)
+\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$ \mbox{\hyperlink{metodo_8c_aca90430d6f6d46475fd93231842e6fdd}{retorna\+Classe\+Por\+Nome}} (char $\ast$nome\+Classe)
 \item 
-int \hyperlink{metodo_8c_aa797f59f95442f936c2d7df872c6ce24}{retorna\+Indice\+Da\+Classe\+Por\+Nome} (char $\ast$nome\+Classe)
+int \mbox{\hyperlink{metodo_8c_aa797f59f95442f936c2d7df872c6ce24}{retorna\+Indice\+Da\+Classe\+Por\+Nome}} (char $\ast$nome\+Classe)
 \item 
-int32\+\_\+t \hyperlink{metodo_8c_ada12ca83079c04e89a1e5814004a1a59}{retorna\+Numero\+Parametros} (\hyperlink{structClassFile}{Class\+File} $\ast$classe, \hyperlink{structMethodInfo}{Method\+Info} $\ast$metodo)
+int32\+\_\+t \mbox{\hyperlink{metodo_8c_ada12ca83079c04e89a1e5814004a1a59}{retorna\+Numero\+Parametros}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$classe, \mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$metodo)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{metodo_8c_a34930492afe036d39230212a52499335}\label{metodo_8c_a34930492afe036d39230212a52499335}} 
-struct \hyperlink{structFrame}{Frame} $\ast$ {\bfseries frame\+Corrente}
+struct \mbox{\hyperlink{structFrame}{Frame}} $\ast$ {\bfseries frame\+Corrente}
 \item 
 \mbox{\Hypertarget{metodo_8c_a201689e5a9b408a00971da201ecba86a}\label{metodo_8c_a201689e5a9b408a00971da201ecba86a}} 
 uint32\+\_\+t {\bfseries num\+Objetos} = 0
@@ -62,9 +68,9 @@ Carrega as classes a partir do arquivo \char`\"{}.\+class\char`\"{} chamando o l
 
 \subsection{Function Documentation}
 \mbox{\Hypertarget{metodo_8c_a03e272d2aa04d802c7d322adde9fdf9d}\label{metodo_8c_a03e272d2aa04d802c7d322adde9fdf9d}} 
-\index{metodo.\+c@{metodo.\+c}!busca\+Campo@{busca\+Campo}}
-\index{busca\+Campo@{busca\+Campo}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{busca\+Campo()}{buscaCampo()}}
+\index{metodo.c@{metodo.c}!buscaCampo@{buscaCampo}}
+\index{buscaCampo@{buscaCampo}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{buscaCampo()}{buscaCampo()}}
 {\footnotesize\ttfamily int32\+\_\+t busca\+Campo (\begin{DoxyParamCaption}\item[{char $\ast$}]{class\+Name,  }\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{desc }\end{DoxyParamCaption})}
 
 Funcao que busca por um campo especifico dentro de uma classe.
@@ -82,10 +88,10 @@ Funcao que busca por um campo especifico dentro de uma classe.
 int32\+\_\+t Indice do campo procurado. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{metodo_8c_abb219a6aa784e80d485f19d7b5aa2938}\label{metodo_8c_abb219a6aa784e80d485f19d7b5aa2938}} 
-\index{metodo.\+c@{metodo.\+c}!busca\+Metodo@{busca\+Metodo}}
-\index{busca\+Metodo@{busca\+Metodo}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{busca\+Metodo()}{buscaMetodo()}}
-{\footnotesize\ttfamily \hyperlink{structMethodInfo}{Method\+Info}$\ast$ busca\+Metodo (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{indice\+Classe,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{search\+Classe,  }\item[{uint16\+\_\+t}]{indice }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!buscaMetodo@{buscaMetodo}}
+\index{buscaMetodo@{buscaMetodo}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{buscaMetodo()}{buscaMetodo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodInfo}{Method\+Info}}$\ast$ busca\+Metodo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{indice\+Classe,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{search\+Classe,  }\item[{uint16\+\_\+t}]{indice }\end{DoxyParamCaption})}
 
 Recebe uma classe e um indice do metodo que sera procurado. Se encontra, retorna o metodo. Se nao, retorna N\+U\+LL.
 
@@ -99,68 +105,68 @@ Recebe uma classe e um indice do metodo que sera procurado. Se encontra, retorna
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily Method\+Info$\ast$} Um ponteiro para uma estrutura \hyperlink{structMethodInfo}{Method\+Info} 
+{\ttfamily Method\+Info$\ast$} Um ponteiro para uma estrutura \mbox{\hyperlink{structMethodInfo}{Method\+Info}} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{carregador_8h_af24376339440bd0224ad335b9b4cbef6}{retorna\+Nome} 
+\mbox{\hyperlink{carregador_8h_af24376339440bd0224ad335b9b4cbef6}{retorna\+Nome}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}\label{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}} 
-\index{metodo.\+c@{metodo.\+c}!busca\+Metodo\+Main@{busca\+Metodo\+Main}}
-\index{busca\+Metodo\+Main@{busca\+Metodo\+Main}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{busca\+Metodo\+Main()}{buscaMetodoMain()}}
-{\footnotesize\ttfamily \hyperlink{structMethodInfo}{Method\+Info}$\ast$ busca\+Metodo\+Main (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{class\+File }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!buscaMetodoMain@{buscaMetodoMain}}
+\index{buscaMetodoMain@{buscaMetodoMain}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{buscaMetodoMain()}{buscaMetodoMain()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodInfo}{Method\+Info}}$\ast$ busca\+Metodo\+Main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{class\+File }\end{DoxyParamCaption})}
 
 Retorna qual dos metodos da classe passada por parametro eh a main.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Class\+File$\ast$} & Ponteiro para uma estrutura \hyperlink{structClassFile}{Class\+File} que contem a main \\
+{\em Class\+File$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structClassFile}{Class\+File}} que contem a main \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Method\+Info$\ast$ Retorna o metodo main 
 \end{DoxyReturn}
 \mbox{\Hypertarget{metodo_8c_aaf7017f2dbf93120bb68e608bfb31bb3}\label{metodo_8c_aaf7017f2dbf93120bb68e608bfb31bb3}} 
-\index{metodo.\+c@{metodo.\+c}!cria\+Objeto@{cria\+Objeto}}
-\index{cria\+Objeto@{cria\+Objeto}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{cria\+Objeto()}{criaObjeto()}}
-{\footnotesize\ttfamily \hyperlink{structObjeto}{Objeto}$\ast$ cria\+Objeto (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{classe }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!criaObjeto@{criaObjeto}}
+\index{criaObjeto@{criaObjeto}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{criaObjeto()}{criaObjeto()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjeto}{Objeto}}$\ast$ cria\+Objeto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{classe }\end{DoxyParamCaption})}
 
 Funcao que instacia um objeto a partir da classe passada como parametro.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Class\+File$\ast$} & Ponteiro para uma estrutura \hyperlink{structClassFile}{Class\+File}. \\
+{\em Class\+File$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structClassFile}{Class\+File}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Objeto$\ast$ Retorna o objeto criado. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{metodo_8c_abd0ddf4dcb0a8259896fe735c94e23b4}\label{metodo_8c_abd0ddf4dcb0a8259896fe735c94e23b4}} 
-\index{metodo.\+c@{metodo.\+c}!empilha\+Metodo@{empilha\+Metodo}}
-\index{empilha\+Metodo@{empilha\+Metodo}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{empilha\+Metodo()}{empilhaMetodo()}}
-{\footnotesize\ttfamily void empilha\+Metodo (\begin{DoxyParamCaption}\item[{\hyperlink{structMethodInfo}{Method\+Info} $\ast$}]{metodo,  }\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{classe }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!empilhaMetodo@{empilhaMetodo}}
+\index{empilhaMetodo@{empilhaMetodo}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{empilhaMetodo()}{empilhaMetodo()}}
+{\footnotesize\ttfamily void empilha\+Metodo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{metodo,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{classe }\end{DoxyParamCaption})}
 
 Cria um frame para o metodo passado como parametro e empilha ele na pilha de frames.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Method\+Info$\ast$} & Ponteiro para uma estrutura \hyperlink{structMethodInfo}{Method\+Info} \\
+{\em Method\+Info$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structMethodInfo}{Method\+Info}} \\
 \hline
-{\em Class\+File$\ast$$\ast$} & Ponteiro para uma estrutura \hyperlink{structClassFile}{Class\+File}. \\
+{\em Class\+File$\ast$$\ast$} & Ponteiro para uma estrutura \mbox{\hyperlink{structClassFile}{Class\+File}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{instrucao_8h_a308f4b87fb42ab5a62790c0127003ebe}{inicializa\+Instrucoes} \hyperlink{frame_8h_aaad5adf20f46c878f963035a8fb53a70}{cria\+Frame} 
+\mbox{\hyperlink{instrucao_8h_a308f4b87fb42ab5a62790c0127003ebe}{inicializa\+Instrucoes}} \mbox{\hyperlink{frame_8h_aaad5adf20f46c878f963035a8fb53a70}{cria\+Frame}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{metodo_8c_ae6a6b8342dd5977b74379e5295614ea8}\label{metodo_8c_ae6a6b8342dd5977b74379e5295614ea8}} 
-\index{metodo.\+c@{metodo.\+c}!executa\+Frame\+Corrente@{executa\+Frame\+Corrente}}
-\index{executa\+Frame\+Corrente@{executa\+Frame\+Corrente}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{executa\+Frame\+Corrente()}{executaFrameCorrente()}}
+\index{metodo.c@{metodo.c}!executaFrameCorrente@{executaFrameCorrente}}
+\index{executaFrameCorrente@{executaFrameCorrente}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{executaFrameCorrente()}{executaFrameCorrente()}}
 {\footnotesize\ttfamily void executa\+Frame\+Corrente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Executa todas as intrucoes do frame corrente e retira ele da pilha de frames apos o termino.
@@ -174,13 +180,13 @@ Executa todas as intrucoes do frame corrente e retira ele da pilha de frames apo
 void 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{frame_8h_aca9cbfa46eaa4e3c07217b16d0c5212e}{pop\+Frame} 
+\mbox{\hyperlink{frame_8h_aca9cbfa46eaa4e3c07217b16d0c5212e}{pop\+Frame}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{metodo_8c_aca90430d6f6d46475fd93231842e6fdd}\label{metodo_8c_aca90430d6f6d46475fd93231842e6fdd}} 
-\index{metodo.\+c@{metodo.\+c}!retorna\+Classe\+Por\+Nome@{retorna\+Classe\+Por\+Nome}}
-\index{retorna\+Classe\+Por\+Nome@{retorna\+Classe\+Por\+Nome}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{retorna\+Classe\+Por\+Nome()}{retornaClassePorNome()}}
-{\footnotesize\ttfamily \hyperlink{structClassFile}{Class\+File}$\ast$ retorna\+Classe\+Por\+Nome (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+Classe }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!retornaClassePorNome@{retornaClassePorNome}}
+\index{retornaClassePorNome@{retornaClassePorNome}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{retornaClassePorNome()}{retornaClassePorNome()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassFile}{Class\+File}}$\ast$ retorna\+Classe\+Por\+Nome (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+Classe }\end{DoxyParamCaption})}
 
 Funcao que percorre todo a area de metodos buscando a classe com o nome passado por parametro.
 
@@ -193,9 +199,9 @@ Funcao que percorre todo a area de metodos buscando a classe com o nome passado 
 Class\+File$\ast$ Retorna a classe procurada (se existe). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{metodo_8c_aa797f59f95442f936c2d7df872c6ce24}\label{metodo_8c_aa797f59f95442f936c2d7df872c6ce24}} 
-\index{metodo.\+c@{metodo.\+c}!retorna\+Indice\+Da\+Classe\+Por\+Nome@{retorna\+Indice\+Da\+Classe\+Por\+Nome}}
-\index{retorna\+Indice\+Da\+Classe\+Por\+Nome@{retorna\+Indice\+Da\+Classe\+Por\+Nome}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{retorna\+Indice\+Da\+Classe\+Por\+Nome()}{retornaIndiceDaClassePorNome()}}
+\index{metodo.c@{metodo.c}!retornaIndiceDaClassePorNome@{retornaIndiceDaClassePorNome}}
+\index{retornaIndiceDaClassePorNome@{retornaIndiceDaClassePorNome}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{retornaIndiceDaClassePorNome()}{retornaIndiceDaClassePorNome()}}
 {\footnotesize\ttfamily int retorna\+Indice\+Da\+Classe\+Por\+Nome (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+Classe }\end{DoxyParamCaption})}
 
 Funcao que retorna o indice da classe recebendo como entrada o nome
@@ -209,18 +215,18 @@ Funcao que retorna o indice da classe recebendo como entrada o nome
 int Indice 
 \end{DoxyReturn}
 \mbox{\Hypertarget{metodo_8c_ada12ca83079c04e89a1e5814004a1a59}\label{metodo_8c_ada12ca83079c04e89a1e5814004a1a59}} 
-\index{metodo.\+c@{metodo.\+c}!retorna\+Numero\+Parametros@{retorna\+Numero\+Parametros}}
-\index{retorna\+Numero\+Parametros@{retorna\+Numero\+Parametros}!metodo.\+c@{metodo.\+c}}
-\subsubsection{\texorpdfstring{retorna\+Numero\+Parametros()}{retornaNumeroParametros()}}
-{\footnotesize\ttfamily int32\+\_\+t retorna\+Numero\+Parametros (\begin{DoxyParamCaption}\item[{\hyperlink{structClassFile}{Class\+File} $\ast$}]{classe,  }\item[{\hyperlink{structMethodInfo}{Method\+Info} $\ast$}]{metodo }\end{DoxyParamCaption})}
+\index{metodo.c@{metodo.c}!retornaNumeroParametros@{retornaNumeroParametros}}
+\index{retornaNumeroParametros@{retornaNumeroParametros}!metodo.c@{metodo.c}}
+\subsubsection{\texorpdfstring{retornaNumeroParametros()}{retornaNumeroParametros()}}
+{\footnotesize\ttfamily int32\+\_\+t retorna\+Numero\+Parametros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{classe,  }\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{metodo }\end{DoxyParamCaption})}
 
 Funcao que retorna o numero de parametros de um determinado metodo de uma classe.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Class\+File$\ast$} & Ponteiro para \hyperlink{structClassFile}{Class\+File} que contem a classe \\
+{\em Class\+File$\ast$} & Ponteiro para \mbox{\hyperlink{structClassFile}{Class\+File}} que contem a classe \\
 \hline
-{\em Method\+Info$\ast$} & Ponteiro para \hyperlink{structMethodInfo}{Method\+Info} que se deseja saber o numero de parametros. \\
+{\em Method\+Info$\ast$} & Ponteiro para \mbox{\hyperlink{structMethodInfo}{Method\+Info}} que se deseja saber o numero de parametros. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

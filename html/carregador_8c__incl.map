@@ -1,0 +1,11 @@
+<map id="carregador.c" name="carregador.c">
+<area shape="rect" id="node1" title="Carrega, inicializa e aloca um ClassFile e associa com a estrutura do AreaMetodos." alt="" coords="254,5,349,31"/>
+<area shape="rect" id="node2" href="$carregador_8h.html" title=" " alt="" coords="136,79,232,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="229,299,289,324"/>
+<area shape="rect" id="node7" title=" " alt="" coords="205,372,270,397"/>
+<area shape="rect" id="node9" title=" " alt="" coords="364,79,428,104"/>
+<area shape="rect" id="node3" href="$leitor_8h.html" title=" " alt="" coords="119,225,180,251"/>
+<area shape="rect" id="node8" href="$areaMetodos_8h.html" title="Define as estruturas Area de Metodos e Objeto." alt="" coords="129,152,239,177"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,299,70,324"/>
+<area shape="rect" id="node6" href="$decodificador_8h.html" title=" " alt="" coords="94,299,205,324"/>
+</map>

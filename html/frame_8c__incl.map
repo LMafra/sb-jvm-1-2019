@@ -1,0 +1,10 @@
+<map id="frame.c" name="frame.c">
+<area shape="rect" id="node1" title="Gerenciamento e alocação de memória das frames do programa executado." alt="" coords="39,5,105,31"/>
+<area shape="rect" id="node2" href="$frame_8h.html" title=" " alt="" coords="39,79,105,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,225,70,251"/>
+<area shape="rect" id="node4" title=" " alt="" coords="40,152,104,177"/>
+<area shape="rect" id="node5" href="$leitor_8h.html" title=" " alt="" coords="129,152,189,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="111,225,172,251"/>
+<area shape="rect" id="node7" href="$decodificador_8h.html" title=" " alt="" coords="195,225,306,251"/>
+<area shape="rect" id="node8" title=" " alt="" coords="218,299,283,324"/>
+</map>

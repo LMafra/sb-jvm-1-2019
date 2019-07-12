@@ -1,0 +1,5 @@
+<map id="instrucao.h" name="instrucao.h">
+<area shape="rect" id="node1" title=" " alt="" coords="57,5,144,31"/>
+<area shape="rect" id="node2" href="$instrucao_8c.html" title="Define, interpreta e executa as instruções do programa sendo executado." alt="" coords="5,79,91,104"/>
+<area shape="rect" id="node3" href="$metodo_8c.html" title="Arquivo que carrega a area de metodos na memoria para inciar a execucao do programa Java." alt="" coords="115,79,192,104"/>
+</map>

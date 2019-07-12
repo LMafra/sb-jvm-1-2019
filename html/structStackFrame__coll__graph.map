@@ -1,0 +1,14 @@
+<map id="StackFrame" name="StackFrame">
+<area shape="rect" id="node1" title=" " alt="" coords="112,439,205,464"/>
+<area shape="rect" id="node2" href="$structFrame.html" title=" " alt="" coords="128,352,188,377"/>
+<area shape="rect" id="node3" href="$structCpInfo.html" title="A estrutura do cp_info ira compor a constant_pool do classFile." alt="" coords="5,179,66,204"/>
+<area shape="rect" id="node4" href="$structClassFile.html" title="A estrutura de um classFile em bytes (8&#45;bits)." alt="" coords="120,265,196,291"/>
+<area shape="rect" id="node5" href="$structAttributeInfo.html" title=" " alt="" coords="116,5,209,31"/>
+<area shape="rect" id="node10" href="$structCodeAttribute.html" title=" " alt="" coords="196,92,299,117"/>
+<area shape="rect" id="node6" href="$structFieldInfo.html" title=" " alt="" coords="427,179,500,204"/>
+<area shape="rect" id="node7" href="$structCvInfo.html" title=" " alt="" coords="484,92,544,117"/>
+<area shape="rect" id="node8" href="$structMethodInfo.html" title=" " alt="" coords="204,179,292,204"/>
+<area shape="rect" id="node9" href="$structExceptionsAttribute.html" title=" " alt="" coords="324,92,460,117"/>
+<area shape="rect" id="node11" href="$structExceptionTable.html" title=" " alt="" coords="236,5,348,31"/>
+<area shape="rect" id="node12" href="$structPilhaOp.html" title=" " alt="" coords="220,265,289,291"/>
+</map>

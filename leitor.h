@@ -25,17 +25,18 @@
 
 #include "decodificador.h"
 
-#define CONSTANT_Class 7
-#define CONSTANT_Fieldref 9
-#define CONSTANT_Methodref 10
-#define CONSTANT_InterfaceMethodref 11
-#define CONSTANT_String 8
-#define CONSTANT_Integer 3
-#define CONSTANT_Float 4
-#define CONSTANT_Long 5
-#define CONSTANT_Double 6
-#define CONSTANT_NameAndType 12
-#define CONSTANT_Utf8 1
+/* Definitions/Constants type - Constant pool tags */
+#define CONSTANT_Class 7  /*!< \brief constante de Class definida como 7 */
+#define CONSTANT_Fieldref 9 /*!< \brief constante de Fieldref definida como 9 */
+#define CONSTANT_Methodref 10 /*!< \brief constante de Methodref definida como 10 */
+#define CONSTANT_InterfaceMethodref 11  /*!< \brief constante de InterfaceMethodref definida como 11 */
+#define CONSTANT_String 8 /*!< \brief constante de String como definida 8 */
+#define CONSTANT_Integer 3  /*!< \brief constante de Integer definida como 3 */
+#define CONSTANT_Float 4  /*!< \brief constante de Float definida como 4 */
+#define CONSTANT_Long 5 /*!< \brief constante de Long definida como 5 */
+#define CONSTANT_Double 6 /*!< \brief constante de Double definida como 6 */
+#define CONSTANT_NameAndType 12 /*!< \brief constante de NameAndType definida como 12 */
+#define CONSTANT_Utf8 1 /*!< \brief constante de Utf8 definida como 1 */
 
 #define NUM_INSTRUCAO 256
 
@@ -78,7 +79,12 @@
 #define IFNULL 198
 #define IFNONNULL 199
 
-
+/*! \brief A estrutura do cp_info ira compor 
+*   a constant_pool do classFile 
+*
+*  cp_info varia de acordo com o byte lido em sua tag
+* 
+*/
 typedef struct CpInfo {
   uint8_t tag;
   union {
@@ -180,6 +186,16 @@ typedef struct MethodInfo {
   ExceptionsAttribute* excAtrb;
 } MethodInfo;
 
+/*! \brief A estrutura de um classFile 
+ *         em bytes (8-bits).
+ *
+ * A estrutura de um classFile 
+ * baseado em bytes de 8-bits. Todos os 16-bit, 32-bit, 
+ * e 64-bit sao construidos por leituras de dois, 
+ * quatro, e oito bytes (8bits) consecutivos. 
+ * Dados de multibyte sao armazenados em ordem big-endian, 
+ * onde o high-byte vem primeiro.
+ */
 typedef struct ClassFile {
   uint32_t magic;
   uint16_t minorVersion;

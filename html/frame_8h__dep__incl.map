@@ -1,0 +1,6 @@
+<map id="frame.h" name="frame.h">
+<area shape="rect" id="node1" title=" " alt="" coords="105,5,171,31"/>
+<area shape="rect" id="node2" href="$frame_8c.html" title="Gerenciamento e alocação de memória das frames do programa executado." alt="" coords="5,79,71,104"/>
+<area shape="rect" id="node3" href="$instrucao_8c.html" title="Define, interpreta e executa as instruções do programa sendo executado." alt="" coords="95,79,181,104"/>
+<area shape="rect" id="node4" href="$metodo_8c.html" title="Arquivo que carrega a area de metodos na memoria para inciar a execucao do programa Java." alt="" coords="205,79,282,104"/>
+</map>

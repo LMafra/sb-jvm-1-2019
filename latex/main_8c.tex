@@ -1,5 +1,5 @@
 \hypertarget{main_8c}{}\section{main.\+c File Reference}
-\label{main_8c}\index{main.\+c@{main.\+c}}
+\label{main_8c}\index{main.c@{main.c}}
 
 
 Arquivo principal que inicia a execucacao da J\+VM.  
@@ -12,7 +12,13 @@ Arquivo principal que inicia a execucacao da J\+VM.
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 Include dependency graph for main.\+c\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{main_8c__incl}
+\end{center}
+\end{figure}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,22 +31,22 @@ Include dependency graph for main.\+c\+:
 \mbox{\Hypertarget{main_8c_a45b099240a0e5e7ffff39bfa8accaf25}\label{main_8c_a45b099240a0e5e7ffff39bfa8accaf25}} 
 void {\bfseries le\+Params\+Entrada} ()
 \item 
-void \hyperlink{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}{prepara\+Metodo\+Main} ()
+void \mbox{\hyperlink{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}{prepara\+Metodo\+Main}} ()
 \item 
-void \hyperlink{main_8c_a4fb190a31887509a84011fe503d1583c}{exibe\+Array\+Classes} ()
+void \mbox{\hyperlink{main_8c_a4fb190a31887509a84011fe503d1583c}{exibe\+Array\+Classes}} ()
 \item 
-int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \item 
-void \hyperlink{main_8c_aac9775bae25ad3825c28d3b01e78033c}{le\+Params\+Entrada} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+void \mbox{\hyperlink{main_8c_aac9775bae25ad3825c28d3b01e78033c}{le\+Params\+Entrada}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{main_8c_a748d925b1fa9d6526aa5a94080aeaf19}\label{main_8c_a748d925b1fa9d6526aa5a94080aeaf19}} 
-\hyperlink{structMethodInfo}{Method\+Info} $\ast$ {\bfseries metodo\+Main}
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ {\bfseries metodo\+Main}
 \item 
 \mbox{\Hypertarget{main_8c_a5eb03fa1550ef172a859dba26a46d77a}\label{main_8c_a5eb03fa1550ef172a859dba26a46d77a}} 
-\hyperlink{structClassFile}{Class\+File} $\ast$ {\bfseries classe\+Main}
+\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$ {\bfseries classe\+Main}
 \item 
 \mbox{\Hypertarget{main_8c_a69c926fdbe16a1cbc50de4a966d497a5}\label{main_8c_a69c926fdbe16a1cbc50de4a966d497a5}} 
 char $\ast$ {\bfseries caminho\+Arquivo}
@@ -64,13 +70,13 @@ Wladimir Gramacho 15/0058718 ~\newline
 \begin{DoxyDate}{Date}
 28/06/2019
 \end{DoxyDate}
-Inicializa o programa, pegando o caminho do arquivo \char`\"{}.\+class\char`\"{} e uma flag para impressao na tela. Ambos por por linha de comando, ou por interface. Entao, chama o Carregador para processar o arquivo e carregar a area de metodos (\hyperlink{structAreaMetodos}{Area\+Metodos}) para a memoria. Entao, comeca a execucaco do metodo main da classe principal e encerra quando a pilha de frames estiver vazia, imprimindo as estruturas na tela (caso o usuario tenha solicitado). 
+Inicializa o programa, pegando o caminho do arquivo \char`\"{}.\+class\char`\"{} e uma flag para impressao na tela. Ambos por por linha de comando, ou por interface. Entao, chama o Carregador para processar o arquivo e carregar a area de metodos (\mbox{\hyperlink{structAreaMetodos}{Area\+Metodos}}) para a memoria. Entao, comeca a execucaco do metodo main da classe principal e encerra quando a pilha de frames estiver vazia, imprimindo as estruturas na tela (caso o usuario tenha solicitado). 
 
 \subsection{Function Documentation}
 \mbox{\Hypertarget{main_8c_a4fb190a31887509a84011fe503d1583c}\label{main_8c_a4fb190a31887509a84011fe503d1583c}} 
-\index{main.\+c@{main.\+c}!exibe\+Array\+Classes@{exibe\+Array\+Classes}}
-\index{exibe\+Array\+Classes@{exibe\+Array\+Classes}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{exibe\+Array\+Classes()}{exibeArrayClasses()}}
+\index{main.c@{main.c}!exibeArrayClasses@{exibeArrayClasses}}
+\index{exibeArrayClasses@{exibeArrayClasses}!main.c@{main.c}}
+\subsubsection{\texorpdfstring{exibeArrayClasses()}{exibeArrayClasses()}}
 {\footnotesize\ttfamily void exibe\+Array\+Classes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Mostra o bytecode da classe lida no terminal e criar um arquivo de texto \char`\"{}log.\+txt\char`\"{} com o bytecode da classe caso a flag printa\+Para\+Arquivo tenha sido setada.
@@ -84,51 +90,49 @@ Mostra o bytecode da classe lida no terminal e criar um arquivo de texto \char`\
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{exibidor_8h_a157efd9bd041a04a6a6445a4fb44f3fb}{printa\+Class\+File} 
+\mbox{\hyperlink{exibidor_8h_a157efd9bd041a04a6a6445a4fb44f3fb}{printa\+Class\+File}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{main_8c_aac9775bae25ad3825c28d3b01e78033c}\label{main_8c_aac9775bae25ad3825c28d3b01e78033c}} 
-\index{main.\+c@{main.\+c}!le\+Params\+Entrada@{le\+Params\+Entrada}}
-\index{le\+Params\+Entrada@{le\+Params\+Entrada}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{le\+Params\+Entrada()}{leParamsEntrada()}}
+\index{main.c@{main.c}!leParamsEntrada@{leParamsEntrada}}
+\index{leParamsEntrada@{leParamsEntrada}!main.c@{main.c}}
+\subsubsection{\texorpdfstring{leParamsEntrada()}{leParamsEntrada()}}
 {\footnotesize\ttfamily void le\+Params\+Entrada (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 Le os paramentros inseridos via linha de comando.
 
 
 \begin{DoxyParams}{Parameters}
-{\em int} & Numero de argumentos passados via linha de comando \\
+{\em int} & Numero de argumentos passados por command line \\
 \hline
-{\em char$\ast$} & Array que contem as strings passadas via linha de comando \\
+{\em char$\ast$} & Array que contem as strings passadas por command line \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 {\ttfamily void} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
-\index{main.\+c@{main.\+c}!main@{main}}
-\index{main@{main}!main.\+c@{main.\+c}}
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
 \subsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
-Funcao principal que controla o inicio do programa.
-
-
+Main function da J\+VM -\/ Chama as funções de leitura de parametros, carregamento. para memoria, exibição do class file (se ativo por flag) normalização de metodo, empilhar método, executar frame e liberar memoria 
 \begin{DoxyParams}{Parameters}
-{\em int} & Numero de argumentos passados via linha de comando \\
+{\em int} & Numero de argumentos passados por command line \\
 \hline
-{\em char$\ast$} & Array que contem as strings passadas via linha de comando \\
+{\em char$\ast$} & Vetor que contem as strings passador por command line \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 {\ttfamily int} Retorna 0 caso a execucao seja bem sucedida. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{main_8c_aac9775bae25ad3825c28d3b01e78033c}{le\+Params\+Entrada} \hyperlink{carregador_8h_a6be3551b88a5154690e9e147217ca181}{carrega\+Classe\+Para\+Memoria} \hyperlink{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}{prepara\+Metodo\+Main} \hyperlink{metodo_8h_a68acc5b3f2238f62b7d0ee50964183c1}{empilha\+Metodo} \hyperlink{metodo_8h_ae6a6b8342dd5977b74379e5295614ea8}{executa\+Frame\+Corrente} \hyperlink{main_8c_a4fb190a31887509a84011fe503d1583c}{exibe\+Array\+Classes} 
+\mbox{\hyperlink{main_8c_aac9775bae25ad3825c28d3b01e78033c}{le\+Params\+Entrada}} \mbox{\hyperlink{carregador_8h_a6be3551b88a5154690e9e147217ca181}{carrega\+Classe\+Para\+Memoria}} \mbox{\hyperlink{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}{prepara\+Metodo\+Main}} \mbox{\hyperlink{metodo_8h_a68acc5b3f2238f62b7d0ee50964183c1}{empilha\+Metodo}} \mbox{\hyperlink{metodo_8h_ae6a6b8342dd5977b74379e5295614ea8}{executa\+Frame\+Corrente}} \mbox{\hyperlink{main_8c_a4fb190a31887509a84011fe503d1583c}{exibe\+Array\+Classes}} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}\label{main_8c_a6b2cbabf8682bcc1712ff9adf23cecc7}} 
-\index{main.\+c@{main.\+c}!prepara\+Metodo\+Main@{prepara\+Metodo\+Main}}
-\index{prepara\+Metodo\+Main@{prepara\+Metodo\+Main}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{prepara\+Metodo\+Main()}{preparaMetodoMain()}}
+\index{main.c@{main.c}!preparaMetodoMain@{preparaMetodoMain}}
+\index{preparaMetodoMain@{preparaMetodoMain}!main.c@{main.c}}
+\subsubsection{\texorpdfstring{preparaMetodoMain()}{preparaMetodoMain()}}
 {\footnotesize\ttfamily void prepara\+Metodo\+Main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Busca a classe que possui o metodo main e depois busca dentro dessa classe o metodo main.
@@ -142,5 +146,5 @@ Busca a classe que possui o metodo main e depois busca dentro dessa classe o met
 {\ttfamily void} 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{carregador_8h_a5e44435bd5cfcea055179495059b1b2d}{busca\+Class\+Por\+Indice} \hyperlink{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}{busca\+Metodo\+Main} 
+\mbox{\hyperlink{carregador_8h_a5e44435bd5cfcea055179495059b1b2d}{busca\+Class\+Por\+Indice}} \mbox{\hyperlink{metodo_8c_a6aa5c3f94b9def67427ad40fb5205c5f}{busca\+Metodo\+Main}} 
 \end{DoxySeeAlso}
