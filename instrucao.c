@@ -4266,7 +4266,7 @@ void _return() {
 /// @see atualizaPc
 void getstatic() {
   
-	/*uint32_t indice = frameCorrente->code[frameCorrente->pc + 2];
+	uint32_t indice = frameCorrente->code[frameCorrente->pc + 2];
 	int32_t indiceClasse = frameCorrente->constantPool[indice-1].info.Fieldref.classIndex;
 	char* nomeClasse = retornaNome(frameCorrente->classe, frameCorrente->constantPool[indiceClasse-1].info.Class.nameIndex);
 	uint16_t nomeTipoIndice = frameCorrente->constantPool[indice-1].info.Fieldref.nameAndTypeIndex;
@@ -4277,6 +4277,7 @@ void getstatic() {
  	int32_t indiceField = buscaCampo(nomeClasse, nome, tipo);
  	uint32_t indiceNome = frameCorrente->classe->fields[indiceField].nameIndex;
 
+	
 
  	int32_t i;
  	for (i = 0; i < frameCorrente->classe->fields[indiceNome].attributesCount; ++i);
@@ -4285,13 +4286,10 @@ void getstatic() {
 	printf("%u\n", valor);
 	exit(0);
 
-
  	//pushOp(val);
 	atualizaPc();	
-*/
 
-
-  frameCorrente->pilhaOp->depth += 1;
+  	frameCorrente->pilhaOp->depth += 1;
 	atualizaPc();
 }
 

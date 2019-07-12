@@ -48,10 +48,14 @@ void preparaMetodoMain();
 void exibeArrayClasses();
 
 ///
-/// Funcao principal que controla o inicio do  programa.
-///
-/// @param int Numero de argumentos passados via linha de comando
-/// @param char* Array que contem as strings passadas via linha de comando
+/// Main function da JVM - Chama as funções 
+/// de leitura de parametros, carregamento.
+/// para memoria, exibição do class file (se ativo por flag)
+/// normalização de metodo, empilhar método, executar frame e
+/// liberar memoria
+
+/// @param int Numero de argumentos passados por command line
+/// @param char* Vetor que contem as strings passador por command line
 /// @return @c int Retorna 0 caso a execucao seja bem sucedida.
 /// @see leParamsEntrada carregaClasseParaMemoria preparaMetodoMain empilhaMetodo executaFrameCorrente exibeArrayClasses
 int main(int argc, char* argv[]) {
@@ -69,11 +73,11 @@ int main(int argc, char* argv[]) {
 ///
 /// Le os paramentros inseridos via linha de comando.
 ///
-/// @param int Numero de argumentos passados via linha de comando
-/// @param char* Array que contem as strings passadas via linha de comando
+/// @param int Numero de argumentos passados por command line
+/// @param char* Array que contem as strings passadas por command line
 /// @return @c void
 void leParamsEntrada(int argc, char* argv[]) {
-  caminhoArquivo = calloc(TAMANHO_ARQUIVO, sizeof(argv[1]));
+  caminhoArquivo = calloc(TAMANHO_ARQUIVO, sizeof(argv[1]));   // Caminho do arquivo argumento um
   if (argc < 3) {
     printf("\n\nInforme o caminho completo do arquivo \".class\" que contem o metodo main:\n");
     scanf("%s", caminhoArquivo);

@@ -14,11 +14,11 @@
 
 ## Autores
 
-* **Bruno Sanguinetti R. Barros** |    *18/0046063*     |     [GitHub](https://github.com/BrunoSNT)
-* **Gabriel Vasconcelos**         |    *16/0120781*     |     [GitHub](https://github.com/gcvasconcelos)
-* **Leonardo de Almeida**         |    *15/0135491*     |     [GitHub](https://github.com/leodealmeida)
-* **Lucas Mafra**                 |    *12/0126443*     |     [GitHub](https://github.com/LMafra)
-* **Wladimir Gramacho**           |    *15/0048718*     |     [GitHub](https://github.com/wladimirgramacho)
+* **Bruno Sanguinetti R. Barros** |    *18/0046063*     |     
+* **Gabriel Vasconcelos**         |    *16/0120781*     |     
+* **Leonardo de Almeida**         |    *15/0135491*     |     
+* **Lucas Mafra**                 |    *12/0126443*     |     
+* **Wladimir Gramacho**           |    *15/0048718*     |     
 
 ## Getting Started
 
@@ -26,34 +26,28 @@ Essas instruções farão com que você tenha uma cópia deste projeto em sua m�
 
 ```
 
-~dir/ user$ git clone https://github.com/LMafra/sb-jvm-1-2019.git
-~dir/ user$ cd sb-jvm-1-2019
-
-```
-
 ### Compilando e Executando
 
-Como compilar `gcc -o main main.c reader.c printer.c instructions.c freemem.c -Wall -std=c99 -ggdb3`:
+Como compilar `dir/sb-jvm-1-2019 user $ make`:
+
+```
+$ make
+```
+
+Como  executar `./main PATH/file.class`:
 
 ```
 
-~dir/sb-jvm-1-2019 user$ gcc -o main main.c reader.c printer.c instructions.c freemem.c -Wall -std=c99 -ggdb3
-
-```
-
-Como  executar `./main`:
-
-```
-
-~dir/sb-jvm-1-2019 user$ ./main
+~dir/sb-jvm-1-2019 user $ ./main PATH/file.class
 
 ```
 
 ## Testes
 
-Todos os testes foram feitos com classes fornecidas pelo professor ou baixadas da internet para fins de testes.
+Todos os testes foram feitos com classes fornecidas pelo professor ou baixadas da internet para fins de testes
+e compiladas com javac versão 1.8.
 
 
-## Testes de Coding Style
+## Code Analysis
 
-Durante todo o projeto, após cada aprovaçao nos teste, foram executados os comandos
+Durante todo o projeto, após cada aprovaçao nos teste, foram executados os analisadores Cppcheck e Valgrind para analise estática e dinâmica respectivamente
