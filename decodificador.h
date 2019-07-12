@@ -2,8 +2,7 @@
 ///		@file decodificador.h
 ///		@class decodificador.c "decodificador.c"
 ///
-///		@date 26/06/17.
-///		@copyright Copyright © 2017 GrupoSB. All rights reserved.
+///		@date 26/07/2019.
 ///
 ///		@authors
 ///	    Bruno Sanguinetti 18/0046063 \n

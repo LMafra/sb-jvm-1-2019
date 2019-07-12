@@ -9,9 +9,8 @@
 ///	 Lucas Mafra 12/0126443 \n
 ///	 Wladimir Gramacho 15/0058718 \n
 ///
-///  @date 28/06/2017
+///  @date 01/06/2019
 ///
-///  @copyright Copyright © 2017 GrupoSB. All rights reserved.
 ///
 ///  @brief Arquivo que exibe na tela uma estrutura ClassFile
 ///  imprimindo todos os dados armazenados.

@@ -3,8 +3,7 @@
 ///		@class frame.c "frame.c"
 ///		@headerfile leitor.h "leitor.h"
 ///
-///		@date 26/06/17.
-///		@copyright Copyright © 2017 GrupoSB. All rights reserved.
+///		@date 30/06/2019.
 ///
 ///		@authors
 ///		Bruno Sanguinetti 18/0046063 \n

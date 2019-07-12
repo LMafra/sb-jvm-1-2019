@@ -2,7 +2,7 @@
 ///	@file areaMetodos.h
 ///	@headerfile leitor.h "leitor.h"
 ///
-///	@date 28/06/19.
+///	@date 28/06/2019.
 ///
 ///	@authors
 ///	Bruno Sanguinetti 18/0046063 \n

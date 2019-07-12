@@ -4,8 +4,7 @@
 ///		@headerfile leitor.h "leitor.h"
 ///		@headerfile areaMetodos.h "areaMetodos.h"
 ///
-///		@date 28/06/17.
-///		@copyright Copyright © 2017 GrupoSB. All rights reserved.
+///		@date 28/06/2019.
 ///
 ///		@authors
 ///	    Bruno Sanguinetti 18/0046063 \n

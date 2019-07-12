@@ -9,9 +9,8 @@
 ///	 Lucas Mafra 12/0126443 \n
 ///	 Wladimir Gramacho 15/0058718 \n
 ///
-///  @date 28/06/2017
+///  @date 03/07/2019
 ///
-///  @copyright Copyright © 2017 GrupoSB. All rights reserved.
 ///
 ///  @brief
 ///  Gerenciamento e alocação de memória das frames do programa executado.

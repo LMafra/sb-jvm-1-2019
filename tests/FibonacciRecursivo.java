@@ -11,7 +11,7 @@ public class FibonacciRecursivo {
     public static void main(String[] args) {   
 	FibonacciRecursivo fib = new FibonacciRecursivo();
 
-	// teste do programa. Imprime os 30 primeiros termos       
+	// teste do programa. Imprime os 25 primeiros termos       
 	for (int i = 0; i < 25; i++) {
             System.out.println(fib.fibo(i));
         }
